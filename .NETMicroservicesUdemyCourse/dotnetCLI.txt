@@ -1,0 +1,3 @@
+dotnet tool list -g
+
+dotnet ef migrations add "InitialCreate" -o .\Data\Migrations
