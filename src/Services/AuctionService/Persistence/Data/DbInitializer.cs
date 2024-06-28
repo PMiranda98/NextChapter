@@ -6,7 +6,7 @@ namespace AuctionService.Persistence.Data;
 
 public class DbSeed
 {
-  public static async Task SeedData(AuctionDbContext context)
+  public static async Task SeedData(DataContext context)
   {
     context.Database.Migrate();
 

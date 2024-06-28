@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<AuctionDbContext>(options => {
+builder.Services.AddDbContext<DataContext>(options => {
   options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
@@ -24,13 +24,13 @@ var services = scope.ServiceProvider;
 
 try
 {
-    var context = services.GetRequiredService<AuctionDbContext>();
+    var context = services.GetRequiredService<DataContext>();
     await context.Database.MigrateAsync();
     await DbSeed.SeedData(context);
 }
 catch (Exception ex)
 {
-    var logger = services.GetRequiredService<ILogger>();
+    var logger = services.GetRequiredService<ILogger<Program>>();
     logger.LogError(ex, "An error ocurred during migration.");
 }
 

@@ -10,6 +10,7 @@ public class MappingProfiles : Profile
   public MappingProfiles()
   {
     CreateMap<Auction, AuctionDto>().IncludeMembers(x => x.Item);
+    CreateMap<AuctionDto, Auction>().IncludeMembers(x => x.Item);
     CreateMap<Item, ItemDto>();
     CreateMap<CreateAuctionDto, Auction>().IncludeMembers(x => x.Item);
     CreateMap<CreateItemDto, Item>();
