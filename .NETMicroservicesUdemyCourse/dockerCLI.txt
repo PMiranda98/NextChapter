@@ -1,0 +1,3 @@
+docker compose up -d 
+	runs the services configured in the docke-compose.yml file.
+	the "-d" determines that we are running in detached mode, so that we dont see the logs inside the terminal.

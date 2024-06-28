@@ -1,3 +1,8 @@
 dotnet tool list -g
+	List of dotnet package tools. 	
 
 dotnet ef migrations add "InitialCreate" -o .\Data\Migrations
+	To generate the migration based on the changes that are made.
+
+dotnet ef database update
+	To apply the migration.
