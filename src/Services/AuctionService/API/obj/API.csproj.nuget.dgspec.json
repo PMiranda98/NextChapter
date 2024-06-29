@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj": {}
+    "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj": {
+    "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\n.miranda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\API\\obj\\",
+        "projectPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\n.miranda\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,14 +22,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj"
+              "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj"
               }
             }
           }
@@ -58,6 +55,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.2, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.20.1, )"
             }
           },
           "imports": [
@@ -79,25 +80,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj": {
+    "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\n.miranda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Application\\obj\\",
+        "projectPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\n.miranda\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -105,17 +102,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj"
+              "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj"
+              "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -164,25 +162,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj": {
+    "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\n.miranda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\n.miranda\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -190,6 +184,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -228,25 +223,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\n.miranda\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\n.miranda\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -254,14 +245,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj"
+              "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\pedro\\Desktop\\Estudo\\CarsApp\\src\\Services\\AuctionService\\Domain\\Domain.csproj"
               }
             }
           }
@@ -302,7 +294,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

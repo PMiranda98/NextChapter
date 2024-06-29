@@ -22,11 +22,10 @@ public class Delete
 
         public async Task<Result<Unit>?> Handle(Command request, CancellationToken cancellationToken)
         {
+            // Does not need to do a Eager loading because the foreign key constraint is of type ON DELETE CASCADE.
             var auction = await _dataContext.Auctions.FindAsync(request.Id);
             if (auction == null) return null;
             _dataContext.Auctions.Remove(auction);
-            
-            // TODO - Check if the Item is deleted too.
 
             var result = await _dataContext.SaveChangesAsync(cancellationToken) > 0;
             if (!result) return Result<Unit>.Failure("Failed to delete the auction!");

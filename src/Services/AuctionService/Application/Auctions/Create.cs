@@ -39,7 +39,6 @@ public class Create
         {
             var auction = new Auction();
             _mapper.Map(request.CreateAuctionDto, auction);
-            // TODO - Check if the Item related fields are filled too.
 
             _dataContext.Auctions.Add(auction);
             var result = await _dataContext.SaveChangesAsync(cancellationToken) > 0;

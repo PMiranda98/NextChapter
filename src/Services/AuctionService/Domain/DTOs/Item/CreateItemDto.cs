@@ -5,15 +5,15 @@ namespace AuctionService.Domain.DTOs.Item;
 public class CreateItemDto
 {
   [Required]
-  public string Make { get; set; }
+  public required string Make { get; set; }
   [Required]
-  public string Model { get; set; }
+  public required string Model { get; set; }
   [Required]
   public int Year { get; set; }
   [Required]
-  public string Color { get; set; }
+  public required string Color { get; set; }
   [Required]
   public int Mileage { get; set; }
   [Required]
-  public string ImageUrl { get; set; }
+  public required string ImageUrl { get; set; }
 }

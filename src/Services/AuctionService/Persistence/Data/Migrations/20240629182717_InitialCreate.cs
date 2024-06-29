@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AuctionService.Persistence.Data.Migrations
+namespace Persistence.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -31,7 +32,7 @@ namespace AuctionService.Persistence.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Items",
+                name: "Item",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -45,9 +46,9 @@ namespace AuctionService.Persistence.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Items", x => x.Id);
+                    table.PrimaryKey("PK_Item", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Items_Auctions_AuctionId",
+                        name: "FK_Item_Auctions_AuctionId",
                         column: x => x.AuctionId,
                         principalTable: "Auctions",
                         principalColumn: "Id",
@@ -55,8 +56,8 @@ namespace AuctionService.Persistence.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Items_AuctionId",
-                table: "Items",
+                name: "IX_Item_AuctionId",
+                table: "Item",
                 column: "AuctionId",
                 unique: true);
         }
@@ -65,7 +66,7 @@ namespace AuctionService.Persistence.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Items");
+                name: "Item");
 
             migrationBuilder.DropTable(
                 name: "Auctions");

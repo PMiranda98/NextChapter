@@ -10,5 +10,4 @@ public class DataContext : DbContext
     }
 
     public DbSet<Auction> Auctions { get; set; }
-    public DbSet<Item> Items { get; set; }
 }

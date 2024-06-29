@@ -9,15 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuctionService", "AuctionService", "{ABCF35CC-97A1-4258-8BA5-F6528851CB52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Services\AuctionService\Persistence\Persistence.csproj", "{157330F6-AE25-4343-98EB-DA7C925C2E46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Services\AuctionService\Persistence\Persistence.csproj", "{157330F6-AE25-4343-98EB-DA7C925C2E46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Services\AuctionService\Infrastructure\Infrastructure.csproj", "{800E6331-9726-44C6-B664-0B657A0773C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Services\AuctionService\Infrastructure\Infrastructure.csproj", "{800E6331-9726-44C6-B664-0B657A0773C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Services\AuctionService\Domain\Domain.csproj", "{AA05A4BB-BC42-42B0-93DD-F6C4C8ADEBA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Services\AuctionService\Domain\Domain.csproj", "{AA05A4BB-BC42-42B0-93DD-F6C4C8ADEBA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Services\AuctionService\Application\Application.csproj", "{E2AA6D72-3168-4142-A552-CFA17AC18288}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Services\AuctionService\Application\Application.csproj", "{E2AA6D72-3168-4142-A552-CFA17AC18288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\Services\AuctionService\API\API.csproj", "{DE781383-807A-4D78-82C0-A1701A05117A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "src\Services\AuctionService\API\API.csproj", "{DE781383-807A-4D78-82C0-A1701A05117A}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{31332D3C-6310-41F0-B0C9-0A75C7F7536A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,18 @@ Global
 		{DE781383-807A-4D78-82C0-A1701A05117A}.Release|x64.Build.0 = Release|Any CPU
 		{DE781383-807A-4D78-82C0-A1701A05117A}.Release|x86.ActiveCfg = Release|Any CPU
 		{DE781383-807A-4D78-82C0-A1701A05117A}.Release|x86.Build.0 = Release|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Debug|x64.Build.0 = Debug|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Debug|x86.Build.0 = Debug|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Release|x64.ActiveCfg = Release|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Release|x64.Build.0 = Release|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Release|x86.ActiveCfg = Release|Any CPU
+		{31332D3C-6310-41F0-B0C9-0A75C7F7536A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

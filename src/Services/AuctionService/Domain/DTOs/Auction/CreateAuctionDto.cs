@@ -10,5 +10,5 @@ public class CreateAuctionDto
   [Required]
   public DateTime AuctionEnd { get; set; }
   [Required]
-  public CreateItemDto Item { get; set; }
+  public required CreateItemDto Item { get; set; }
 }

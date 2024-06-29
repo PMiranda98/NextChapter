@@ -23,7 +23,8 @@ public class List
         }
             public async Task<Result<List<AuctionDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                // TODO - Check the Eager, Lazy and Explict Loading of EF.
+                // Eager Loading when using .Include() and mention the navigation property Item. (it will bring all the needed data in one call).
+                // This prevents the need of doing multiple calls to the database instance.
                 var auctions = await _dataContext.Auctions.Include(x => x.Item).OrderBy(x => x.Item.Make).ToListAsync(cancellationToken);
                 return Result<List<AuctionDto>>.Success(_mapper.Map<List<AuctionDto>>(auctions));
             }

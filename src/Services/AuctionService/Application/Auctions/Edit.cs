@@ -5,6 +5,7 @@ using AuctionService.Persistence.Data;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuctionService.Application.Auctions;
 
@@ -37,10 +38,10 @@ public class Edit
 
         public async Task<Result<Unit>?> Handle(Command request, CancellationToken cancellationToken)
         {
-            var auction = await _dataContext.Auctions.FindAsync(request.Id);
+            // Eager Loading
+            var auction = await _dataContext.Auctions.Include(x => x.Item).Where(x => x.Id == request.Id).FirstAsync();
             if (auction == null) return null;
             _mapper.Map(request.UpdateAuctionDto, auction);
-            // TODO - Check if the ItemDto related field are updated too.
 
             var result = await _dataContext.SaveChangesAsync(cancellationToken) > 0;
             if (!result) return Result<Unit>.Failure("Failed to update the auction!");
