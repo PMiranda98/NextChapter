@@ -8,17 +8,6 @@ namespace AuctionService.Controllers;
 
 public class AuctionsController : BaseAuctionsController
 {
-  private readonly ILogger<AuctionsController> _logger;
-  private readonly DataContext _context;
-  private readonly IMapper _mapper;
-
-  public AuctionsController(ILogger<AuctionsController> logger, DataContext context, IMapper mapper)
-  {
-    _logger = logger;
-    _context = context;
-    _mapper = mapper;
-  }
-
   [HttpGet] //api/auctions
   public async Task<IActionResult> Get(CancellationToken cancellationToken)
   {
