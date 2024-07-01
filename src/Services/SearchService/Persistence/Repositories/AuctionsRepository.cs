@@ -12,32 +12,36 @@ namespace Persistence.Repositories
 {
     public class AuctionsRepository : IAuctionsRepository
     {
-        public async Task<GetAuctionsDTO> SearchAll(int pageNumber, int pageSize)
+        public async Task<SearchDto> SearchAll(int pageNumber, int pageSize)
         {
-            var query = DB.PagedSearch<Auction>().Sort(x => x.Ascending(a => a.Item.Make));
+            var query = DB.PagedSearch<Auction>();
             query.PageNumber(pageNumber);
             query.PageSize(pageSize);
             return await GetResult(query);
         }
 
-        public async Task<GetAuctionsDTO> SearchTerm(string searchTerm, int pageNumber, int pageSize)
+        public async Task<SearchDto> SearchByTerm(string searchTerm, int pageNumber, int pageSize)
         {
-            var query = DB.PagedSearch<Auction>().Match(Search.Full, searchTerm).SortByTextScore();
+            var query = DB.PagedSearch<Auction>().Match(Search.Full, searchTerm);
             query.PageNumber(pageNumber);
             query.PageSize(pageSize);
             return await GetResult(query);
-            
         }
 
-        private async Task<GetAuctionsDTO> GetResult(PagedSearch<Auction, Auction>? query)
+        private async Task<SearchDto> GetResult(PagedSearch<Auction, Auction>? query)
         {
-            var result = await query.ExecuteAsync();
-            var resultDto = new GetAuctionsDTO
+            var resultDto = new SearchDto();
+            if(query != null)
             {
-                Auctions = result.Results,
-                PageCount = result.PageCount,
-                TotalCount = result.TotalCount
-            };
+                var result = await query.ExecuteAsync();
+                resultDto = new SearchDto
+                {
+                    Auctions = result.Results,
+                    PageCount = result.PageCount,
+                    TotalCount = result.TotalCount
+                };
+                return resultDto;
+            }
             return resultDto;
         }
     }

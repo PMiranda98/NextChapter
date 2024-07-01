@@ -1,4 +1,5 @@
-﻿using Application.Auctions;
+﻿using API.RequestHelpers;
+using Application.Auctions;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,13 +9,20 @@ namespace API.Controllers
     [ApiController]
     public class SearchController : BaseSearchController
     {
-        [HttpGet] //api/search or api/search?searchTerm=
-        public async Task<IActionResult> GetAuctions(CancellationToken cancellationToken, string? searchTerm, int pageNumber = 1, int pageSize = 3)
+        private readonly IMapper _mapper;
+
+        public SearchController(IMapper mapper)
         {
-            if (searchTerm == null)
-                return HandleResult(await Mediator.Send(new List.Query { SearchTerm = null, PageNumber = pageNumber, PageSize = pageSize }, cancellationToken));
+            _mapper = mapper;
+        }
+
+        [HttpGet] //api/search or api/search?searchTerm=
+        public async Task<IActionResult> Search([FromQuery]SearchParams searchParams, CancellationToken cancellationToken)
+        {
+            if (searchParams.SearchTerm == null)
+                return HandleResult(await Mediator.Send(new List.Query { QueryParams = _mapper.Map<List.QueryParams>(searchParams) }, cancellationToken));
             else
-                return HandleResult(await Mediator.Send(new List.Query { SearchTerm = searchTerm, PageNumber = pageNumber, PageSize = pageSize }, cancellationToken));
+                return HandleResult(await Mediator.Send(new List.Query { QueryParams = _mapper.Map<List.QueryParams>(searchParams) }, cancellationToken));
         }
     }
 }

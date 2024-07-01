@@ -8,6 +8,7 @@ namespace API.Extensions
         public static IServiceCollection AddDependencies(this IServiceCollection services)
         {
             services.AddMediatR(config => config.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddApplicationDependencies();
             services.AddPersistenceDependencies();
