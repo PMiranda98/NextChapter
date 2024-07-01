@@ -1,14 +1,24 @@
 version: '3.4'
 name: carsapp
 services:
-  api:
+  auctions-api:
     container_name: auctionsService
-    image: ${DOCKER_REGISTRY-}api
+    image: ${DOCKER_REGISTRY-}auctions-api
     build:
       context: .
       dockerfile: src/Services/AuctionService/API/Dockerfile
     depends_on:
       - postgres
+
+  search-api:
+    container_name: searchService
+    image: ${DOCKER_REGISTRY-}search-api
+    build:
+      context: .
+      dockerfile: src/Services/SearchService/API/Dockerfile
+    depends_on:
+      - mongodb
+
   postgres:
     container_name: auctionsServiceDb
     image: postgres
@@ -19,6 +29,7 @@ services:
       - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql
+
   pgadmin:
     container_name: auctionServiceDbUI
     image: dpage/pgadmin4
@@ -29,8 +40,38 @@ services:
       - "5050:80"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-  
+    depends_on:
+      - postgres
+
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/var/lib/mongodb
+
+  mongoexpress:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=false  
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=mongo
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=mongo
+      - ME_CONFIG_BASICAUTH_USERNAME=mongoexpress
+      - ME_CONFIG_BASICAUTH_PASSWORD=mongoexpress
+    ports:
+      - 8081:8081
+    volumes:
+      - mongoexpress:/var/lib/mongoexpress
+    depends_on:
+      - mongodb
 
 volumes:
   pgdata:
   pgadmin-data:
+  mongodata:
+  mongoexpress:

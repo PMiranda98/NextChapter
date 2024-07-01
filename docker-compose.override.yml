@@ -1,9 +1,16 @@
 version: '3.4'
 
 services:
-  api:
+  auctions-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=7001
     ports:
       - "7001:7001"
+
+  search-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=7002
+    ports:
+      - "7002:7002"
