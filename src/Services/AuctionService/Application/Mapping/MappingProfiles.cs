@@ -1,14 +1,16 @@
-﻿using AuctionService.Domain.DTOs.Auction;
-using AuctionService.Domain.DTOs.Item;
+﻿using Application.DTOs.Input.Auction;
+using Application.DTOs.Input.Item;
+using Application.DTOs.Output.Auction;
+using Application.DTOs.Output.Item;
 using AuctionService.Domain.Entities;
 using AutoMapper;
 
-namespace AuctionService.Application.Core;
+namespace Application.Mapping;
 
 public class MappingProfiles : Profile
 {
-  public MappingProfiles()
-  {
+    public MappingProfiles()
+    {
         CreateMap<Auction, AuctionDto>().IncludeMembers(x => x.Item);
         CreateMap<Item, AuctionDto>();
         CreateMap<Item, ItemDto>();

@@ -1,4 +1,4 @@
-﻿namespace AuctionService.Application.Core;
+﻿namespace Application.DTOs.Output;
 
 public class Result<T>
 {

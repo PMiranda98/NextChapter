@@ -1,6 +1,6 @@
-﻿using AuctionService.Application.Auctions.Validators;
-using AuctionService.Application.Core;
-using AuctionService.Domain.DTOs.Auction;
+﻿using Application.DTOs.Input.Auction;
+using Application.DTOs.Output;
+using AuctionService.Application.Auctions.Validators;
 using AuctionService.Domain.Entities;
 using AuctionService.Persistence.Data;
 using AutoMapper;

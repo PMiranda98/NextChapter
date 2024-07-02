@@ -1,52 +1,34 @@
 ﻿using Application.Core;
+using Application.DTOs.Input.Auctions;
+using Application.DTOs.Output.Auctions;
 using AutoMapper;
-using Domain.DTOs;
-using Domain.Models;
 using Domain.Repositories;
+using Domain.Repositories.Models;
 using MediatR;
-using MongoDB.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Auctions
 {
     public class List
     {
-        public class QueryParams
+        public class Query : IRequest<Result<SearchAuctionsOutputDTO>> 
         {
-            public string? SearchTerm { get; set; }
-            public int PageNumber { get; set; }
-            public int PageSize { get; set; }
-            public string? Seller { get; set; }
-            public string? Winner { get; set; }
-            public string? OrderBy { get; set; }
-            public string? FilterBy { get; set; }
-        }
-        public class Query : IRequest<Result<SearchDto>> 
-        {
-            public QueryParams QueryParams { get; set; }
+            public SearchAuctionsInputDTO SearchAuctionsInputDTO { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<SearchDto>>
+        public class Handler : IRequestHandler<Query, Result<SearchAuctionsOutputDTO>>
         {
             private readonly IAuctionsRepository _auctionsRepository;
+            private readonly IMapper _mapper;
 
-            public Handler(IAuctionsRepository auctionsRepository)
+            public Handler(IAuctionsRepository auctionsRepository, IMapper mapper)
             {
                 _auctionsRepository = auctionsRepository;
+                _mapper = mapper;
             }
-            public async Task<Result<SearchDto>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<SearchAuctionsOutputDTO>> Handle(Query request, CancellationToken cancellationToken)
             {
-                if(request.QueryParams.SearchTerm == null)
-                {
-                    var result = await _auctionsRepository.SearchAll(request.QueryParams.PageNumber, request.QueryParams.PageSize);
-                    return Result<SearchDto>.Success(result);
-                }
-                var termsResult = await _auctionsRepository.SearchTerm(request.QueryParams.SearchTerm, request.QueryParams.PageNumber, request.QueryParams.PageSize);
-                return Result<SearchDto>.Success(termsResult);
+                var result = await _auctionsRepository.SearchAuctions(_mapper.Map<SearchAuctionsParams>(request.SearchAuctionsInputDTO));
+                return Result<SearchAuctionsOutputDTO>.Success(_mapper.Map<SearchAuctionsOutputDTO>(result));
             }
         }
     }

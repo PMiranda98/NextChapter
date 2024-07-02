@@ -1,13 +1,13 @@
-﻿using Domain.Models;
+﻿using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.DTOs
+namespace Application.DTOs.Output.Auctions
 {
-    public class SearchDto
+    public class SearchAuctionsOutputDTO
     {
         public IReadOnlyList<Auction>? Auctions { get; set; }
         public long TotalCount { get; set; }

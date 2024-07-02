@@ -1,4 +1,4 @@
-﻿using AuctionService.Domain.DTOs.Auction;
+﻿using Application.DTOs.Input.Auction;
 using FluentValidation;
 
 namespace AuctionService.Application.Auctions.Validators;

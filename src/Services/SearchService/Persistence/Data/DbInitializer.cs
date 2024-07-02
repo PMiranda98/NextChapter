@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.Entities;
 using MongoDB.Driver;
 using MongoDB.Entities;
 using System;

@@ -1,5 +1,5 @@
-﻿using AuctionService.Application.Auctions;
-using AuctionService.Domain.DTOs.Auction;
+﻿using Application.DTOs.Input.Auction;
+using AuctionService.Application.Auctions;
 using AuctionService.Persistence.Data;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;

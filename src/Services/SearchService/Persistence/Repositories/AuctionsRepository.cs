@@ -1,6 +1,6 @@
-﻿using Domain.DTOs;
-using Domain.Models;
+﻿using Domain.Entities;
 using Domain.Repositories;
+using Domain.Repositories.Models;
 using MongoDB.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,29 +12,50 @@ namespace Persistence.Repositories
 {
     public class AuctionsRepository : IAuctionsRepository
     {
-        public async Task<SearchDto> SearchAll(int pageNumber, int pageSize)
+        public async Task<SearchAuctionsOutput> SearchAuctions(SearchAuctionsParams searchAuctionsParams)
         {
-            var query = DB.PagedSearch<Auction>();
-            query.PageNumber(pageNumber);
-            query.PageSize(pageSize);
-            return await GetResult(query);
+            var query = DB.PagedSearch<Auction, Auction>();
+            if (searchAuctionsParams.SearchTerm != null)
+                query.Match(Search.Full, searchAuctionsParams.SearchTerm);
+
+            //Filtering
+            switch (searchAuctionsParams.FilterBy)
+            {
+                case "finished": query.Match(x => x.AuctionEnd < DateTime.UtcNow); break;
+                case "endingSoon": query.Match(x => x.AuctionEnd < DateTime.UtcNow.AddHours(3) && x.AuctionEnd > DateTime.UtcNow); break;
+                default: query.Match(x => x.AuctionEnd > DateTime.UtcNow); break;
+            }
+
+            if (!string.IsNullOrEmpty(searchAuctionsParams.Seller))
+            {
+                query.Match(x => x.Seller == searchAuctionsParams.Seller);
+            }
+
+            if (!string.IsNullOrEmpty(searchAuctionsParams.Winner))
+            {
+                query.Match(x => x.Winner == searchAuctionsParams.Winner);
+            }
+
+            // Sorting
+            switch (searchAuctionsParams.OrderBy)
+            {
+                case "make":  query.Sort(x => x.Ascending(a => a.Item.Make)); break;
+                case "new": query.Sort(x => x.Descending(a => a.CreatedAt)); break;
+                default: query.Sort(x=> x.Ascending(a => a.AuctionEnd)); break;
+            }
+
+            query.PageNumber(searchAuctionsParams.PageNumber);
+            query.PageSize(searchAuctionsParams.PageSize);
+            return await GetOutput(query);
         }
 
-        public async Task<SearchDto> SearchByTerm(string searchTerm, int pageNumber, int pageSize)
+        private async Task<SearchAuctionsOutput> GetOutput(PagedSearch<Auction, Auction>? query)
         {
-            var query = DB.PagedSearch<Auction>().Match(Search.Full, searchTerm);
-            query.PageNumber(pageNumber);
-            query.PageSize(pageSize);
-            return await GetResult(query);
-        }
-
-        private async Task<SearchDto> GetResult(PagedSearch<Auction, Auction>? query)
-        {
-            var resultDto = new SearchDto();
+            var resultDto = new SearchAuctionsOutput();
             if(query != null)
             {
                 var result = await query.ExecuteAsync();
-                resultDto = new SearchDto
+                resultDto = new SearchAuctionsOutput
                 {
                     Auctions = result.Results,
                     PageCount = result.PageCount,

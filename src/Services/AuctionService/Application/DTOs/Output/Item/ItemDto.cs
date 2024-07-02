@@ -1,4 +1,4 @@
-﻿namespace AuctionService.Domain.DTOs.Item;
+﻿namespace Application.DTOs.Output.Item;
 
 public class ItemDto
 {

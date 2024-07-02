@@ -1,4 +1,4 @@
-﻿using AuctionService.Application.Core;
+﻿using Application.DTOs.Output;
 using AuctionService.Persistence.Data;
 using MediatR;
 

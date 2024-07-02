@@ -1,5 +1,5 @@
-﻿using AuctionService.Application.Core;
-using AuctionService.Domain.DTOs.Auction;
+﻿using Application.DTOs.Output;
+using Application.DTOs.Output.Auction;
 using AuctionService.Persistence.Data;
 using AutoMapper;
 using MediatR;
