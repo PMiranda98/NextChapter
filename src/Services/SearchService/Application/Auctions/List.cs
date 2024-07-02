@@ -1,5 +1,5 @@
-﻿using Application.Core;
-using Application.DTOs.Input.Auctions;
+﻿using Application.DTOs.Input.Auctions;
+using Application.DTOs.Output;
 using Application.DTOs.Output.Auctions;
 using AutoMapper;
 using Domain.Repositories;

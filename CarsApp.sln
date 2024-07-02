@@ -23,15 +23,19 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SearchService", "SearchService", "{68B181EF-7F84-4315-842F-513FABCC6AF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\Services\SearchService\API\API.csproj", "{BA337921-FA8B-449F-A496-648AFBFDE45D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "src\Services\SearchService\API\API.csproj", "{BA337921-FA8B-449F-A496-648AFBFDE45D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Services\SearchService\Domain\Domain.csproj", "{53C71DDA-D820-486A-AD87-F8B97F7E3997}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Services\SearchService\Domain\Domain.csproj", "{53C71DDA-D820-486A-AD87-F8B97F7E3997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Services\SearchService\Persistence\Persistence.csproj", "{45FBB0E8-B166-4DF5-888F-93F0034BE867}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Services\SearchService\Persistence\Persistence.csproj", "{45FBB0E8-B166-4DF5-888F-93F0034BE867}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Services\SearchService\Infrastructure\Infrastructure.csproj", "{D97CB8FE-11F4-40C8-A748-5F9D845E171B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Services\SearchService\Infrastructure\Infrastructure.csproj", "{D97CB8FE-11F4-40C8-A748-5F9D845E171B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Services\SearchService\Application\Application.csproj", "{D10311BF-C2E7-41F2-9ADD-9E5AED099A91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Services\SearchService\Application\Application.csproj", "{D10311BF-C2E7-41F2-9ADD-9E5AED099A91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{08D18C49-833F-40DD-9B9F-D8EC2126A3BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus", "src\EventBus\EventBus\EventBus.csproj", "{88817BE4-75EB-4A74-BA01-D53B28649030}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -175,6 +179,18 @@ Global
 		{D10311BF-C2E7-41F2-9ADD-9E5AED099A91}.Release|x64.Build.0 = Release|Any CPU
 		{D10311BF-C2E7-41F2-9ADD-9E5AED099A91}.Release|x86.ActiveCfg = Release|Any CPU
 		{D10311BF-C2E7-41F2-9ADD-9E5AED099A91}.Release|x86.Build.0 = Release|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Debug|x64.Build.0 = Debug|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Debug|x86.Build.0 = Debug|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Release|x64.ActiveCfg = Release|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Release|x64.Build.0 = Release|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Release|x86.ActiveCfg = Release|Any CPU
+		{88817BE4-75EB-4A74-BA01-D53B28649030}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -193,6 +209,8 @@ Global
 		{45FBB0E8-B166-4DF5-888F-93F0034BE867} = {68B181EF-7F84-4315-842F-513FABCC6AF3}
 		{D97CB8FE-11F4-40C8-A748-5F9D845E171B} = {68B181EF-7F84-4315-842F-513FABCC6AF3}
 		{D10311BF-C2E7-41F2-9ADD-9E5AED099A91} = {68B181EF-7F84-4315-842F-513FABCC6AF3}
+		{08D18C49-833F-40DD-9B9F-D8EC2126A3BC} = {64EC4C88-F938-4ACF-B051-01D5B41767BE}
+		{88817BE4-75EB-4A74-BA01-D53B28649030} = {08D18C49-833F-40DD-9B9F-D8EC2126A3BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5332FABC-2BBE-4737-B844-51A7C7F0F7ED}

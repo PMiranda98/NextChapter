@@ -1,9 +1,7 @@
 ﻿using Application.DTOs.Input.Auction;
 using Application.DTOs.Output;
-using AuctionService.Application.Auctions.Validators;
 using AuctionService.Persistence.Data;
 using AutoMapper;
-using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,14 +13,6 @@ public class Edit
     {
         public Guid Id { get; set; }
         public UpdateAuctionDto UpdateAuctionDto { get; set; }
-    }
-
-    public class CommandValidator : AbstractValidator<Command>
-    {
-        public CommandValidator()
-        {
-            RuleFor(x => x.UpdateAuctionDto).SetValidator(new UpdateAuctionDtoValidator());
-        }
     }
 
     public class Handler : IRequestHandler<Command, Result<Unit>?>

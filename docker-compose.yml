@@ -1,23 +1,29 @@
 version: '3.4'
 name: carsapp
 services:
-  auctions-api:
+  auctions:
     container_name: auctionsService
-    image: ${DOCKER_REGISTRY-}auctions-api
+    image: ${DOCKER_REGISTRY-}auctions
     build:
       context: .
       dockerfile: src/Services/AuctionService/API/Dockerfile
+    environment:
+      - SERVICE_NAME=auctions
     depends_on:
       - postgres
+      - rabbitmq
 
-  search-api:
+  search:
     container_name: searchService
-    image: ${DOCKER_REGISTRY-}search-api
+    image: ${DOCKER_REGISTRY-}search
     build:
       context: .
       dockerfile: src/Services/SearchService/API/Dockerfile
+    environment:
+      - SERVICE_NAME=search
     depends_on:
       - mongodb
+      - rabbitmq
 
   postgres:
     container_name: auctionsServiceDb
@@ -68,6 +74,12 @@ services:
       - mongoexpress:/var/lib/mongoexpress
     depends_on:
       - mongodb
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
 
 volumes:
   pgdata:

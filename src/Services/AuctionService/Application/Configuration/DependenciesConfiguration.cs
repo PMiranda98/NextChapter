@@ -1,6 +1,4 @@
 ﻿using AuctionService.Application.Auctions;
-using FluentValidation.AspNetCore;
-using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,9 +16,6 @@ namespace Application.Configuration
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddMediatR(config => config.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
-
-            services.AddFluentValidationAutoValidation();
-            services.AddValidatorsFromAssemblyContaining<Create>();
 
             return services;
         }

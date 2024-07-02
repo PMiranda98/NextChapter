@@ -119,10 +119,10 @@ C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\b
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\API.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\API.pdb
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\AutoMapper.dll
-C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\FluentValidation.dll
-C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
-C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Humanizer.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MassTransit.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MassTransit.Abstractions.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MassTransit.RabbitMqTransport.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MediatR.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MediatR.Contracts.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -138,6 +138,7 @@ C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\b
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Npgsql.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\RabbitMQ.Client.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\System.CodeDom.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\System.Composition.AttributedModel.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\System.Composition.Convention.dll
@@ -198,7 +199,9 @@ C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\b
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Application.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Domain.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\EventBus.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Persistence.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\EventBus.pdb
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Application.pdb
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Domain.pdb
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Persistence.pdb
@@ -207,7 +210,6 @@ C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\o
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\API.AssemblyInfo.cs
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
-C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\API.sourcelink.json
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\staticwebassets.build.json

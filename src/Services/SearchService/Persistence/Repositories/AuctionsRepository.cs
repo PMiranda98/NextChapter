@@ -49,6 +49,11 @@ namespace Persistence.Repositories
             return await GetOutput(query);
         }
 
+        public async Task CreateAuction(Auction auction)
+        {
+            await auction.SaveAsync();
+        } 
+
         private async Task<SearchAuctionsOutput> GetOutput(PagedSearch<Auction, Auction>? query)
         {
             var resultDto = new SearchAuctionsOutput();
