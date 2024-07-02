@@ -1,11 +1,6 @@
-﻿using AuctionService.Application.Auctions;
-using AuctionService.Persistence.Data;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Configuration;
+﻿using Persistence.Configuration;
 using Application.Configuration;
 using EventBus.Configuration;
-using Domain.Interfaces;
-using API.Publishers;
 
 
 namespace API.Extensions
@@ -22,7 +17,6 @@ namespace API.Extensions
                 });
             });
 
-            services.AddScoped<IAuctionPublisher, AuctionPublisher>();
 
             services.AddApplicationDependencies();
             services.AddPersistenceDependencies(configuration);

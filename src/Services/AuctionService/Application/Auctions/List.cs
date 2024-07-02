@@ -2,31 +2,30 @@
 using Application.DTOs.Output.Auction;
 using AuctionService.Persistence.Data;
 using AutoMapper;
+using Domain.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuctionService.Application.Auctions;
 
 public class List
-    {
-        public class Query : IRequest<Result<List<AuctionDto>>> {}
+{
+    public class Query : IRequest<Result<List<AuctionDto>>> {}
 
-        public class Handler : IRequestHandler<Query, Result<List<AuctionDto>>>
-        {
-            private readonly DataContext _dataContext;
+    public class Handler : IRequestHandler<Query, Result<List<AuctionDto>>>
+    {
+        private readonly IAuctionsRepository _auctionsRepository;
         private readonly IMapper _mapper;
 
-        public Handler(DataContext dataContext, IMapper mapper)
-            {
-                _dataContext = dataContext;
+    public Handler(IAuctionsRepository auctionsRepository, IMapper mapper)
+        {
+            _auctionsRepository = auctionsRepository;
             _mapper = mapper;
         }
-            public async Task<Result<List<AuctionDto>>> Handle(Query request, CancellationToken cancellationToken)
-            {
-                // Eager Loading when using .Include() and mention the navigation property Item. (it will bring all the needed data in one call).
-                // This prevents the need of doing multiple calls to the database instance.
-                var auctions = await _dataContext.Auctions.Include(x => x.Item).OrderBy(x => x.Item.Make).ToListAsync(cancellationToken);
-                return Result<List<AuctionDto>>.Success(_mapper.Map<List<AuctionDto>>(auctions));
-            }
+        public async Task<Result<List<AuctionDto>>> Handle(Query request, CancellationToken cancellationToken)
+        {
+            var auctions = _auctionsRepository.ListAuctions(cancellationToken);
+            return Result<List<AuctionDto>>.Success(_mapper.Map<List<AuctionDto>>(auctions));
         }
     }
+}

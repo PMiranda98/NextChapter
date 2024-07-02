@@ -3,11 +3,11 @@ using AutoMapper;
 using EventBus.Contracts;
 using EventBus.Contracts.Models;
 
-namespace API.Mapping
+namespace Persistence.Mapping
 {
     public class MappingProfiles : Profile
     {
-        public MappingProfiles() 
+        public MappingProfiles()
         {
             // Event bus maps
             CreateMap<Auction, AuctionCreated>();

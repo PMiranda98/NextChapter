@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Output;
 using AuctionService.Persistence.Data;
+using Domain.Repositories;
 using MediatR;
 
 namespace AuctionService.Application.Auctions;
@@ -13,23 +14,17 @@ public class Delete
 
     public class Handler : IRequestHandler<Command, Result<Unit>?>
     {
-        private readonly DataContext _dataContext;
+        private readonly IAuctionsRepository _auctionsRepository;
 
-        public Handler(DataContext dataContext)
+        public Handler(IAuctionsRepository auctionsRepository)
         {
-            _dataContext = dataContext;
+            _auctionsRepository = auctionsRepository;
         }
 
         public async Task<Result<Unit>?> Handle(Command request, CancellationToken cancellationToken)
         {
-            // Does not need to do a Eager loading because the foreign key constraint is of type ON DELETE CASCADE.
-            var auction = await _dataContext.Auctions.FindAsync(request.Id);
-            if (auction == null) return null;
-            _dataContext.Auctions.Remove(auction);
-
-            var result = await _dataContext.SaveChangesAsync(cancellationToken) > 0;
+            var result = await _auctionsRepository.DeleteAuction(request.Id, cancellationToken) > 0;
             if (!result) return Result<Unit>.Failure("Failed to delete the auction!");
-            
             return Result<Unit>.Success(Unit.Value);
         }
     }

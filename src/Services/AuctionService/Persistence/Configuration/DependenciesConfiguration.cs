@@ -1,7 +1,9 @@
 ﻿using AuctionService.Persistence.Data;
+using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,8 @@ namespace Persistence.Configuration
             services.AddDbContext<DataContext>(options => {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped<IAuctionsRepository, AuctionsRepository>();
 
             return services;
         }
