@@ -66,7 +66,7 @@ namespace Persistence.Repositories
 
         public async Task<Auction?> DetailsAuction(string Id)
         {
-            return await DB.Find<Auction>().Match(Id).ExecuteFirstAsync();
+            return await DB.Find<Auction>().Match(x => x.ID == Id).ExecuteFirstAsync();
         }
 
         private async Task<SearchAuctionsOutput> GetOutput(PagedSearch<Auction, Auction>? query)

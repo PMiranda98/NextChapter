@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uhwz5j4YOzoMJt4EWkalvOz9yw4emOcXExMBicKGhHc8m7A8Q24NnbvKUjSVhsU9mV+Ooy6BpK04ZsL6pwCFaA==",
+  "dgSpecHash": "QuMwUKM+/BJHWxgzrbIrU/C14QOrFVBeqvQyY/Tj9TVvUkOIV53vAl/Bqx9kDrIECSIUfhdsUHfdE9VMKx4pXA==",
   "success": true,
   "projectFilePath": "C:\\Users\\n.miranda\\Desktop\\Estudo\\.NET\\CarsApp\\src\\Services\\AuctionService\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\n.miranda\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\n.miranda\\.nuget\\packages\\masstransit\\8.2.3\\masstransit.8.2.3.nupkg.sha512",
     "C:\\Users\\n.miranda\\.nuget\\packages\\masstransit.abstractions\\8.2.3\\masstransit.abstractions.8.2.3.nupkg.sha512",
+    "C:\\Users\\n.miranda\\.nuget\\packages\\masstransit.entityframeworkcore\\8.2.3\\masstransit.entityframeworkcore.8.2.3.nupkg.sha512",
     "C:\\Users\\n.miranda\\.nuget\\packages\\masstransit.rabbitmq\\8.2.3\\masstransit.rabbitmq.8.2.3.nupkg.sha512",
     "C:\\Users\\n.miranda\\.nuget\\packages\\mediatr\\12.3.0\\mediatr.12.3.0.nupkg.sha512",
     "C:\\Users\\n.miranda\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

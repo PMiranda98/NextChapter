@@ -122,6 +122,7 @@ C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\b
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Humanizer.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MassTransit.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MassTransit.Abstractions.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MassTransit.EntityFrameworkCoreIntegration.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MassTransit.RabbitMqTransport.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MediatR.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\MediatR.Contracts.dll

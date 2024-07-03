@@ -26,7 +26,7 @@ namespace Application.Auctions
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var auction = await _auctionsRepository.DetailsAuction(request.Auction.ID);
-                if (auction != null) return null;
+                if (auction == null) return null;
                 auction = _mapper.Map<Auction>(request.Auction);
 
                 await _auctionsRepository.UpdateAuction(request.Auction);

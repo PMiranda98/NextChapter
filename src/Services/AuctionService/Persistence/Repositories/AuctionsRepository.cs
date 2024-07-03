@@ -13,21 +13,11 @@ namespace Persistence.Repositories
         {
             _dataContext = dataContext;
         }
-
-        public async Task<int> CreateAuction(Auction auction, CancellationToken cancellationToken)
+        public async Task<List<Auction>> ListAuctions(CancellationToken cancellationToken)
         {
-            _dataContext.Auctions.Add(auction);
-            return await _dataContext.SaveChangesAsync(cancellationToken);
-        }
-
-        public async Task<int> DeleteAuction(Guid Id, CancellationToken cancellationToken)
-        {
-            // Does not need to do a Eager loading because the foreign key constraint is of type ON DELETE CASCADE.
-            var auction = await _dataContext.Auctions.FindAsync(Id);
-            if (auction == null) return 0;
-            _dataContext.Auctions.Remove(auction);
-
-            return await _dataContext.SaveChangesAsync(cancellationToken);
+            // Eager Loading when using .Include() and mention the navigation property Item. (it will bring all the needed data in one call).
+            // This prevents the need of doing multiple calls to the database instance.
+            return await _dataContext.Auctions.Include(x => x.Item).OrderBy(x => x.Item.Make).ToListAsync(cancellationToken);
         }
 
         public async Task<Auction> DetailsAuction(Guid Id, CancellationToken cancellationToken)
@@ -54,14 +44,28 @@ namespace Persistence.Repositories
             return await _dataContext.Auctions.Include(x => x.Item).Where(x => x.Id == Id).FirstAsync();
         }
 
-        public async Task<List<Auction>> ListAuctions(CancellationToken cancellationToken)
+
+        public void CreateAuction(Auction auction, CancellationToken cancellationToken)
         {
-            // Eager Loading when using .Include() and mention the navigation property Item. (it will bring all the needed data in one call).
-            // This prevents the need of doing multiple calls to the database instance.
-            return await _dataContext.Auctions.Include(x => x.Item).OrderBy(x => x.Item.Make).ToListAsync(cancellationToken);
+            _dataContext.Auctions.Add(auction);
         }
 
-        public async Task<int> UpdateAuction(CancellationToken cancellationToken)
+        /*
+        public async Task UpdateAuction(CancellationToken cancellationToken)
+        {
+
+        }
+        */
+
+        public async void DeleteAuction(Guid Id, CancellationToken cancellationToken)
+        {
+            // Does not need to do a Eager loading because the foreign key constraint is of type ON DELETE CASCADE.
+            var auction = await _dataContext.Auctions.FindAsync(Id);
+            if (auction != null)
+                _dataContext.Auctions.Remove(auction);
+        }
+
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await _dataContext.SaveChangesAsync(cancellationToken);
         }
