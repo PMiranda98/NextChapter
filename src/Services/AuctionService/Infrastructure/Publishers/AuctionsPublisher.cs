@@ -16,22 +16,21 @@ namespace Infrastructure.Publishers
             _publishEndpoint = publishEndpoint;
             _mapper = mapper;
         }
-        public async void PublishAuctionCreated(Auction auction)
+        public async Task PublishAuctionCreated(Auction auction)
         {
             var auctionCreated = _mapper.Map<AuctionCreated>(auction);
             await _publishEndpoint.Publish(auctionCreated);
         }
 
-        public async void PublishAuctionDeleted(Guid Id)
-        {
-            var auctionDeleted = _mapper.Map<AuctionDeleted>(Id);
-            await _publishEndpoint.Publish(auctionDeleted);
-        }
-
-        public async void PublishAuctionUpdated(Auction auction)
+        public async Task PublishAuctionUpdated(Auction auction)
         {
             var auctionUpdated = _mapper.Map<AuctionUpdated>(auction);
             await _publishEndpoint.Publish(auctionUpdated);
+        }
+        public async Task PublishAuctionDeleted(Guid id)
+        {
+            var auctionDeleted = new AuctionDeleted { Id = id.ToString() };
+            await _publishEndpoint.Publish(auctionDeleted);
         }
     }
 }

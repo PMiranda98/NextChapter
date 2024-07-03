@@ -3,16 +3,10 @@ using AutoMapper;
 using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
-using MongoDB.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Auctions
 {
-    public class Create
+    public class Edit
     {
         public class Command : IRequest<Result<Unit>>
         {
@@ -22,15 +16,20 @@ namespace Application.Auctions
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly IAuctionsRepository _auctionsRepository;
+            private readonly IMapper _mapper;
 
-            public Handler(IAuctionsRepository auctionsRepository)
+            public Handler(IAuctionsRepository auctionsRepository, IMapper mapper)
             {
                 _auctionsRepository = auctionsRepository;
+                _mapper = mapper;
             }
-
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                await _auctionsRepository.CreateAuction(request.Auction);
+                var auction = await _auctionsRepository.DetailsAuction(request.Auction.ID);
+                if (auction != null) return null;
+                auction = _mapper.Map<Auction>(request.Auction);
+
+                await _auctionsRepository.UpdateAuction(request.Auction);
                 // TODO - Error handling 
                 return Result<Unit>.Success(Unit.Value);
             }

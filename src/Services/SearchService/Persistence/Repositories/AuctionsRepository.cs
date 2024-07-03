@@ -52,7 +52,22 @@ namespace Persistence.Repositories
         public async Task CreateAuction(Auction auction)
         {
             await auction.SaveAsync();
-        } 
+        }
+        
+        public async Task UpdateAuction(Auction auction)
+        {
+            await auction.SaveAsync();
+        }
+
+        public async Task DeleteAuction(string Id)
+        {
+            await DB.DeleteAsync<Auction>(Id);
+        }
+
+        public async Task<Auction?> DetailsAuction(string Id)
+        {
+            return await DB.Find<Auction>().Match(Id).ExecuteFirstAsync();
+        }
 
         private async Task<SearchAuctionsOutput> GetOutput(PagedSearch<Auction, Auction>? query)
         {

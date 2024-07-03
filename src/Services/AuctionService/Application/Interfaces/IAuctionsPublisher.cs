@@ -9,8 +9,8 @@ namespace Application.Interfaces
 {
     public interface IAuctionsPublisher
     {
-        public void PublishAuctionCreated(Auction auction);
-        public void PublishAuctionUpdated(Auction auction);
-        public void PublishAuctionDeleted(Guid Id);
+        public Task PublishAuctionCreated(Auction auction);
+        public Task PublishAuctionUpdated(Auction auction);
+        public Task PublishAuctionDeleted(Guid id);
     }
 }

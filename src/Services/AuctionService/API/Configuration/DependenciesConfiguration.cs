@@ -1,6 +1,6 @@
 ﻿using Persistence.Configuration;
 using Application.Configuration;
-using EventBus.Configuration;
+using Infrastructure.Configuration;
 
 
 namespace API.Extensions
@@ -17,10 +17,9 @@ namespace API.Extensions
                 });
             });
 
-
             services.AddApplicationDependencies();
             services.AddPersistenceDependencies(configuration);
-            services.AddEventBusDependencies(configuration);
+            services.AddInfrastructureDependencies(configuration);
 
             return services;
         }

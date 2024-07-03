@@ -11,7 +11,8 @@ namespace EventBus.Configuration
         {
             services.AddMassTransit(config =>
             {
-                config.AddConsumers(Assembly.GetEntryAssembly());
+                var consumersAssembly = Assembly.Load("Infrastructure");
+                config.AddConsumers(consumersAssembly);
 
                 config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(Environment.GetEnvironmentVariable("SERVICE_NAME"), false));
 

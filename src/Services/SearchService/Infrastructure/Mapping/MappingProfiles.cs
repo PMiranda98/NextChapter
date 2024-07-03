@@ -13,6 +13,10 @@ namespace Infrastructure.Mapping
             CreateMap<AuctionCreated, Auction>();
             CreateMap<ItemCreated, Auction>();
             CreateMap<ItemCreated, Item>();
+
+            CreateMap<AuctionUpdated, Auction>();
+            CreateMap<ItemUpdated, Auction>();
+            CreateMap<ItemUpdated, Item>();
         }
     }
 }

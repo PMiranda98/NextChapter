@@ -24,7 +24,7 @@ public class List
         }
         public async Task<Result<List<AuctionDto>>> Handle(Query request, CancellationToken cancellationToken)
         {
-            var auctions = _auctionsRepository.ListAuctions(cancellationToken);
+            var auctions = await _auctionsRepository.ListAuctions(cancellationToken);
             return Result<List<AuctionDto>>.Success(_mapper.Map<List<AuctionDto>>(auctions));
         }
     }

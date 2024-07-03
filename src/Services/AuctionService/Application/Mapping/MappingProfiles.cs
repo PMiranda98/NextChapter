@@ -19,8 +19,12 @@ public class MappingProfiles : Profile
         CreateMap<CreateItemDto, Auction>();
         CreateMap<CreateItemDto, Item>();
 
-        CreateMap<UpdateAuctionDto, Auction>().IncludeMembers(x => x.Item);
-        CreateMap<UpdateItemDto, Auction>();
-        CreateMap<UpdateItemDto, Item>();
+        CreateMap<UpdateAuctionDto, Auction>()
+            .IncludeMembers(x => x.Item)
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+        CreateMap<UpdateItemDto, Auction>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+        CreateMap<UpdateItemDto, Item>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
     }
 }

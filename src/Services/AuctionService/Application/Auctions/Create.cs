@@ -33,8 +33,8 @@ public class Create
             var auction = new Auction();
             auction = _mapper.Map(request.CreateAuctionDto, auction);
 
-            _auctionsPublisher.PublishAuctionCreated(auction);
             var result = await _auctionsRepository.CreateAuction(auction, cancellationToken) > 0;
+            await _auctionsPublisher.PublishAuctionCreated(auction);
             if (!result) return Result<Unit>.Failure("Failed to create Auction!");
             return Result<Unit>.Success(Unit.Value);
         }

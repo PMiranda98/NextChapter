@@ -1,9 +1,6 @@
 ﻿using Application.DTOs.Output;
-using AutoMapper;
-using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
-using MongoDB.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Application.Auctions
 {
-    public class Create
+    public class Delete
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Auction Auction { get; set; }
+            public string Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -30,7 +27,7 @@ namespace Application.Auctions
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                await _auctionsRepository.CreateAuction(request.Auction);
+                await _auctionsRepository.DeleteAuction(request.Id);
                 // TODO - Error handling 
                 return Result<Unit>.Success(Unit.Value);
             }

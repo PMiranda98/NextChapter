@@ -26,8 +26,8 @@ public class Delete
 
         public async Task<Result<Unit>?> Handle(Command request, CancellationToken cancellationToken)
         {
-            _auctionsPublisher.PublishAuctionDeleted(request.Id);
             var result = await _auctionsRepository.DeleteAuction(request.Id, cancellationToken) > 0;
+            await _auctionsPublisher.PublishAuctionDeleted(request.Id);
             if (!result) return Result<Unit>.Failure("Failed to delete the auction!");
             return Result<Unit>.Success(Unit.Value);
         }
