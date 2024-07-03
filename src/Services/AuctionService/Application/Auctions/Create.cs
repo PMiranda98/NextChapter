@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Input.Auction;
 using Application.DTOs.Output;
+using Application.Interfaces;
 using AuctionService.Domain.Entities;
 using AutoMapper;
 using Domain.Repositories;
@@ -18,11 +19,13 @@ public class Create
     {
         private readonly IMapper _mapper;
         private readonly IAuctionsRepository _auctionsRepository;
+        private readonly IAuctionsPublisher _auctionsPublisher;
 
-        public Handler(IMapper mapper, IAuctionsRepository auctionsRepository)
+        public Handler(IMapper mapper, IAuctionsRepository auctionsRepository, IAuctionsPublisher auctionsPublisher)
         {
             _mapper = mapper;
             _auctionsRepository = auctionsRepository;
+            _auctionsPublisher = auctionsPublisher;
         }
 
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
@@ -30,6 +33,7 @@ public class Create
             var auction = new Auction();
             auction = _mapper.Map(request.CreateAuctionDto, auction);
 
+            _auctionsPublisher.PublishAuctionCreated(auction);
             var result = await _auctionsRepository.CreateAuction(auction, cancellationToken) > 0;
             if (!result) return Result<Unit>.Failure("Failed to create Auction!");
             return Result<Unit>.Success(Unit.Value);

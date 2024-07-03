@@ -34,5 +34,3 @@ C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Appli
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Application\obj\Debug\net8.0\refint\Application.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Application\obj\Debug\net8.0\Application.pdb
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Application\obj\Debug\net8.0\ref\Application.dll
-C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Application\bin\Debug\net8.0\EventBus.dll
-C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Application\bin\Debug\net8.0\EventBus.pdb

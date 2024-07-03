@@ -3,7 +3,7 @@ using AutoMapper;
 using EventBus.Contracts;
 using EventBus.Contracts.Models;
 
-namespace Persistence.Mapping
+namespace Infrastructure.Mapping
 {
     public class MappingProfiles : Profile
     {
@@ -13,6 +13,10 @@ namespace Persistence.Mapping
             CreateMap<Auction, AuctionCreated>();
             CreateMap<Item, AuctionCreated>();
             CreateMap<Item, ItemCreated>();
+
+            CreateMap<Auction, AuctionUpdated>();
+            CreateMap<Item, AuctionUpdated>();
+            CreateMap<Item, ItemUpdated>();
         }
     }
 }

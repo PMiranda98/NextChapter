@@ -5,7 +5,7 @@ using EventBus.Contracts;
 using MassTransit;
 using MediatR;
 
-namespace API.Consumers
+namespace Infrastructure.Consumers
 {
     public class AuctionCreatedConsumer : IConsumer<AuctionCreated>
     {

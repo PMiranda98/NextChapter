@@ -30,5 +30,3 @@ C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Persi
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Persistence\obj\Debug\net8.0\refint\Persistence.dll
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Persistence\obj\Debug\net8.0\Persistence.pdb
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Persistence\obj\Debug\net8.0\ref\Persistence.dll
-C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Persistence\bin\Debug\net8.0\EventBus.dll
-C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\Persistence\bin\Debug\net8.0\EventBus.pdb

@@ -226,3 +226,5 @@ C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\o
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\API.pdb
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\obj\Debug\net8.0\ref\API.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Infrastructure.dll
+C:\Users\n.miranda\Desktop\Estudo\.NET\CarsApp\src\Services\AuctionService\API\bin\Debug\net8.0\Infrastructure.pdb

@@ -1,30 +1,21 @@
 ﻿using AuctionService.Domain.Entities;
 using AuctionService.Persistence.Data;
-using AutoMapper;
 using Domain.Repositories;
-using EventBus.Contracts;
-using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
     public class AuctionsRepository : IAuctionsRepository
     {
-        private readonly IMapper _mapper;
-        private readonly IPublishEndpoint _publishEndpoint;
         private readonly DataContext _dataContext;
 
-        public AuctionsRepository(IMapper mapper, IPublishEndpoint publishEndpoint, DataContext dataContext)
+        public AuctionsRepository(DataContext dataContext)
         {
-            _mapper = mapper;
-            _publishEndpoint = publishEndpoint;
             _dataContext = dataContext;
         }
 
         public async Task<int> CreateAuction(Auction auction, CancellationToken cancellationToken)
         {
-            var auctionCreated = _mapper.Map<AuctionCreated>(auction);
-            await _publishEndpoint.Publish(auctionCreated);
             _dataContext.Auctions.Add(auction);
             return await _dataContext.SaveChangesAsync(cancellationToken);
         }
@@ -70,7 +61,7 @@ namespace Persistence.Repositories
             return await _dataContext.Auctions.Include(x => x.Item).OrderBy(x => x.Item.Make).ToListAsync(cancellationToken);
         }
 
-        public async Task<int> UpdateAuction(Guid Id, Auction auction, CancellationToken cancellationToken)
+        public async Task<int> UpdateAuction(CancellationToken cancellationToken)
         {
             return await _dataContext.SaveChangesAsync(cancellationToken);
         }

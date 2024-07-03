@@ -13,11 +13,6 @@ namespace API.Mapping
         public MappingProfiles()
         {
             CreateMap<SearchParams, SearchAuctionsInputDTO>();
-
-            // Event bus maps
-            CreateMap<AuctionCreated, Auction>();
-            CreateMap<ItemCreated, Auction>();
-            CreateMap<ItemCreated,  Item>();
         }
     }
 }
