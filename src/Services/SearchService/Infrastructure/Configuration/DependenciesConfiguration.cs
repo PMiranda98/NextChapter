@@ -6,9 +6,9 @@ namespace Infrastructure.Configuration
 {
     public static class DependenciesConfiguration
     {
-        public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services)
         {
-            services.AddEventBusDependencies(configuration);
+            services.AddEventBusDependencies();
 
             return services;
         }

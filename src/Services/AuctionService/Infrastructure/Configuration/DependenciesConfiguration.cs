@@ -9,9 +9,9 @@ namespace Infrastructure.Configuration
 {
     public static class DependenciesConfiguration
     {
-        public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services)
         {
-            services.AddEventBusDependencies<DataContext>(configuration);
+            services.AddEventBusDependencies<DataContext>();
 
             services.AddScoped<IAuctionsPublisher, AuctionsPublisher>();
 

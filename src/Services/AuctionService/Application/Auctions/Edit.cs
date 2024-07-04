@@ -32,7 +32,7 @@ public class Edit
         {
             var auction = await _auctionsRepository.DetailsAuction(request.Id, cancellationToken);
             if (auction == null) return null;
-            _mapper.Map(request.UpdateAuctionDto, auction);
+            auction = _mapper.Map(request.UpdateAuctionDto, auction);
             // TODO - Bug here! Its setting default values in the Item (for example public int Mileage { get; set; } gets value of zero)
             await _auctionsPublisher.PublishAuctionUpdated(auction);
 
