@@ -10,7 +10,7 @@ services:
     environment:
       - SERVICE_NAME=auctions
     depends_on:
-      - postgres
+      - postgres-auctions
       - rabbitmq
 
   search:
@@ -25,7 +25,7 @@ services:
       - mongodb
       - rabbitmq
 
-  postgres:
+  postgres-auctions:
     container_name: auctionsServiceDb
     image: postgres
     environment:
@@ -34,10 +34,10 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - pgdata:/var/lib/postgresql
+      - pgdata-auctions:/var/lib/postgresql
 
   pgadmin:
-    container_name: auctionServiceDbUI
+    container_name: postgresDbsUI
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
@@ -47,7 +47,8 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     depends_on:
-      - postgres
+      - postgres-auctions
+      - postgres-identity
 
   mongodb:
     image: mongo
@@ -86,9 +87,23 @@ services:
     build:
       context: .
       dockerfile: src/Services/IdentityService/Identity/Dockerfile
+    depends_on:
+      - postgres-identity
+
+  postgres-identity:
+    container_name: identityServiceDb
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgrespw
+    ports:
+      - 5001:5432
+    volumes:
+      - pg-identitydata:/var/lib/postgresql-identity
 
 volumes:
-  pgdata:
+  pgdata-auctions:
   pgadmin-data:
   mongodata:
   mongoexpress:
+  pg-identitydata:
