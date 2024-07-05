@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Services
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{08D18C49-833F-40DD-9B9F-D8EC2126A3BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus", "src\EventBus\EventBus\EventBus.csproj", "{88817BE4-75EB-4A74-BA01-D53B28649030}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "src\EventBus\EventBus\EventBus.csproj", "{88817BE4-75EB-4A74-BA01-D53B28649030}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityService", "IdentityService", "{624D88C8-25CB-4E90-BB45-AD35E3B09CB4}"
 EndProject

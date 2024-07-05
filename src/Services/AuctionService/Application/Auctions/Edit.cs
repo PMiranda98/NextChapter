@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Input.Auction;
 using Application.DTOs.Output;
 using Application.Interfaces;
+using AuctionService.Domain.Entities;
 using AutoMapper;
 using Domain.Repositories;
 using MediatR;
@@ -12,7 +13,7 @@ public class Edit
     public class Command : IRequest<Result<Unit>?>
     {
         public Guid Id { get; set; }
-        public UpdateAuctionDto UpdateAuctionDto { get; set; }
+        public Auction Auction { get; set; }
     }
 
     public class Handler : IRequestHandler<Command, Result<Unit>?>
@@ -32,7 +33,7 @@ public class Edit
         {
             var auction = await _auctionsRepository.DetailsAuction(request.Id, cancellationToken);
             if (auction == null) return null;
-            auction = _mapper.Map(request.UpdateAuctionDto, auction);
+            auction = _mapper.Map(request.Auction, auction);
             // TODO - Bug here! Its setting default values in the Item (for example public int Mileage { get; set; } gets value of zero)
             await _auctionsPublisher.PublishAuctionUpdated(auction);
 

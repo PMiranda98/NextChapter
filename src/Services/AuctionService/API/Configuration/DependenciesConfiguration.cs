@@ -1,6 +1,7 @@
 ﻿using Persistence.Configuration;
 using Application.Configuration;
 using Infrastructure.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 
 namespace API.Extensions
@@ -16,6 +17,15 @@ namespace API.Extensions
                     corsPolicyBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = configuration["IdentityServiceUrl"];
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters.ValidateAudience = false;
+                    options.TokenValidationParameters.NameClaimType = "username";
+                });
 
             services.AddApplicationDependencies();
             services.AddPersistenceDependencies(configuration);

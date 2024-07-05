@@ -1,6 +1,7 @@
 using Duende.IdentityServer;
 using Identity.Data;
 using Identity.Models;
+using Identity.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -34,7 +35,8 @@ namespace Identity
                 .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
-                .AddAspNetIdentity<ApplicationUser>();
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddProfileService<CustomProfileService>();
 
             builder.Services.ConfigureApplicationCookie(options =>
             {

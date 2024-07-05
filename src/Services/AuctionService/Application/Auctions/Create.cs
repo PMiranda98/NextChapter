@@ -5,6 +5,7 @@ using AuctionService.Domain.Entities;
 using AutoMapper;
 using Domain.Repositories;
 using MediatR;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 
 namespace AuctionService.Application.Auctions;
 
@@ -12,7 +13,7 @@ public class Create
 {
     public class Command : IRequest<Result<Unit>>
     {
-        public CreateAuctionDto CreateAuctionDto { get; set; }
+        public Auction Auction { get; set; }
     }
 
     public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -29,12 +30,9 @@ public class Create
         }
 
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
-        {
-            var auction = new Auction();
-            auction = _mapper.Map(request.CreateAuctionDto, auction);
-
-            _auctionsRepository.CreateAuction(auction, cancellationToken);
-            await _auctionsPublisher.PublishAuctionCreated(auction);
+        { 
+            _auctionsRepository.CreateAuction(request.Auction, cancellationToken);
+            await _auctionsPublisher.PublishAuctionCreated(request.Auction);
 
             var result = await _auctionsRepository.SaveChangesAsync(cancellationToken) > 0;
             if (!result) return Result<Unit>.Failure("Failed to create Auction!");
