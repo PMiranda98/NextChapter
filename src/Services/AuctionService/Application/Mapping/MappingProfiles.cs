@@ -21,10 +21,10 @@ public class MappingProfiles : Profile
 
         CreateMap<UpdateAuctionDto, Auction>()
             .IncludeMembers(x => x.Item)
-            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            .ForAllMembers(opts => opts.MapFrom((src, dest, srcMember, destMember) => srcMember ?? destMember));
         CreateMap<UpdateItemDto, Auction>()
-            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            .ForAllMembers(opts => opts.MapFrom((src, dest, srcMember, destMember) => srcMember ?? destMember));
         CreateMap<UpdateItemDto, Item>()
-            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            .ForAllMembers(opts => opts.MapFrom((src, dest, srcMember, destMember) => srcMember ?? destMember));
     }
 }

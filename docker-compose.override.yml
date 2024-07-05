@@ -14,3 +14,11 @@ services:
       - ASPNETCORE_HTTP_PORTS=7002
     ports:
       - "7002:7002"
+
+  identity:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+    ports:
+      - "5000:5000"
+

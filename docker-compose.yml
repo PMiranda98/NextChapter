@@ -81,6 +81,12 @@ services:
       - 5672:5672
       - 15672:15672
 
+  identity:
+    image: ${DOCKER_REGISTRY-}identity
+    build:
+      context: .
+      dockerfile: src/Services/IdentityService/Identity/Dockerfile
+
 volumes:
   pgdata:
   pgadmin-data:

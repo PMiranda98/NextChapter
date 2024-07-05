@@ -51,12 +51,15 @@ namespace Persistence.Repositories
 
         public async Task CreateAuction(Auction auction)
         {
-            await auction.SaveAsync();
+            await DB.SaveAsync(auction);
         }
         
         public async Task UpdateAuction(Auction auction)
         {
-            await auction.SaveAsync();
+            await DB.Update<Auction>()
+                .Match(a => a.ID == auction.ID)
+                .ModifyWith(auction)
+                .ExecuteAsync();
         }
 
         public async Task DeleteAuction(string Id)

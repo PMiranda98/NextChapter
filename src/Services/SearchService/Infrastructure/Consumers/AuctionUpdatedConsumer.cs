@@ -1,4 +1,5 @@
 ﻿using Application.Auctions;
+using Application.DTOs.Input.Auctions;
 using AutoMapper;
 using Domain.Entities;
 using EventBus.Contracts;
@@ -23,8 +24,8 @@ namespace Infrastructure.Consumers
 
 
             // TODO - Bug here! This creates an new Auction instance and the default values will interfer in the next mappings inside of the Edit handler.
-            var auction = _mapper.Map<Auction>(context.Message);
-            await _mediator.Send(new Edit.Command { Auction = auction });
+            var updatedAuctionDto = _mapper.Map<UpdatedAuctionDto>(context.Message);
+            await _mediator.Send(new Edit.Command { UpdatedAuctionDto = updatedAuctionDto });
         }
     }
 }
