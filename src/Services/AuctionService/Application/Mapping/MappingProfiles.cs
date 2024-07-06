@@ -15,12 +15,14 @@ public class MappingProfiles : Profile
         CreateMap<Item, AuctionDto>();
         CreateMap<Item, ItemDto>();
 
-        CreateMap<UpdateAuctionDto, Auction>()
-            .IncludeMembers(x => x.Item)
-            .ForAllMembers(opts => opts.MapFrom((src, dest, srcMember, destMember) => srcMember ?? destMember));
-        CreateMap<UpdateItemDto, Auction>()
-            .ForAllMembers(opts => opts.MapFrom((src, dest, srcMember, destMember) => srcMember ?? destMember));
+        CreateMap<CreateAuctionDto, Auction>().IncludeMembers(x => x.Item);
+        CreateMap<CreateItemDto, Auction>();
+        CreateMap<CreateItemDto, Item>();
+
         CreateMap<UpdateItemDto, Item>()
-            .ForAllMembers(opts => opts.MapFrom((src, dest, srcMember, destMember) => srcMember ?? destMember));
+            .ForAllMembers(opt => opt.Condition((src, dest, srcMember, destMember) => srcMember != null));
+        CreateMap<UpdateAuctionDto, Auction>()
+            .ForMember(dest => dest.Item, opt => opt.Ignore())
+            .ForAllMembers(opt => opt.Condition((src, dest, srcMember, destMember) => srcMember != null));
     }
 }

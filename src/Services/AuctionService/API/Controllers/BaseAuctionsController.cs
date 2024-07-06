@@ -11,10 +11,8 @@ namespace AuctionService.Controllers;
 public class BaseAuctionsController : ControllerBase
 {
     private IMediator _mediator;
-    private IMapper _mapper;
 
     protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
-    protected IMapper Mapper => _mapper ??= HttpContext.RequestServices.GetService<IMapper>(); 
 
     protected ActionResult HandleResult<T> (Result<T>? result, string? uri = null)
     {
@@ -37,6 +35,17 @@ public class BaseAuctionsController : ControllerBase
 
         if (result.IsSuccess && result.Value == null)
             return NotFound();
+
+        if (!result.IsSuccess)
+        {
+            switch (result.ErrorCode)
+            {
+                case "403":
+                    return Forbid();
+                case "401":
+                    return Unauthorized(result.Error);                            
+            }
+        }
 
         return BadRequest(result.Error);
     }

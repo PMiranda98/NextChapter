@@ -12,6 +12,7 @@ services:
     depends_on:
       - postgres-auctions
       - rabbitmq
+      - identity 
 
   search:
     container_name: searchService

@@ -5,6 +5,7 @@ using AuctionService.Domain.Entities;
 using AutoMapper;
 using Domain.Repositories;
 using MediatR;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 
 namespace AuctionService.Application.Auctions;
 
@@ -12,8 +13,10 @@ public class Edit
 {
     public class Command : IRequest<Result<Unit>?>
     {
-        public Guid Id { get; set; }
-        public Auction Auction { get; set; }
+        public required Guid Id { get; set; }
+        public required UpdateAuctionDto UpdateAuctionDto { get; set; }
+        public required string User { get; set; }
+
     }
 
     public class Handler : IRequestHandler<Command, Result<Unit>?>
@@ -33,12 +36,20 @@ public class Edit
         {
             var auction = await _auctionsRepository.DetailsAuction(request.Id, cancellationToken);
             if (auction == null) return null;
-            auction = _mapper.Map(request.Auction, auction);
+            if (auction.Seller != request.User)
+            {
+                var result = Result<Unit>.Failure("Forbid!");
+                result.ErrorCode = "403";
+                return result;
+            }
+            auction = _mapper.Map(request.UpdateAuctionDto, auction);
+            var item = _mapper.Map(request.UpdateAuctionDto.Item, auction.Item);
+            auction.Item = item;
             // TODO - Bug here! Its setting default values in the Item (for example public int Mileage { get; set; } gets value of zero)
             await _auctionsPublisher.PublishAuctionUpdated(auction);
 
-            var result = await _auctionsRepository.SaveChangesAsync(cancellationToken) > 0;
-            if (!result) return Result<Unit>.Failure("Failed to update the auction!");
+            var saveChangesResult = await _auctionsRepository.SaveChangesAsync(cancellationToken) > 0;
+            if (!saveChangesResult) return Result<Unit>.Failure("Failed to update the auction!");
             return Result<Unit>.Success(Unit.Value);
         }
     }

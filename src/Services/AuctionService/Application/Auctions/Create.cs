@@ -13,7 +13,8 @@ public class Create
 {
     public class Command : IRequest<Result<Unit>>
     {
-        public Auction Auction { get; set; }
+        public required CreateAuctionDto CreateAuctionDto { get; set; }
+        public required string Seller { get; set; }
     }
 
     public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -30,9 +31,11 @@ public class Create
         }
 
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
-        { 
-            _auctionsRepository.CreateAuction(request.Auction, cancellationToken);
-            await _auctionsPublisher.PublishAuctionCreated(request.Auction);
+        {
+            var auction = new Auction(request.Seller);
+            auction = _mapper.Map(request.CreateAuctionDto, auction);
+            _auctionsRepository.CreateAuction(auction, cancellationToken);
+            await _auctionsPublisher.PublishAuctionCreated(auction);
 
             var result = await _auctionsRepository.SaveChangesAsync(cancellationToken) > 0;
             if (!result) return Result<Unit>.Failure("Failed to create Auction!");

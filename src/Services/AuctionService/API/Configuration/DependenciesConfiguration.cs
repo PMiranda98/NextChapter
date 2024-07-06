@@ -19,7 +19,7 @@ namespace API.Extensions
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
                     options.Authority = configuration["IdentityServiceUrl"];
                     options.RequireHttpsMetadata = false;

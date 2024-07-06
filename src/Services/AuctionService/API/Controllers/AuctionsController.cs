@@ -24,27 +24,20 @@ public class AuctionsController : BaseAuctionsController
     [HttpPost] //api/auctions
     public async Task<IActionResult> Create(CreateAuctionDto createAuctionDto, CancellationToken cancellationToken)
     {
-        var auction = Mapper.Map<Auction>(createAuctionDto);
-        auction.Seller = User.Identity.Name;
-
-        return HandleResult(await Mediator.Send(new Create.Command { Auction = auction }, cancellationToken));
+        return HandleResult(await Mediator.Send(new Create.Command { CreateAuctionDto = createAuctionDto, Seller = User.Identity.Name }, cancellationToken));
     }
 
     [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> Edit(Guid id, UpdateAuctionDto updateAuctionDto, CancellationToken cancellationToken)
     {
-        var auction = Mapper.Map<Auction>(updateAuctionDto);
-        //auction.Seller == != User.Identity.Name) return Forbid("")
-
-        return HandleResult(await Mediator.Send(new  Edit.Command { Auction = auction, Id = id }, cancellationToken));
+        return HandleResult(await Mediator.Send(new  Edit.Command { UpdateAuctionDto = updateAuctionDto, Id = id, User=User.Identity.Name }, cancellationToken));
     }
 
     [Authorize]
     [HttpDelete("{id}")] //api/auctions/id
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        //auction.Seller == != User.Identity.Name) return Forbid("")
-        return HandleResult(await Mediator.Send(new Delete.Command { Id = id }, cancellationToken));
+        return HandleResult(await Mediator.Send(new Delete.Command { Id = id, User=User.Identity.Name }, cancellationToken));
     }
 }
