@@ -9,6 +9,10 @@ services:
       dockerfile: src/Services/AuctionService/API/Dockerfile
     environment:
       - SERVICE_NAME=auctions
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=7001
+    ports:
+      - "7001:7001"
     depends_on:
       - postgres-auctions
       - rabbitmq
@@ -22,6 +26,10 @@ services:
       dockerfile: src/Services/SearchService/API/Dockerfile
     environment:
       - SERVICE_NAME=search
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=7002
+    ports:
+      - "7002:7002"
     depends_on:
       - mongodb
       - rabbitmq
@@ -88,6 +96,11 @@ services:
     build:
       context: .
       dockerfile: src/Services/IdentityService/Identity/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - "5000:8080"
     depends_on:
       - postgres-identity
 
@@ -102,9 +115,21 @@ services:
     volumes:
       - pg-identitydata:/var/lib/postgresql-identity
 
+  gatewayservice:
+    image: ${DOCKER_REGISTRY-}gatewayservice
+    build:
+      context: .
+      dockerfile: src/Services/GatewayService/GatewayService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - "6001:8080"
+
 volumes:
   pgdata-auctions:
   pgadmin-data:
   mongodata:
   mongoexpress:
   pg-identitydata:
+
