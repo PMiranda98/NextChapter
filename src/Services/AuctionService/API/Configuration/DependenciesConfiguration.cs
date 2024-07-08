@@ -29,7 +29,7 @@ namespace API.Extensions
 
             services.AddApplicationDependencies();
             services.AddPersistenceDependencies(configuration);
-            services.AddInfrastructureDependencies();
+            services.AddInfrastructureDependencies(configuration);
 
             return services;
         }

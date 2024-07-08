@@ -14,11 +14,11 @@ namespace EventBus.Configuration
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        public static IServiceCollection AddEventBusDependencies(this IServiceCollection services)
+        public static IServiceCollection AddEventBusDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMassTransit(config =>
             {
-                config.requiredConfiguration();
+                config.requiredConfiguration(configuration);
             });
 
             return services;
@@ -30,11 +30,11 @@ namespace EventBus.Configuration
         /// <typeparam name="T">An object that inherits from DbContext.</typeparam>
         /// <param name="services"></param>
         /// <returns></returns>
-        public static IServiceCollection AddEventBusDependencies<T>(this IServiceCollection services) where T : DbContext
+        public static IServiceCollection AddEventBusDependencies<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
         {
             services.AddMassTransit(config =>
             {
-                config.requiredConfiguration();
+                config.requiredConfiguration(configuration);
                 
                 config.AddEntityFrameworkOutbox<T>(cfg =>
                 {
@@ -53,14 +53,24 @@ namespace EventBus.Configuration
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        private static IBusRegistrationConfigurator requiredConfiguration(this IBusRegistrationConfigurator config)
+        private static IBusRegistrationConfigurator requiredConfiguration(this IBusRegistrationConfigurator config, IConfiguration configuration)
         {
             var consumersAssembly = Assembly.Load("Infrastructure");
             config.AddConsumers(consumersAssembly);
-            config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(Environment.GetEnvironmentVariable("SERVICE_NAME"), false));
+            config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(configuration["ServiceName"], false));
 
             config.UsingRabbitMq((context, config) =>
             {
+                config.Host(configuration["RabbitMq:Host"], "/", host =>
+                {
+                    var username = configuration["RabbitMq:Username"];
+                    if(string.IsNullOrEmpty(username)) username = "guest";
+                    var password = configuration["RabbitMq:Password"];
+                    if (string.IsNullOrEmpty(password)) password = "guest";
+                    host.Username(username);
+                    host.Password(password);
+                 });
+
                 // Configuration of retry policies on the consumers.
                 // This will try to consume the message from the event bus if the previous consumption of that message had an error.
                 // After some time it will stop retrying and it will set the message on a event bus queue specific for errors of that type of message.

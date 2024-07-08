@@ -14,7 +14,7 @@ namespace API.Extensions
 
             services.AddApplicationDependencies();
             services.AddPersistenceDependencies();
-            services.AddInfrastructureDependencies();
+            services.AddInfrastructureDependencies(configuration);
 
             return services;
         }
