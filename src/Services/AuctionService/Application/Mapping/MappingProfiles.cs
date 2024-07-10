@@ -19,10 +19,21 @@ public class MappingProfiles : Profile
         CreateMap<CreateItemDto, Auction>();
         CreateMap<CreateItemDto, Item>();
 
-        CreateMap<UpdateItemDto, Item>()
-            .ForAllMembers(opt => opt.Condition((src, dest, srcMember, destMember) => srcMember != null));
+
+        CreateMap<UpdateItemDto, Item>(MemberList.Destination)
+            .ForMember(dest => dest.Year, opt => opt.Condition(src => src.Year != null))
+            .ForMember(dest => dest.Mileage, opt => opt.Condition(src => src.Mileage != null));
         CreateMap<UpdateAuctionDto, Auction>()
+            //.ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item))
             .ForMember(dest => dest.Item, opt => opt.Ignore())
             .ForAllMembers(opt => opt.Condition((src, dest, srcMember, destMember) => srcMember != null));
+    }
+
+    public class NullSourceValueResolver<TSource, TDestination, TMember> : IMemberValueResolver<TSource, TDestination, TMember, TMember>
+    {
+        public TMember Resolve(TSource source, TDestination destination, TMember sourceMember, TMember destMember, ResolutionContext context)
+        {
+            return sourceMember != null ? sourceMember : destMember;
+        }
     }
 }

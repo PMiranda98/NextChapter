@@ -1,11 +1,9 @@
 ﻿using Application.DTOs.Input.Auction;
 using Application.DTOs.Output;
 using Application.Interfaces;
-using AuctionService.Domain.Entities;
 using AutoMapper;
 using Domain.Repositories;
 using MediatR;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 
 namespace AuctionService.Application.Auctions;
 
@@ -42,8 +40,11 @@ public class Edit
                 result.ErrorCode = "403";
                 return result;
             }
+
+            var item = auction.Item;
+
             auction = _mapper.Map(request.UpdateAuctionDto, auction);
-            var item = _mapper.Map(request.UpdateAuctionDto.Item, auction.Item);
+            item = _mapper.Map(request.UpdateAuctionDto.Item, item);
             auction.Item = item;
             // TODO - Bug here! Its setting default values in the Item (for example public int Mileage { get; set; } gets value of zero)
             await _auctionsPublisher.PublishAuctionUpdated(auction);

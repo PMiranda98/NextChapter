@@ -2,14 +2,9 @@
 
 public class Auction
 {
-    public Auction(string seller)
-    {
-        Seller = seller;
-    }
-
     public Guid Id { get; set; }  
   public int ReservePrice { get; set; } = 0;
-  public string Seller { get; set; }  
+  public string? Seller { get; set; }  
   public string? Winner { get; set; }
   public int? SoldAmount { get; set; }
   public int? CurrentHighBid { get; set; }

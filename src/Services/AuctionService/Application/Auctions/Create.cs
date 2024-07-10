@@ -32,8 +32,8 @@ public class Create
 
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
         {
-            var auction = new Auction(request.Seller);
-            auction = _mapper.Map(request.CreateAuctionDto, auction);
+            var auction = _mapper.Map<Auction>(request.CreateAuctionDto);
+            auction.Seller = request.Seller;
             _auctionsRepository.CreateAuction(auction, cancellationToken);
             await _auctionsPublisher.PublishAuctionCreated(auction);
 
