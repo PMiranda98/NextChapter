@@ -1,10 +1,17 @@
-﻿namespace Application.DTOs.Input.Item;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Application.DTOs.Input.Item;
 
 public class UpdateItemDto
 {
-    public string? Make { get; set; }
-    public string? Model { get; set; }
-    public int? Year { get; set; }
-    public string? Color { get; set; }
-    public int? Mileage { get; set; }
+    [Required]
+    public required string Make { get; set; }
+    [Required]
+    public required string Model { get; set; }
+    [Required]
+    public int Year { get; set; }
+    [Required]
+    public required string Color { get; set; }
+    [Required]
+    public int Mileage { get; set; }
 }

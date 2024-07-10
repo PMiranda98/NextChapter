@@ -11,29 +11,16 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        CreateMap<Auction, AuctionDto>().IncludeMembers(x => x.Item);
-        CreateMap<Item, AuctionDto>();
+        CreateMap<Auction, AuctionDto>()
+            .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
         CreateMap<Item, ItemDto>();
 
-        CreateMap<CreateAuctionDto, Auction>().IncludeMembers(x => x.Item);
-        CreateMap<CreateItemDto, Auction>();
+        CreateMap<CreateAuctionDto, Auction>()
+            .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
         CreateMap<CreateItemDto, Item>();
 
-
-        CreateMap<UpdateItemDto, Item>(MemberList.Destination)
-            .ForMember(dest => dest.Year, opt => opt.Condition(src => src.Year != null))
-            .ForMember(dest => dest.Mileage, opt => opt.Condition(src => src.Mileage != null));
         CreateMap<UpdateAuctionDto, Auction>()
-            //.ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item))
-            .ForMember(dest => dest.Item, opt => opt.Ignore())
-            .ForAllMembers(opt => opt.Condition((src, dest, srcMember, destMember) => srcMember != null));
-    }
-
-    public class NullSourceValueResolver<TSource, TDestination, TMember> : IMemberValueResolver<TSource, TDestination, TMember, TMember>
-    {
-        public TMember Resolve(TSource source, TDestination destination, TMember sourceMember, TMember destMember, ResolutionContext context)
-        {
-            return sourceMember != null ? sourceMember : destMember;
-        }
+            .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
+        CreateMap<UpdateItemDto, Item>();
     }
 }

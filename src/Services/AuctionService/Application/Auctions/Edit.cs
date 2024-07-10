@@ -41,11 +41,7 @@ public class Edit
                 return result;
             }
 
-            var item = auction.Item;
-
             auction = _mapper.Map(request.UpdateAuctionDto, auction);
-            item = _mapper.Map(request.UpdateAuctionDto.Item, item);
-            auction.Item = item;
             // TODO - Bug here! Its setting default values in the Item (for example public int Mileage { get; set; } gets value of zero)
             await _auctionsPublisher.PublishAuctionUpdated(auction);
 

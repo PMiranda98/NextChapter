@@ -28,7 +28,7 @@ namespace Application.Auctions
             {
                 var auction = await _auctionsRepository.DetailsAuction(request.UpdatedAuctionDto.Id.ToString());
                 if (auction == null) return null;
-                auction = _mapper.Map<Auction>(request.UpdatedAuctionDto);
+                auction = _mapper.Map(request.UpdatedAuctionDto, auction);
 
                 await _auctionsRepository.UpdateAuction(auction);
                 // TODO - Error handling 

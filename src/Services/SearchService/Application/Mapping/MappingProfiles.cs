@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Input.Auctions;
+using Application.DTOs.Input.Item;
 using Application.DTOs.Output.Auctions;
 using AutoMapper;
 using Domain.Entities;
@@ -13,13 +14,9 @@ namespace Application.Mapping
             CreateMap<SearchAuctionsInputDTO, SearchAuctionsParams>();
             CreateMap<SearchAuctionsOutput, SearchAuctionsOutputDTO>();
 
-            CreateMap<Auction, Auction>()
-            .IncludeMembers(x => x.Item)
-            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<Item, Auction>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<Item, Item>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<UpdatedAuctionDto, Auction>()
+                .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
+            CreateMap<UpdatedItemDto, Item>();
         }
     }
 }

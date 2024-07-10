@@ -12,22 +12,14 @@ namespace Infrastructure.Mapping
         public MappingProfiles()
         {
             // Event bus maps
-            CreateMap<AuctionCreated, Auction>();
-            CreateMap<ItemCreated, Auction>();
+            CreateMap<AuctionCreated, Auction>()
+                .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
             CreateMap<ItemCreated, Item>();
 
             CreateMap<AuctionUpdated, UpdatedAuctionDto>()
-                .IncludeMembers(x => x.Item);
-            CreateMap<ItemUpdated, UpdatedAuctionDto>();
+                .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
             CreateMap<ItemUpdated, UpdatedItemDto>();
-
-            CreateMap<UpdatedAuctionDto, Auction>()
-                .IncludeMembers(x => x.Item)
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<UpdatedItemDto, Auction>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<UpdatedItemDto, Item>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+   
         }
     }
 }
