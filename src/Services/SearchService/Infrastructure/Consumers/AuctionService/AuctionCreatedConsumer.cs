@@ -1,11 +1,11 @@
-﻿using Application.Auctions;
+﻿using Application.Handlers.Auctions;
 using AutoMapper;
 using Domain.Entities;
 using EventBus.Contracts;
 using MassTransit;
 using MediatR;
 
-namespace Infrastructure.Consumers.Auctions
+namespace Infrastructure.Consumers.AuctionService
 {
     public class AuctionCreatedConsumer : IConsumer<AuctionCreated>
     {

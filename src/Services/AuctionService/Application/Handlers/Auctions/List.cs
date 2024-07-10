@@ -6,18 +6,18 @@ using Domain.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuctionService.Application.Auctions;
+namespace Application.Handlers.Auctions;
 
 public class List
 {
-    public class Query : IRequest<Result<List<AuctionDto>>> {}
+    public class Query : IRequest<Result<List<AuctionDto>>> { }
 
     public class Handler : IRequestHandler<Query, Result<List<AuctionDto>>>
     {
         private readonly IAuctionsRepository _auctionsRepository;
         private readonly IMapper _mapper;
 
-    public Handler(IAuctionsRepository auctionsRepository, IMapper mapper)
+        public Handler(IAuctionsRepository auctionsRepository, IMapper mapper)
         {
             _auctionsRepository = auctionsRepository;
             _mapper = mapper;

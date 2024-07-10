@@ -1,27 +1,32 @@
-﻿using Application.DTOs.Output;
+﻿using Application.DTOs.Input.Auction;
+using Application.DTOs.Output;
 using Application.Interfaces;
-using AuctionService.Persistence.Data;
+using AutoMapper;
 using Domain.Repositories;
 using MediatR;
 
-namespace AuctionService.Application.Auctions;
+namespace Application.Handlers.Auctions;
 
-public class Delete
+public class Edit
 {
     public class Command : IRequest<Result<Unit>?>
     {
         public required Guid Id { get; set; }
+        public required UpdateAuctionDto UpdateAuctionDto { get; set; }
         public required string User { get; set; }
+
     }
 
     public class Handler : IRequestHandler<Command, Result<Unit>?>
     {
         private readonly IAuctionsRepository _auctionsRepository;
+        private readonly IMapper _mapper;
         private readonly IAuctionsPublisher _auctionsPublisher;
 
-        public Handler(IAuctionsRepository auctionsRepository, IAuctionsPublisher auctionsPublisher)
+        public Handler(IAuctionsRepository auctionsRepository, IMapper mapper, IAuctionsPublisher auctionsPublisher)
         {
             _auctionsRepository = auctionsRepository;
+            _mapper = mapper;
             _auctionsPublisher = auctionsPublisher;
         }
 
@@ -35,11 +40,13 @@ public class Delete
                 result.ErrorCode = "403";
                 return result;
             }
-            _auctionsRepository.DeleteAuction(request.Id, cancellationToken);
-            await _auctionsPublisher.PublishAuctionDeleted(request.Id);
+
+            auction = _mapper.Map(request.UpdateAuctionDto, auction);
+            // TODO - Bug here! Its setting default values in the Item (for example public int Mileage { get; set; } gets value of zero)
+            await _auctionsPublisher.PublishAuctionUpdated(auction);
 
             var saveChangesResult = await _auctionsRepository.SaveChangesAsync(cancellationToken) > 0;
-            if (!saveChangesResult) return Result<Unit>.Failure("Failed to delete the auction!");
+            if (!saveChangesResult) return Result<Unit>.Failure("Failed to update the auction!");
             return Result<Unit>.Success(Unit.Value);
         }
     }

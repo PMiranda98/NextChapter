@@ -1,13 +1,10 @@
-﻿using Application.DTOs.Input.Auctions;
+﻿using Application.DTOs.Input.Auction;
+using Application.Interfaces;
+using AuctionService.Domain.Entities;
 using Domain.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.Auctions
+namespace Application.Handlers.Auctions
 {
     public class Finished
     {
@@ -27,7 +24,7 @@ namespace Application.Auctions
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var auction = await _auctionsRepository.DetailsAuction(request.FinishedAuctionDto.AuctionId);
+                var auction = await _auctionsRepository.DetailsAuction(request.FinishedAuctionDto.AuctionId, cancellationToken);
                 if (auction != null)
                 {
                     if (request.FinishedAuctionDto.ItemSold)
@@ -36,9 +33,9 @@ namespace Application.Auctions
                         auction.SoldAmount = request.FinishedAuctionDto.Amount;
                     }
 
-                    auction.Status = auction.SoldAmount > auction.ReservePrice ? "Finished" : "ReserveNotMet";
+                    auction.Status = auction.SoldAmount > auction.ReservePrice ? Status.Finished : Status.ReserveNotMet;
 
-                    await _auctionsRepository.SaveAsync(auction);
+                    await _auctionsRepository.SaveChangesAsync(cancellationToken);
                 }
             }
         }

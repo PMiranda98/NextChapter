@@ -5,7 +5,7 @@ using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
 
-namespace Application.Auctions
+namespace Application.Handlers.Auctions
 {
     public class Edit
     {

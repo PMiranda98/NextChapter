@@ -1,5 +1,5 @@
-﻿using Application.Bids;
-using Application.DTOs.Input.Bid;
+﻿using Application.DTOs.Input.Bid;
+using Application.Handlers.Bids;
 using AutoMapper;
 using EventBus.Contracts;
 using MassTransit;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Consumers.Bids
+namespace Infrastructure.Consumers.BidService
 {
     public class BidPlacedConsumer : IConsumer<BidPlaced>
     {

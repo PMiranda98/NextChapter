@@ -1,5 +1,5 @@
 ﻿using Application.DTOs.Input.Auction;
-using AuctionService.Application.Auctions;
+using Application.Handlers.Auctions;
 using AuctionService.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

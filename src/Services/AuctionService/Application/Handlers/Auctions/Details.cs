@@ -6,7 +6,7 @@ using Domain.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuctionService.Application.Auctions;
+namespace Application.Handlers.Auctions;
 
 public class Details
 {

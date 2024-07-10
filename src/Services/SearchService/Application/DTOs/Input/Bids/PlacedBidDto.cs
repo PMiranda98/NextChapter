@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs.Input.Bids
 {
-    public class BidPlacedDto
+    public class PlacedBidDto
     {
         public required string Id { get; set; }
         public required string AuctionId { get; set; }

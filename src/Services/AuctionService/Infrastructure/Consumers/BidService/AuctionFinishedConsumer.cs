@@ -1,5 +1,5 @@
-﻿using Application.Auctions;
-using Application.DTOs.Input.Auctions;
+﻿using Application.DTOs.Input.Auction;
+using Application.Handlers.Auctions;
 using AutoMapper;
 using EventBus.Contracts;
 using MassTransit;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Consumers.Bids
+namespace Infrastructure.Consumers.BidService
 {
     public class AuctionFinishedConsumer : IConsumer<AuctionFinished>
     {
@@ -24,7 +24,7 @@ namespace Infrastructure.Consumers.Bids
         }
         public async Task Consume(ConsumeContext<AuctionFinished> context)
         {
-            Console.WriteLine("--> Consuming auction finished");
+            Console.WriteLine("--> Consuming auction finished: " + context.Message.AuctionId);
 
             var finishedAuctionDto = _mapper.Map<FinishedAuctionDto>(context.Message);
             await _mediator.Send(new Finished.Command { FinishedAuctionDto = finishedAuctionDto });

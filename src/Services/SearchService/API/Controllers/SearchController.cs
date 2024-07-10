@@ -1,6 +1,6 @@
 ﻿using API.RequestHelpers;
-using Application.Auctions;
 using Application.DTOs.Input.Auctions;
+using Application.Handlers.Auctions;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 

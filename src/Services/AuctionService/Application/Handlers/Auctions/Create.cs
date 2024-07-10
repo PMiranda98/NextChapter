@@ -7,7 +7,7 @@ using Domain.Repositories;
 using MediatR;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 
-namespace AuctionService.Application.Auctions;
+namespace Application.Handlers.Auctions;
 
 public class Create
 {

@@ -1,5 +1,8 @@
-﻿using Application.DTOs.Input.Bids;
+﻿using Application.DTOs.Input.Auction;
+using Application.DTOs.Input.Bid;
+using Application.Interfaces;
 using Domain.Repositories;
+using MassTransit;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -7,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Bids
+namespace Application.Handlers.Bids
 {
-    public class Placed : IRequest
+    public class Placed
     {
         public class Command : IRequest
         {
@@ -27,15 +30,16 @@ namespace Application.Bids
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var auction = await _auctionsRepository.DetailsAuction(request.BidPlacedDto.AuctionId);
+                var auction = await _auctionsRepository.DetailsAuction(request.BidPlacedDto.AuctionId, cancellationToken);
                 if (auction != null)
                 {
-                    if (request.BidPlacedDto.BidStatus.Contains("Accepted")
+                    if (auction.CurrentHighBid == null
+                        || request.BidPlacedDto.BidStatus.Contains("Accepted")
                         && request.BidPlacedDto.Amount > auction.CurrentHighBid)
                     {
                         auction.CurrentHighBid = request.BidPlacedDto.Amount;
 
-                        await _auctionsRepository.SaveAsync(auction);
+                        await _auctionsRepository.SaveChangesAsync(cancellationToken);
                     }
                 }
             }

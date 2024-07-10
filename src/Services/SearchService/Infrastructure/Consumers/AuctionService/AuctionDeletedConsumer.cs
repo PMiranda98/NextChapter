@@ -1,9 +1,9 @@
-﻿using Application.Auctions;
+﻿using Application.Handlers.Auctions;
 using EventBus.Contracts;
 using MassTransit;
 using MediatR;
 
-namespace Infrastructure.Consumers.Auctions
+namespace Infrastructure.Consumers.AuctionService
 {
     public class AuctionDeletedConsumer : IConsumer<AuctionDeleted>
     {

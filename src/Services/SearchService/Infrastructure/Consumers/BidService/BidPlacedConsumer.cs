@@ -1,5 +1,5 @@
-﻿using Application.Bids;
-using Application.DTOs.Input.Bids;
+﻿using Application.DTOs.Input.Bids;
+using Application.Handlers.Bids;
 using AutoMapper;
 using EventBus.Contracts;
 using MassTransit;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Consumers.Bids
+namespace Infrastructure.Consumers.BidService
 {
     public class BidPlacedConsumer : IConsumer<BidPlaced>
     {
@@ -26,8 +26,8 @@ namespace Infrastructure.Consumers.Bids
         {
             Console.WriteLine("--> Consuming bid placed");
 
-            var bidPlacedDto = _mapper.Map<BidPlacedDto>(context.Message);
-            await _mediator.Send(new Placed.Command { BidPlacedDto = bidPlacedDto });
+            var placedBidDto = _mapper.Map<PlacedBidDto>(context.Message);
+            await _mediator.Send(new Placed.Command { PlacedBidDto = placedBidDto });
         }
     }
 }

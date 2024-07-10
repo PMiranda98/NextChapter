@@ -6,11 +6,11 @@ using Domain.Repositories;
 using Domain.Repositories.Models;
 using MediatR;
 
-namespace Application.Auctions
+namespace Application.Handlers.Auctions
 {
     public class List
     {
-        public class Query : IRequest<Result<SearchAuctionsOutputDTO>> 
+        public class Query : IRequest<Result<SearchAuctionsOutputDTO>>
         {
             public SearchAuctionsInputDTO SearchAuctionsInputDTO { get; set; }
         }

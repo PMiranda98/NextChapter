@@ -21,7 +21,7 @@ namespace Infrastructure.Mapping
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
             CreateMap<ItemUpdated, UpdatedItemDto>();
 
-            CreateMap<BidPlaced, BidPlacedDto>();
+            CreateMap<BidPlaced, PlacedBidDto>();
 
             CreateMap<AuctionFinished, FinishedAuctionDto>();
    
