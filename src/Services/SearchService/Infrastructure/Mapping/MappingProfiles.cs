@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Input.Auctions;
+using Application.DTOs.Input.Bids;
 using Application.DTOs.Input.Item;
 using AutoMapper;
 using Domain.Entities;
@@ -19,6 +20,10 @@ namespace Infrastructure.Mapping
             CreateMap<AuctionUpdated, UpdatedAuctionDto>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
             CreateMap<ItemUpdated, UpdatedItemDto>();
+
+            CreateMap<BidPlaced, BidPlacedDto>();
+
+            CreateMap<AuctionFinished, FinishedAuctionDto>();
    
         }
     }

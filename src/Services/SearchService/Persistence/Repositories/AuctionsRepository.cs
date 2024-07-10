@@ -88,5 +88,10 @@ namespace Persistence.Repositories
             }
             return resultDto;
         }
+
+        public async Task SaveAsync<T>(T data) where T : Entity
+        {
+            await DB.SaveAsync(data);
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace Domain.Repositories
         public void DeleteAuction(Guid Id, CancellationToken cancellationToken);
         public Task<List<Auction>> ListAuctions (CancellationToken cancellationToken);
         public Task<Auction> DetailsAuction(Guid Id, CancellationToken cancellationToken);
+        public Task<Auction> DetailsAuction(string Id, CancellationToken cancellationToken);
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
     }

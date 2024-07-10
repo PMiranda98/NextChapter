@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Input.Auction;
+using Application.DTOs.Input.Bid;
 using Application.DTOs.Input.Item;
 using Application.DTOs.Output.Auction;
 using Application.DTOs.Output.Item;

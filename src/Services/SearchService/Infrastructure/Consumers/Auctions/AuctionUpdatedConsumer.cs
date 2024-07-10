@@ -6,7 +6,7 @@ using EventBus.Contracts;
 using MassTransit;
 using MediatR;
 
-namespace Infrastructure.Consumers
+namespace Infrastructure.Consumers.Auctions
 {
     public class AuctionUpdatedConsumer : IConsumer<AuctionUpdated>
     {
@@ -22,8 +22,6 @@ namespace Infrastructure.Consumers
         {
             Console.WriteLine("--> Consuming auction updated: " + context.Message.Id);
 
-
-            // TODO - Bug here! This creates an new Auction instance and the default values will interfer in the next mappings inside of the Edit handler.
             var updatedAuctionDto = _mapper.Map<UpdatedAuctionDto>(context.Message);
             await _mediator.Send(new Edit.Command { UpdatedAuctionDto = updatedAuctionDto });
         }

@@ -69,5 +69,10 @@ namespace Persistence.Repositories
         {
             return await _dataContext.SaveChangesAsync(cancellationToken);
         }
+
+        public async Task<Auction> DetailsAuction(string Id, CancellationToken cancellationToken)
+        {
+            return await _dataContext.Auctions.Include(x => x.Item).Where(x => x.Id.ToString() == Id).FirstAsync();
+        }
     }
 }

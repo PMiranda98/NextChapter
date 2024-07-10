@@ -3,7 +3,7 @@ using EventBus.Contracts;
 using MassTransit;
 using MediatR;
 
-namespace Infrastructure.Consumers
+namespace Infrastructure.Consumers.Auctions
 {
     public class AuctionDeletedConsumer : IConsumer<AuctionDeleted>
     {

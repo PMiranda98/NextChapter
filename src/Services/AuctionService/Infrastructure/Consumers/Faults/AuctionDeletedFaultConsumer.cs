@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Consumers
+namespace Infrastructure.Consumers.Faults
 {
     public class AuctionDeletedFaultConsumer : IConsumer<Fault<AuctionDeleted>>
     {
