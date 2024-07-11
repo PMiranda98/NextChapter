@@ -1,5 +1,5 @@
-export type PagedResults<Auction> = {
-  auctions: Auction[]
+export type PagedResults<T> = {
+  results: T[]
   pageCount: number
   totalCount: number
 }

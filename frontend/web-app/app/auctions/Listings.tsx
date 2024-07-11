@@ -1,6 +1,5 @@
 import React from 'react'
 import AuctionCard from './AuctionCard';
-import { Console } from 'console';
 import { Auction, PagedResults } from '@/types';
 
 async function getData(): Promise<PagedResults<Auction>> {
@@ -11,10 +10,11 @@ async function getData(): Promise<PagedResults<Auction>> {
 
 export default async function Listings() {
   const data = await getData();
-  //console.log(data.auctions);
+  console.log(data);
+  console.log(data.results);
   return (
     <div className='grid grid-cols-4 gap-6'>
-      {data && data.auctions.map((auction) => (
+      {data && data.results.map((auction) => (
         <AuctionCard key={auction.id} auction={auction}/>
       ))}
     </div>
