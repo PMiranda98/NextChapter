@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Repositories.Models
+namespace Application.DTOs.Input
 {
-    public class SearchAuctionsParams
+    public class SearchInputDTO
     {
         public string? SearchTerm { get; set; }
         public int PageNumber { get; set; }

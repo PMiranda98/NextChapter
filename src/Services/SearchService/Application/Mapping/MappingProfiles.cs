@@ -1,6 +1,7 @@
-﻿using Application.DTOs.Input.Auctions;
+﻿using Application.DTOs.Input;
+using Application.DTOs.Input.Auctions;
 using Application.DTOs.Input.Item;
-using Application.DTOs.Output.Auctions;
+using Application.DTOs.Output;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Repositories.Models;
@@ -11,8 +12,8 @@ namespace Application.Mapping
     {
         public MappingProfiles()
         {
-            CreateMap<SearchAuctionsInputDTO, SearchAuctionsParams>();
-            CreateMap<SearchAuctionsOutput, SearchAuctionsOutputDTO>();
+            CreateMap<SearchInputDTO, SearchParams>();
+            CreateMap<SearchOutput<Auction>, SearchOutputDTO<Auction>>();
 
             CreateMap<UpdatedAuctionDto, Auction>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));

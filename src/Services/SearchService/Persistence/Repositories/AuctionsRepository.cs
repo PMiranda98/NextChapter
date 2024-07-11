@@ -12,7 +12,7 @@ namespace Persistence.Repositories
 {
     public class AuctionsRepository : IAuctionsRepository
     {
-        public async Task<SearchAuctionsOutput> SearchAuctions(SearchAuctionsParams searchAuctionsParams)
+        public async Task<SearchOutput<Auction>> SearchAuctions(SearchParams searchAuctionsParams)
         {
             var query = DB.PagedSearch<Auction, Auction>();
             if (searchAuctionsParams.SearchTerm != null)
@@ -72,15 +72,15 @@ namespace Persistence.Repositories
             return await DB.Find<Auction>().Match(x => x.ID == Id).ExecuteFirstAsync();
         }
 
-        private async Task<SearchAuctionsOutput> GetOutput(PagedSearch<Auction, Auction>? query)
+        private async Task<SearchOutput<Auction>> GetOutput(PagedSearch<Auction, Auction>? query)
         {
-            var resultDto = new SearchAuctionsOutput();
+            var resultDto = new SearchOutput<Auction>();
             if(query != null)
             {
                 var result = await query.ExecuteAsync();
-                resultDto = new SearchAuctionsOutput
+                resultDto = new SearchOutput<Auction>
                 {
-                    Auctions = result.Results,
+                    Results = result.Results,
                     PageCount = result.PageCount,
                     TotalCount = result.TotalCount
                 };

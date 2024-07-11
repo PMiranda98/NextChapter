@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.Output.Auctions
+namespace Application.DTOs.Output
 {
-    public class SearchAuctionsOutputDTO
+    public class SearchOutputDTO<T>
     {
-        public IReadOnlyList<Auction>? Auctions { get; set; }
+        public IReadOnlyList<T>? Results { get; set; }
         public long TotalCount { get; set; }
         public int PageCount { get; set; }
     }

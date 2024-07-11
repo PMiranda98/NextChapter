@@ -1,5 +1,5 @@
 ﻿using API.RequestHelpers;
-using Application.DTOs.Input.Auctions;
+using Application.DTOs.Input;
 using AutoMapper;
 
 namespace API.Mapping
@@ -8,7 +8,7 @@ namespace API.Mapping
     {
         public MappingProfiles()
         {
-            CreateMap<SearchParams, SearchAuctionsInputDTO>();
+            CreateMap<SearchParams, SearchInputDTO>();
         }
     }
 }

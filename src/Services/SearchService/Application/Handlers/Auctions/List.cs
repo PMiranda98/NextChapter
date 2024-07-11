@@ -1,7 +1,7 @@
-﻿using Application.DTOs.Input.Auctions;
+﻿using Application.DTOs.Input;
 using Application.DTOs.Output;
-using Application.DTOs.Output.Auctions;
 using AutoMapper;
+using Domain.Entities;
 using Domain.Repositories;
 using Domain.Repositories.Models;
 using MediatR;
@@ -10,12 +10,12 @@ namespace Application.Handlers.Auctions
 {
     public class List
     {
-        public class Query : IRequest<Result<SearchAuctionsOutputDTO>>
+        public class Query : IRequest<Result<SearchOutputDTO<Auction>>>
         {
-            public SearchAuctionsInputDTO SearchAuctionsInputDTO { get; set; }
+            public SearchInputDTO SearchInputDTO { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<SearchAuctionsOutputDTO>>
+        public class Handler : IRequestHandler<Query, Result<SearchOutputDTO<Auction>>>
         {
             private readonly IAuctionsRepository _auctionsRepository;
             private readonly IMapper _mapper;
@@ -25,10 +25,10 @@ namespace Application.Handlers.Auctions
                 _auctionsRepository = auctionsRepository;
                 _mapper = mapper;
             }
-            public async Task<Result<SearchAuctionsOutputDTO>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<SearchOutputDTO<Auction>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var result = await _auctionsRepository.SearchAuctions(_mapper.Map<SearchAuctionsParams>(request.SearchAuctionsInputDTO));
-                return Result<SearchAuctionsOutputDTO>.Success(_mapper.Map<SearchAuctionsOutputDTO>(result));
+                var result = await _auctionsRepository.SearchAuctions(_mapper.Map<SearchParams>(request.SearchInputDTO));
+                return Result<SearchOutputDTO<Auction>>.Success(_mapper.Map<SearchOutputDTO<Auction>>(result));
             }
         }
     }
