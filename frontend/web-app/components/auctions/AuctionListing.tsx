@@ -1,6 +1,6 @@
 import React from 'react'
 import AuctionCard from './AuctionCard';
-import { Auction, PagedResults } from '@/types';
+import { PagedResults, Auction } from '@/types';
 
 async function getData(): Promise<PagedResults<Auction>> {
   const result = await fetch('http://localhost:6001/search');
