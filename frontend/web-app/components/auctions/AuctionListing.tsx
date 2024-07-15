@@ -8,6 +8,7 @@ import { getData } from '@/actions/auction';
 import Filters from '../core/Filters';
 import useParamsStore from '@/hooks/useParamsStore';
 import qs from 'query-string'
+import EmptyFilter from '../core/EmptyFilter';
 
 export default function AuctionListing() {
   const [data, setData] = useState<PagedResults<Auction>>();
@@ -19,7 +20,9 @@ export default function AuctionListing() {
   const params = useParamsStore(state => ({
     pageNumber: state.pageNumber,
     pageSize: state.pageSize,
-    searchTerm: state.searchTerm
+    searchTerm: state.searchTerm,
+    orderBy: state.orderBy,
+    filterBy: state.filterBy
   }))
 
   const setParams = useParamsStore(state => state.setParams)
@@ -38,14 +41,20 @@ export default function AuctionListing() {
   return (
     <>
       <Filters/>
-      <div className='grid grid-cols-4 gap-6'>
-        {data.results.map((auction) => (
-          <AuctionCard key={auction.id} auction={auction}/>
-        ))}
-      </div>
-      <div className='flex justify-center mt-4'>
-        <AppPagination currentPage={params.pageNumber} pageCount={data.pageCount} pageChanged={setPageNumber}/>
-      </div>
+      {data.totalCount === 0 ? (
+        <EmptyFilter showReset/>
+      ) : (
+        <>
+          <div className='grid grid-cols-4 gap-6'>
+            {data.results.map((auction) => (
+              <AuctionCard key={auction.id} auction={auction}/>
+            ))}
+          </div>
+          <div className='flex justify-center mt-4'>
+            <AppPagination currentPage={params.pageNumber} pageCount={data.pageCount} pageChanged={setPageNumber}/>
+          </div>
+        </>
+      )}
     </>
   )
 }

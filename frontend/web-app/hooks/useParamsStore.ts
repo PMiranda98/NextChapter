@@ -9,6 +9,9 @@ type State = {
   pageSize: number // page size selected
   pageCount: number // number of pages that exists that depends on the total number of results and the pageSize selected. 
   searchTerm: string
+  searchValue: string
+  orderBy: string
+  filterBy: string
 }
 
 type Actions = {
@@ -21,7 +24,10 @@ const initialState: State = {
   pageNumber: 1,
   pageSize: 3,
   pageCount: 1,
-  searchTerm: ''
+  searchTerm: '',
+  searchValue:'',
+  orderBy: 'make',
+  filterBy: ''
 }
 
 const useParamsStore = createWithEqualityFn<State & Actions>((set) => ({
