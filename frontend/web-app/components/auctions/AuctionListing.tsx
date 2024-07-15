@@ -2,40 +2,49 @@
 
 import React, { useEffect, useState } from 'react'
 import AuctionCard from './AuctionCard';
-import { PagedResults, Auction } from '@/types';
-import AppPagination from '../other/AppPagination';
+import { Auction, PagedResults } from '@/types';
+import AppPagination from '../core/AppPagination';
 import { getData } from '@/actions/auction';
-import Filters from '../other/Filters';
+import Filters from '../core/Filters';
+import useParamsStore from '@/hooks/useParamsStore';
+import qs from 'query-string'
 
-export default function Listings() {
-  const [auctions, setAuctions] = useState<Auction[]>([]);
-  // Total number of pages based on the total number of items and the page size selected.
-  const [pageCount, setPageCount] = useState(0)
-  // Current page number selected.
-  const [pageNumber, setPageNumber] = useState(1)
-  // Current page size selected.
-  const [pageSize, setPageSize] = useState(3)
-  
+export default function AuctionListing() {
+  const [data, setData] = useState<PagedResults<Auction>>();
+  // This is not advisable because if any of the state changes (we might have a lot more in the store than what we actually need here)
+  // that would cause this component to rerender. 
+  // const params = useParamsStore(state => state)
+
+  // This is a more advisable way of getting all the states that we are interesting in this component in a single property.
+  const params = useParamsStore(state => ({
+    pageNumber: state.pageNumber,
+    pageSize: state.pageSize,
+    searchTerm: state.searchTerm
+  }))
+
+  const setParams = useParamsStore(state => state.setParams)
+  const queryString = qs.stringifyUrl({url: '', query: params})
+  const setPageNumber = (pageNumber: number) => setParams({pageNumber})
+
   useEffect(() => {
-      getData(pageNumber, pageSize).then(data => {
-        setAuctions(data.results)
-        setPageCount(data.pageCount)
+      getData(queryString).then(data => {
+        setData(data)
       })
-  }, [pageNumber, pageSize])
+  }, [queryString])
 
-  if(auctions.length === 0) return <h3>Loading...</h3>
+  if(!data) return <h3>Loading...</h3>
 
   //console.log(data);
   return (
     <>
-      <Filters pageSize={pageSize} setPageSize={setPageSize}/>
+      <Filters/>
       <div className='grid grid-cols-4 gap-6'>
-        {auctions.map((auction) => (
+        {data.results.map((auction) => (
           <AuctionCard key={auction.id} auction={auction}/>
         ))}
       </div>
       <div className='flex justify-center mt-4'>
-        <AppPagination currentPage={pageNumber} pageCount={pageCount} pageChanged={setPageNumber}/>
+        <AppPagination currentPage={params.pageNumber} pageCount={data.pageCount} pageChanged={setPageNumber}/>
       </div>
     </>
   )

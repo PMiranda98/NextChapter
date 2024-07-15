@@ -1,9 +1,9 @@
-import Listings from "../components/auctions/AuctionListing";
+import AuctionListing from "../components/auctions/AuctionListing";
 
 export default function Home() {
   return (
     <div>
-      <Listings />
+      <AuctionListing />
     </div>
   );
 }
