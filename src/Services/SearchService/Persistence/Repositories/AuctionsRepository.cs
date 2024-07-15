@@ -39,7 +39,7 @@ namespace Persistence.Repositories
             // Sorting
             switch (searchAuctionsParams.OrderBy)
             {
-                case "make":  query.Sort(x => x.Ascending(a => a.Item.Make)); break;
+                case "make":  query.Sort(x => x.Ascending(a => a.Item.Make)).Sort(x => x.Ascending(a => a.Item.Model)); break;
                 case "new": query.Sort(x => x.Descending(a => a.CreatedAt)); break;
                 default: query.Sort(x=> x.Ascending(a => a.AuctionEnd)); break;
             }
