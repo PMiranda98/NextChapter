@@ -24,6 +24,9 @@ export default function UserActions({user} : Props) {
       <Dropdown.Item icon={AiFillCar}>
         <Link href='/'>Sell my car</Link>
       </Dropdown.Item>
+      <Dropdown.Item icon={HiCog}>
+        <Link href='/session'>Session (dev only)</Link>
+      </Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item icon={AiOutlineLogout} onClick={() => signOut({callbackUrl: '/'})}>
         Sign out
