@@ -1,7 +1,6 @@
 ﻿using Application.DTOs.Input.Auctions;
-using Application.DTOs.Output;
 using AutoMapper;
-using Domain.Entities;
+using Domain.DTOs.Output;
 using Domain.Repositories;
 using MediatR;
 

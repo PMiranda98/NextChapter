@@ -1,14 +1,7 @@
-﻿using Application.DTOs.Output;
-using AutoMapper;
+﻿using Domain.DTOs.Output;
 using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
-using MongoDB.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Handlers.Auctions
 {

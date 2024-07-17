@@ -10,4 +10,10 @@
     <PackageReference Include="MongoDB.Entities" Version="23.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\Input\Auctions\" />
+    <Folder Include="DTOs\Input\Bids\" />
+    <Folder Include="DTOs\Input\Item\" />
+  </ItemGroup>
+
 </Project>

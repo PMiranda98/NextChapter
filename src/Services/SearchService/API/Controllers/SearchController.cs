@@ -2,6 +2,7 @@
 using Application.DTOs.Input;
 using Application.Handlers.Auctions;
 using AutoMapper;
+using Domain.DTOs.Input;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers

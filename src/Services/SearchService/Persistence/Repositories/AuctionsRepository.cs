@@ -1,18 +1,14 @@
-﻿using Domain.Entities;
+﻿using Domain.DTOs.Input;
+using Domain.DTOs.Output;
+using Domain.Entities;
 using Domain.Repositories;
-using Domain.Repositories.Models;
 using MongoDB.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
     public class AuctionsRepository : IAuctionsRepository
     {
-        public async Task<SearchOutput<Auction>> SearchAuctions(SearchParams searchAuctionsParams)
+        public async Task<SearchOutputDTO<Auction>> SearchAuctions(SearchInputDTO searchAuctionsParams)
         {
             var query = DB.PagedSearch<Auction, Auction>();
             if (searchAuctionsParams.SearchTerm != null)
@@ -72,13 +68,13 @@ namespace Persistence.Repositories
             return await DB.Find<Auction>().Match(x => x.ID == Id).ExecuteFirstAsync();
         }
 
-        private async Task<SearchOutput<Auction>> GetOutput(PagedSearch<Auction, Auction>? query)
+        private async Task<SearchOutputDTO<Auction>> GetOutput(PagedSearch<Auction, Auction>? query)
         {
-            var resultDto = new SearchOutput<Auction>();
+            var resultDto = new SearchOutputDTO<Auction>();
             if(query != null)
             {
                 var result = await query.ExecuteAsync();
-                resultDto = new SearchOutput<Auction>
+                resultDto = new SearchOutputDTO<Auction>
                 {
                     Results = result.Results,
                     PageCount = result.PageCount,

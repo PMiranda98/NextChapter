@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.Output
+namespace Domain.DTOs.Output
 {
     public class SearchOutputDTO<T>
     {

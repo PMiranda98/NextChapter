@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Output;
+﻿using Domain.DTOs.Output;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
