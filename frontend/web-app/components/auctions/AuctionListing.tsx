@@ -22,7 +22,9 @@ export default function AuctionListing() {
     pageSize: state.pageSize,
     searchTerm: state.searchTerm,
     orderBy: state.orderBy,
-    filterBy: state.filterBy
+    filterBy: state.filterBy,
+    seller: state.seller,
+    winner: state.winner
   }))
 
   const setParams = useParamsStore(state => state.setParams)
@@ -31,6 +33,7 @@ export default function AuctionListing() {
 
   useEffect(() => {
       getData(queryString).then(data => {
+        console.log(data)
         setData(data)
       })
   }, [queryString])

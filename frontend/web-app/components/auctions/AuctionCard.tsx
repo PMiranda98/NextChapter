@@ -2,6 +2,7 @@ import { Auction } from '@/types'
 import React from 'react'
 import AuctionCountdownTimer from './AuctionCountdownTimer'
 import ItemImage from './ItemImage'
+import Link from 'next/link'
 
 type Props = {
   auction: Auction
@@ -9,7 +10,7 @@ type Props = {
 
 export default function AuctionCard({auction}: Props) {
   return (
-    <a href='#' className='group'>
+    <Link href={`/auctions/details/${auction.id}`} className='group'>
       <div className='w-full bg-gray-200 aspect-h-6 aspect-w-10 rounded-lg overflow-hidden'>
         <div>
           <ItemImage imageUrl={auction.item.imageUrl} />
@@ -24,6 +25,6 @@ export default function AuctionCard({auction}: Props) {
         <p className='font-semibold text-sm'>{auction.item.year}</p>
       </div>
       
-    </a>
+    </Link>
   )
 }

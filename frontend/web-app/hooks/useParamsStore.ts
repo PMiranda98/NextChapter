@@ -1,6 +1,4 @@
 // This store is where we will store the state of the parameters that are needed to the search query string endpoint.
-
-import { create } from "zustand"
 import { shallow } from "zustand/shallow"
 import { createWithEqualityFn } from "zustand/traditional"
 
@@ -12,6 +10,8 @@ type State = {
   searchValue: string
   orderBy: string
   filterBy: string
+  seller?: string
+  winner?: string
 }
 
 type Actions = {
@@ -27,7 +27,9 @@ const initialState: State = {
   searchTerm: '',
   searchValue:'',
   orderBy: 'make',
-  filterBy: ''
+  filterBy: '',
+  seller: undefined,
+  winner: undefined
 }
 
 const useParamsStore = createWithEqualityFn<State & Actions>((set) => ({
