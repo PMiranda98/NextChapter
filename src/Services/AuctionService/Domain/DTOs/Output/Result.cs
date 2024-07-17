@@ -1,4 +1,4 @@
-﻿namespace Application.DTOs.Output;
+﻿namespace Domain.DTOs.Output;
 
 public class Result<T>
 {

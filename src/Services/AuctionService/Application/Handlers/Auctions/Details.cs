@@ -1,10 +1,8 @@
-﻿using Application.DTOs.Output;
-using Application.DTOs.Output.Auction;
-using AuctionService.Persistence.Data;
-using AutoMapper;
+﻿using AutoMapper;
+using Domain.DTOs.Output;
+using Domain.DTOs.Output.Auction;
 using Domain.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers.Auctions;
 

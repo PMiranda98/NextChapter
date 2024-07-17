@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.DTOs.Input.Item;
+namespace Domain.DTOs.Input.Item;
 
-public class UpdateItemDto
+public class CreateItemDto
 {
     [Required]
     public required string Make { get; set; }
@@ -14,4 +14,6 @@ public class UpdateItemDto
     public required string Color { get; set; }
     [Required]
     public int Mileage { get; set; }
+    [Required]
+    public required string ImageUrl { get; set; }
 }

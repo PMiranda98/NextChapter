@@ -1,11 +1,10 @@
-﻿using Application.DTOs.Input.Auction;
-using Application.DTOs.Output;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using AuctionService.Domain.Entities;
 using AutoMapper;
+using Domain.DTOs.Input.Auction;
+using Domain.DTOs.Output;
 using Domain.Repositories;
 using MediatR;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 
 namespace Application.Handlers.Auctions;
 

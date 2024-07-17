@@ -1,4 +1,4 @@
-﻿namespace Application.DTOs.Output.Item;
+﻿namespace Domain.DTOs.Output.Item;
 
 public class ItemDto
 {

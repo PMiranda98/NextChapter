@@ -1,14 +1,6 @@
-﻿using Application.DTOs.Input.Auction;
-using Application.DTOs.Input.Bid;
-using Application.Interfaces;
+﻿using Domain.DTOs.Input.Bid;
 using Domain.Repositories;
-using MassTransit;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Handlers.Bids
 {

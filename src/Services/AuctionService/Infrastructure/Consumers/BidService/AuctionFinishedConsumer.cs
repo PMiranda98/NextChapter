@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Input.Auction;
-using Application.Handlers.Auctions;
+﻿using Application.Handlers.Auctions;
 using AutoMapper;
+using Domain.DTOs.Input.Auction;
 using EventBus.Contracts;
 using MassTransit;
 using MediatR;

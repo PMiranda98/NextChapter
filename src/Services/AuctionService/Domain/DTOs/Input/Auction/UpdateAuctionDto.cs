@@ -1,7 +1,7 @@
-﻿using Application.DTOs.Input.Item;
+﻿using Domain.DTOs.Input.Item;
 using System.ComponentModel.DataAnnotations;
 
-namespace Application.DTOs.Input.Auction;
+namespace Domain.DTOs.Input.Auction;
 
 public class UpdateAuctionDto
 {

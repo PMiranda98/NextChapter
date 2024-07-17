@@ -1,5 +1,5 @@
-﻿using Application.DTOs.Output;
-using AutoMapper;
+﻿using AutoMapper;
+using Domain.DTOs.Output;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;

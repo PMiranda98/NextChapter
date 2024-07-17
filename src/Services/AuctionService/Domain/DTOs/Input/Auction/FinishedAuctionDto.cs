@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.Input.Auction
+namespace Domain.DTOs.Input.Auction
 {
     public class FinishedAuctionDto
     {

@@ -1,10 +1,9 @@
-﻿using Application.DTOs.Input.Auction;
-using Application.DTOs.Input.Bid;
-using Application.DTOs.Input.Item;
-using Application.DTOs.Output.Auction;
-using Application.DTOs.Output.Item;
-using AuctionService.Domain.Entities;
+﻿using AuctionService.Domain.Entities;
 using AutoMapper;
+using Domain.DTOs.Input.Auction;
+using Domain.DTOs.Input.Item;
+using Domain.DTOs.Output.Auction;
+using Domain.DTOs.Output.Item;
 
 namespace Application.Mapping;
 

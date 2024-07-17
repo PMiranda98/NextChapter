@@ -1,7 +1,7 @@
-﻿using Application.DTOs.Input.Auction;
-using Application.DTOs.Input.Bid;
-using AuctionService.Domain.Entities;
+﻿using AuctionService.Domain.Entities;
 using AutoMapper;
+using Domain.DTOs.Input.Auction;
+using Domain.DTOs.Input.Bid;
 using EventBus.Contracts;
 using EventBus.Contracts.Models;
 

@@ -1,6 +1,5 @@
-﻿using Application.DTOs.Output;
-using Application.Interfaces;
-using AuctionService.Persistence.Data;
+﻿using Application.Interfaces;
+using Domain.DTOs.Output;
 using Domain.Repositories;
 using MediatR;
 

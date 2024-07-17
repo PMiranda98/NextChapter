@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Input.Bid;
-using Application.Handlers.Bids;
+﻿using Application.Handlers.Bids;
 using AutoMapper;
+using Domain.DTOs.Input.Bid;
 using EventBus.Contracts;
 using MassTransit;
 using MediatR;

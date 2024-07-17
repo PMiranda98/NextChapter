@@ -1,6 +1,5 @@
-﻿using Application.DTOs.Input.Auction;
-using Application.Interfaces;
-using AuctionService.Domain.Entities;
+﻿using AuctionService.Domain.Entities;
+using Domain.DTOs.Input.Auction;
 using Domain.Repositories;
 using MediatR;
 

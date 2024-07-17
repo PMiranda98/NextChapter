@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.Input.Bid
+namespace Domain.DTOs.Input.Bid
 {
     public class BidPlacedDto
     {

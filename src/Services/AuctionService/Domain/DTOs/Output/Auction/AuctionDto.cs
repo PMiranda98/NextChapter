@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Output.Item;
+﻿using Domain.DTOs.Output.Item;
 
-namespace Application.DTOs.Output.Auction;
+namespace Domain.DTOs.Output.Auction;
 
 public class AuctionDto
 {
