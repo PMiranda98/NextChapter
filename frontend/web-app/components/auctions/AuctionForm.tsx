@@ -5,8 +5,14 @@ import { FieldValues, useForm } from 'react-hook-form'
 import Input from '../core/Input'
 import { Button } from 'flowbite-react'
 import DateInput from '../core/DateInput'
+import { createAuction } from '@/actions/auction'
+import { useRouter } from 'next/navigation'
+import { Auction } from '@/types'
+import { getCurrentUser } from '@/actions/auth'
+import { CreateAuctionDto } from '@/types/DTOs/auction/CreateAuctionDto'
 
 export default function AuctionForm() {
+  const router = useRouter()
   const {control, handleSubmit, setFocus, formState: {isSubmitting, isValid, isDirty, errors}} = useForm({
     mode: 'onTouched'
   })
@@ -15,8 +21,19 @@ export default function AuctionForm() {
     setFocus('make')
   }, [setFocus])
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data)
+  const onSubmit = async (data: FieldValues) => {
+    try {
+      const createAuctionDto = mapToAuction(data)
+      console.log(createAuctionDto)
+      const response = await createAuction(createAuctionDto)
+      console.log(response)
+      if(response.error){
+        throw new Error(response.error)
+      }
+      router.push(`/auctions/details${response.id}`)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -39,6 +56,7 @@ export default function AuctionForm() {
         <Button outline color='gray'>Cancel</Button>
         <Button
           isProcessing={isSubmitting}
+          disabled={!isValid}
           type='submit' 
           outline 
           color='success'>
@@ -48,3 +66,20 @@ export default function AuctionForm() {
     </form>
   )
 }
+
+const mapToAuction = (data: any) => {
+  const createAuctionDto : CreateAuctionDto = {
+    reservePrice: data.reservePrice,
+    auctionEnd: data.auctionEnd,
+    item: {
+      make: data.make,
+      model: data.model,
+      year: data.year,
+      color: data.color,
+      mileage: data.mileage,
+      imageUrl: data.imageUrl,
+    }
+  }
+  return createAuctionDto 
+}
+

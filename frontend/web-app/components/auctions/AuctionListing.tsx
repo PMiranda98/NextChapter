@@ -32,6 +32,7 @@ export default function AuctionListing() {
   const setPageNumber = (pageNumber: number) => setParams({pageNumber})
 
   useEffect(() => {
+      console.log(queryString)
       getData(queryString).then(data => {
         console.log(data)
         setData(data)

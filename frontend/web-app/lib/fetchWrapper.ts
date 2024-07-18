@@ -1,6 +1,4 @@
 import { getTokenWorkaround } from "@/actions/auth"
-import { getToken } from "next-auth/jwt"
-import { headers } from "next/headers"
 
 const baseUrl = 'http://localhost:6001/'
 
@@ -50,12 +48,13 @@ async function del(url: string){
 async function getHeaders(){
   const token = await getTokenWorkaround()
   const headers = {
-    'Content-type:' : 'application/json'
+    'Content-Type' : 'application/json'
     
   } as any
   if(token){
     headers.Authorization = 'Bearer ' + token.access_token
   }
+  console.log(headers)
   return headers
 }
 
@@ -70,7 +69,7 @@ async function handleResponse(response: Response) {
       message: response.statusText
      }
 
-     return error
+     return {error}
   }
 }
 
