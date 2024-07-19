@@ -30,7 +30,7 @@ export default function AuctionForm() {
       if(response.error){
         throw new Error(response.error)
       }
-      router.push(`/auctions/details${response.id}`)
+      router.push(`/auctions/details/${response.id}`)
     } catch (error) {
       console.log(error)
     }
