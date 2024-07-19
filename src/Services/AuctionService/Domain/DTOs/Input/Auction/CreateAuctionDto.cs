@@ -5,6 +5,7 @@ namespace Domain.DTOs.Input.Auction;
 
 public class CreateAuctionDto
 {
+    public Guid Id { get; set; }
     [Required]
     public int ReservePrice { get; set; }
     [Required]

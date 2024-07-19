@@ -19,6 +19,10 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
         CreateMap<CreateItemDto, Item>();
 
+        CreateMap<CreateAuctionDto, CreatedAuctionDto>()
+            .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
+        CreateMap<CreateItemDto, CreatedItemDto>();
+
         CreateMap<UpdateAuctionDto, Auction>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
         CreateMap<UpdateItemDto, Item>();

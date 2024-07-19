@@ -3,6 +3,7 @@ using AuctionService.Domain.Entities;
 using AutoMapper;
 using Domain.DTOs.Input.Auction;
 using Domain.DTOs.Output;
+using Domain.DTOs.Output.Auction;
 using Domain.Repositories;
 using MediatR;
 
@@ -10,13 +11,13 @@ namespace Application.Handlers.Auctions;
 
 public class Create
 {
-    public class Command : IRequest<Result<Unit>>
+    public class Command : IRequest<Result<CreatedAuctionDto?>>
     {
         public required CreateAuctionDto CreateAuctionDto { get; set; }
         public required string Seller { get; set; }
     }
 
-    public class Handler : IRequestHandler<Command, Result<Unit>>
+    public class Handler : IRequestHandler<Command, Result<CreatedAuctionDto>>
     {
         private readonly IMapper _mapper;
         private readonly IAuctionsRepository _auctionsRepository;
@@ -29,7 +30,7 @@ public class Create
             _auctionsPublisher = auctionsPublisher;
         }
 
-        public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Result<CreatedAuctionDto>> Handle(Command request, CancellationToken cancellationToken)
         {
             var auction = _mapper.Map<Auction>(request.CreateAuctionDto);
             auction.Seller = request.Seller;
@@ -37,8 +38,11 @@ public class Create
             await _auctionsPublisher.PublishAuctionCreated(auction);
 
             var result = await _auctionsRepository.SaveChangesAsync(cancellationToken) > 0;
-            if (!result) return Result<Unit>.Failure("Failed to create Auction!");
-            return Result<Unit>.Success(Unit.Value);
+            if (!result) return Result<CreatedAuctionDto>.Failure("Failed to create Auction!");
+
+            var createdAuctionDto = _mapper.Map<CreatedAuctionDto>(request.CreateAuctionDto);
+            createdAuctionDto.Id = auction.Id;
+            return Result<CreatedAuctionDto>.Success(createdAuctionDto);
         }
     }
 }
