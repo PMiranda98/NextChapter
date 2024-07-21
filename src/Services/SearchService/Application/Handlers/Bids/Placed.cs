@@ -1,42 +1,31 @@
-﻿using Application.DTOs.Input.Bids;
+﻿using Application.DTOs.Input.Offers;
 using Domain.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Application.Handlers.Bids
+namespace Application.Handlers.Offers
 {
     public class Placed : IRequest
     {
         public class Command : IRequest
         {
-            public required PlacedBidDto PlacedBidDto { get; set; }
+            public required PlacedOfferDto PlacedOfferDto { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
         {
-            private readonly IAuctionsRepository _auctionsRepository;
+            private readonly IAdvertisementRepository _advertisementRepository;
 
-            public Handler(IAuctionsRepository auctionsRepository)
+            public Handler(IAdvertisementRepository advertisementRepository)
             {
-                _auctionsRepository = auctionsRepository;
+                _advertisementRepository = advertisementRepository;
             }
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var auction = await _auctionsRepository.DetailsAuction(request.PlacedBidDto.AuctionId);
-                if (auction != null)
+                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.PlacedOfferDto.AdvertisementId);
+                if (advertisement != null)
                 {
-                    if (request.PlacedBidDto.BidStatus.Contains("Accepted")
-                        && request.PlacedBidDto.Amount > auction.CurrentHighBid)
-                    {
-                        auction.CurrentHighBid = request.PlacedBidDto.Amount;
-
-                        await _auctionsRepository.SaveAsync(auction);
-                    }
+                    await _advertisementRepository.SaveAsync(advertisement);
                 }
             }
         }

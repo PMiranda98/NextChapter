@@ -2,7 +2,7 @@
 using Domain.Repositories;
 using MediatR;
 
-namespace Application.Handlers.Auctions
+namespace Application.Handlers.Advertisement
 {
     public class Delete
     {
@@ -13,16 +13,16 @@ namespace Application.Handlers.Auctions
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-            private readonly IAuctionsRepository _auctionsRepository;
+            private readonly IAdvertisementRepository _advertisementRepository;
 
-            public Handler(IAuctionsRepository auctionsRepository)
+            public Handler(IAdvertisementRepository advertisementRepository)
             {
-                _auctionsRepository = auctionsRepository;
+                _advertisementRepository = advertisementRepository;
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                await _auctionsRepository.DeleteAuction(request.Id);
+                await _advertisementRepository.DeleteAdvertisement(request.Id);
                 // TODO - Error handling 
                 return Result<Unit>.Success(Unit.Value);
             }

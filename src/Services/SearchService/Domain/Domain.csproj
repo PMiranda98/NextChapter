@@ -7,13 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Entities" Version="23.1.0" />
+    <Compile Remove="DTOs\Input\Auctions\**" />
+    <Compile Remove="DTOs\Input\Bids\**" />
+    <Compile Remove="DTOs\Input\Item\**" />
+    <EmbeddedResource Remove="DTOs\Input\Auctions\**" />
+    <EmbeddedResource Remove="DTOs\Input\Bids\**" />
+    <EmbeddedResource Remove="DTOs\Input\Item\**" />
+    <None Remove="DTOs\Input\Auctions\**" />
+    <None Remove="DTOs\Input\Bids\**" />
+    <None Remove="DTOs\Input\Item\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Input\Auctions\" />
-    <Folder Include="DTOs\Input\Bids\" />
-    <Folder Include="DTOs\Input\Item\" />
+    <PackageReference Include="MongoDB.Entities" Version="23.1.0" />
   </ItemGroup>
 
 </Project>

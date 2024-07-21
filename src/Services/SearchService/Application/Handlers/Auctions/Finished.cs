@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Input.Auctions;
+﻿using Application.DTOs.Input.Advertisements;
 using Domain.Repositories;
 using MediatR;
 using System;
@@ -7,38 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Handlers.Auctions
+namespace Application.Handlers.Advertisements
 {
     public class Finished
     {
         public class Command : IRequest
         {
-            public required FinishedAuctionDto FinishedAuctionDto { get; set; }
+            public required FinishedAdvertisementDto FinishedAdvertisementDto { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
         {
-            private readonly IAuctionsRepository _auctionsRepository;
+            private readonly IAdvertisementRepository _advertisementRepository;
 
-            public Handler(IAuctionsRepository auctionsRepository)
+            public Handler(IAdvertisementRepository advertisementRepository)
             {
-                _auctionsRepository = auctionsRepository;
+                _advertisementRepository = advertisementRepository;
             }
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var auction = await _auctionsRepository.DetailsAuction(request.FinishedAuctionDto.AuctionId);
-                if (auction != null)
+                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.FinishedAdvertisementDto.AdvertisementId);
+                if (advertisement != null)
                 {
-                    if (request.FinishedAuctionDto.ItemSold)
+                    if (request.FinishedAdvertisementDto.ItemSold)
                     {
-                        auction.Winner = request.FinishedAuctionDto.Winner;
-                        auction.SoldAmount = request.FinishedAuctionDto.Amount;
+                        advertisement.Buyer = request.FinishedAdvertisementDto.Buyer;
+                        advertisement.SoldAmount = request.FinishedAdvertisementDto.Amount;
                     }
 
-                    auction.Status = auction.SoldAmount > auction.ReservePrice ? "Finished" : "ReserveNotMet";
+                    advertisement.Status = "Finished";
 
-                    await _auctionsRepository.SaveAsync(auction);
+                    await _advertisementRepository.SaveAsync(advertisement);
                 }
             }
         }

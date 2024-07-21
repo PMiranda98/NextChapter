@@ -1,6 +1,5 @@
 ﻿using API.RequestHelpers;
-using Application.DTOs.Input;
-using Application.Handlers.Auctions;
+using Application.Handlers.Advertisements;
 using AutoMapper;
 using Domain.DTOs.Input;
 using Microsoft.AspNetCore.Mvc;

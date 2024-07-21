@@ -1,11 +1,12 @@
-﻿namespace EventBus.Contracts.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EventBus.Contracts.Models;
 
 public class ItemCreated
 {
-    public string? Make { get; set; }
-    public string? Model { get; set; }
-    public int Year { get; set; }
-    public string? Color { get; set; }
-    public int Mileage { get; set; }
-    public string? ImageUrl { get; set; }
+    public required string Name { get; set; }
+    public required string Author { get; set; }
+    public required string LiteraryGenre { get; set; }
+    public required int Year { get; set; }
+    public required string ImageUrl { get; set; }
 }

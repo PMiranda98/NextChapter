@@ -1,35 +1,35 @@
-﻿using Application.DTOs.Input.Auctions;
+﻿using Application.DTOs.Input.Advertisements;
 using AutoMapper;
 using Domain.DTOs.Output;
 using Domain.Repositories;
 using MediatR;
 
-namespace Application.Handlers.Auctions
+namespace Application.Handlers.Advertisements
 {
     public class Edit
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public UpdatedAuctionDto UpdatedAuctionDto { get; set; }
+            public UpdatedAdvertisementDto UpdatedAdvertisementDto { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-            private readonly IAuctionsRepository _auctionsRepository;
+            private readonly IAdvertisementRepository _advertisementRepository;
             private readonly IMapper _mapper;
 
-            public Handler(IAuctionsRepository auctionsRepository, IMapper mapper)
+            public Handler(IAdvertisementRepository advertisementsRepository, IMapper mapper)
             {
-                _auctionsRepository = auctionsRepository;
+                _advertisementRepository = advertisementsRepository;
                 _mapper = mapper;
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var auction = await _auctionsRepository.DetailsAuction(request.UpdatedAuctionDto.Id.ToString());
-                if (auction == null) return null;
-                auction = _mapper.Map(request.UpdatedAuctionDto, auction);
+                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.UpdatedAdvertisementDto.Id.ToString());
+                if (advertisement == null) return null;
+                advertisement = _mapper.Map(request.UpdatedAdvertisementDto, advertisement);
 
-                await _auctionsRepository.UpdateAuction(auction);
+                await _advertisementRepository.UpdateAdvertisement(advertisement);
                 // TODO - Error handling 
                 return Result<Unit>.Success(Unit.Value);
             }

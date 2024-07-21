@@ -17,8 +17,8 @@ dotnet watch
 dotnet tool list -g
 	List of dotnet package tools. 	
 
-dotnet ef migrations add "InitialCreate" --project .\src\Services\AuctionService\Persistence\Persistence.csproj --startup-project .\src\Services\AuctionService\API\API.csproj -o .\Data\Migrations
+dotnet ef migrations add "InitialCreate" --project .\src\Services\AdvertisementService\Persistence\Persistence.csproj --startup-project .\src\Services\AdvertisementService\API\API.csproj -o .\Data\Migrations
 	To generate the migration based on the changes that are made.
 
-dotnet ef database update
+dotnet ef database update --project .\src\Services\AdvertisementService\Persistence\Persistence.csproj --startup-project .\src\Services\AdvertisementService\API\API.csproj
 	To apply the migration.

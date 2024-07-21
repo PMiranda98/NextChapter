@@ -12,7 +12,7 @@ namespace Domain.DTOs.Input
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public string? Seller { get; set; }
-        public string? Winner { get; set; }
+        public string? Buyer { get; set; }
         public string? OrderBy { get; set; }
         public string? FilterBy { get; set; }
     }

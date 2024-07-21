@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Input.Auctions;
-using Application.DTOs.Input.Bids;
+﻿using Application.DTOs.Input.Advertisements;
 using Application.DTOs.Input.Item;
+using Application.DTOs.Input.Offers;
 using AutoMapper;
 using Domain.Entities;
 using EventBus.Contracts;
@@ -13,17 +13,17 @@ namespace Infrastructure.Mapping
         public MappingProfiles()
         {
             // Event bus maps
-            CreateMap<AuctionCreated, Auction>()
+            CreateMap<AdvertisementCreated, Advertisement>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
             CreateMap<ItemCreated, Item>();
 
-            CreateMap<AuctionUpdated, UpdatedAuctionDto>()
+            CreateMap<AdvertisementUpdated, UpdatedAdvertisementDto>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
             CreateMap<ItemUpdated, UpdatedItemDto>();
 
-            CreateMap<BidPlaced, PlacedBidDto>();
+            CreateMap<OfferPlaced, PlacedOfferDto>();
 
-            CreateMap<AuctionFinished, FinishedAuctionDto>();
+            CreateMap<AdvertisementFinished, FinishedAdvertisementDto>();
    
         }
     }

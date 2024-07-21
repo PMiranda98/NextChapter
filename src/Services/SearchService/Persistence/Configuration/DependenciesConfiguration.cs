@@ -8,7 +8,7 @@ namespace Persistence.Configuration
     {
         public static IServiceCollection AddPersistenceDependencies(this IServiceCollection services)
         {
-            services.AddScoped<IAuctionsRepository, AuctionsRepository>();
+            services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
             
             return services;
         }

@@ -10,30 +10,6 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0.202 AS build
 ARG BUILD_CONFIGURATION=Release
 
-# Ensure global.json is copied first to match SDK version
-#COPY global.json ./
-#RUN dotnet --list-sdks # Optional: check installed SDKs
-
-# Install necessary tools (including jq)
-#RUN apt-get update && \
-#    apt-get install -y wget jq && \
-#    apt-get clean && \
-#    rm -rf /var/lib/apt/lists/*
-
-# Install the specified .NET SDK version if not already present
-#RUN apt-get update && \
-#    apt-get install -y wget && \
-#    SDK_VERSION=$(jq -r .sdk.version global.json) && \
-#    wget https://dotnetcli.azureedge.net/dotnet/Sdk/$SDK_VERSION/dotnet-sdk-$SDK_VERSION-linux-x64.tar.gz && \
-#    mkdir -p /usr/share/dotnet && \
-#    tar -zxf dotnet-sdk-$SDK_VERSION-linux-x64.tar.gz -C /usr/share/dotnet && \
-#    rm dotnet-sdk-$SDK_VERSION-linux-x64.tar.gz
-
-# Remove existing symbolic link if it exists
-#RUN rm -f /usr/bin/dotnet
-# Create symbolic link to installed .NET SDK version
-#RUN ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
-
 WORKDIR /src
 # Copy the project file and restore dependencies
 COPY ["src/Services/GatewayService/GatewayService/GatewayService.csproj", "src/Services/GatewayService/GatewayService/"]

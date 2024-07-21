@@ -3,27 +3,27 @@ using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
 
-namespace Application.Handlers.Auctions
+namespace Application.Handlers.Advertisements
 {
     public class Create
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Auction Auction { get; set; }
+            public Domain.Entities.Advertisement Advertisement { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-            private readonly IAuctionsRepository _auctionsRepository;
+            private readonly IAdvertisementRepository _advertisementRepository;
 
-            public Handler(IAuctionsRepository auctionsRepository)
+            public Handler(IAdvertisementRepository advertisementRepository)
             {
-                _auctionsRepository = auctionsRepository;
+                _advertisementRepository = advertisementRepository;
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                await _auctionsRepository.CreateAuction(request.Auction);
+                await _advertisementRepository.CreateAdvertisement(request.Advertisement);
                 // TODO - Error handling 
                 return Result<Unit>.Success(Unit.Value);
             }

@@ -16,7 +16,7 @@ namespace Identity
             {
                 //new ApiScope("scope1"),
                 //new ApiScope("scope2"),
-                new ApiScope("auctionApp", "Auction app full access"),
+                new ApiScope("advertisementApp", "Advertisement app full access"),
             };
 
         public static IEnumerable<Client> Clients =>
@@ -28,7 +28,7 @@ namespace Identity
                     ClientId="postman",
                     ClientName="Postman",
                     ClientSecrets = { new Secret("NotASecret".Sha256()) },
-                    AllowedScopes = { "openid", "profile", "auctionApp" },
+                    AllowedScopes = { "openid", "profile", "advertisementApp" },
                     //Just because is needed
                     RedirectUris = { "https://www.getpostman.com/oauth2/callback" },
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword
@@ -42,7 +42,7 @@ namespace Identity
                     RequirePkce = false,
                     RedirectUris = {"http://localhost:3000/api/auth/callback/id-server"},
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "auctionApp" },
+                    AllowedScopes = { "openid", "profile", "advertisementApp" },
                     AccessTokenLifetime = 3600*24*30,
                     AlwaysIncludeUserClaimsInIdToken = true
                 }
