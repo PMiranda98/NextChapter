@@ -1,0 +1,1657 @@
+{
+	"info": {
+		"_postman_id": "58189e44-cd7f-414e-8256-6087b956ddfc",
+		"name": "NextChapter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36521486"
+	},
+	"item": [
+		{
+			"name": "AdvertisementService",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement/c6c171ad-1219-45d5-baec-0e2c8f7d8d00",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"c6c171ad-1219-45d5-baec-0e2c8f7d8d00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var date = new Date();\r",
+									"date.setDate(date.getDate() + 10);\r",
+									"var dateString = date.toISOString();\r",
+									"console.log(dateString);\r",
+									"pm.variables.set(\"dateString\", dateString);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sellingPrice\": 100,\r\n  \"item\": {\r\n    \"name\": \"The Catcher in the Rye\",\r\n    \"author\": \"J.D. Salinger\",\r\n    \"literaryGenre\": \"Fiction\",\r\n    \"year\": \"1951\",\r\n    \"imageUrl\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"item\": {\r\n    \"name\": \"The Catcher in the Rye updated\",\r\n    \"author\": \"J.D. Salinger updated\",\r\n    \"literaryGenre\": \"Fiction\",\r\n    \"year\": \"1951\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement/6c4d2347-e284-4319-bd38-c9d1f050afd4",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"6c4d2347-e284-4319-bd38-c9d1f050afd4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement/55603a3d-2eba-4912-a5db-8d1500532120",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"55603a3d-2eba-4912-a5db-8d1500532120"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SearchService",
+			"item": [
+				{
+					"name": "Get all Advertisements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{searchService}}/api/search",
+							"host": [
+								"{{searchService}}"
+							],
+							"path": [
+								"api",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Advertisements By Term",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{searchService}}/api/search?searchTerm=ford",
+							"host": [
+								"{{searchService}}"
+							],
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "ford"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all advertisements with a Seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Result includes results, pagecount and totalcount properties', function() {",
+									"    pm.expect(jsonData).to.haveOwnProperty('results');",
+									"    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+									"    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{searchService}}/api/search?seller=bob",
+							"host": [
+								"{{searchService}}"
+							],
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "seller",
+									"value": "bob"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all advertisements that are finished",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Result includes results, pagecount and totalcount properties', function() {",
+									"    pm.expect(jsonData).to.haveOwnProperty('results');",
+									"    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+									"    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{searchService}}/api/search?filterBy=finished&seller=tom",
+							"host": [
+								"{{searchService}}"
+							],
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "filterBy",
+									"value": "finished"
+								},
+								{
+									"key": "seller",
+									"value": "tom"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IdentityService",
+			"item": [
+				{
+					"name": "GetTomToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"TomToken\", response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "tom",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Pass123$",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "advertisementApp openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identityService}}/connect/token",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBobToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"BobToken\", response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "bob",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Pass123$",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "advertisementApp openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identityService}}/connect/token",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAliceToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"AliceToken\", response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "alice",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Pass123$",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "advertisementApp openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identityService}}/connect/token",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BobToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{identityService}}/connect/userinfo",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"userinfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Advertisement no auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var date = new Date()",
+									"date.setDate(date.getDate() + 14);",
+									"var dateString = date.toISOString();",
+									"pm.variables.set(\"dateString\", dateString);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sellingPrice\": 100,\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"imageUrl\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Advertisement as Alice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response body contains Alice as seller\", function () {",
+									"    pm.expect(jsonData).to.haveOwnProperty('seller');",
+									"    pm.expect(jsonData.seller).to.eq('alice');",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"createdItemId\", jsonData.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var date = new Date()",
+									"date.setDate(date.getDate() + 14);",
+									"var dateString = date.toISOString();",
+									"pm.variables.set(\"dateString\", dateString);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sellingPrice\": 100,\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"imageUrl\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the created advertisement as Bob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 403', function() {",
+									"    pm.response.to.have.status(403);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BobToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement/{{createdItemId}}",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the created advertisement as Alice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement/9d3a48a3-138e-478b-80c0-c68e909bbfda",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"9d3a48a3-138e-478b-80c0-c68e909bbfda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Advertisement as Alice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement/{{createdItemId}}",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GatewayService",
+			"item": [
+				{
+					"name": "GetBobToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"BobToken\", response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "bob",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Pass123$",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "advertisementApp openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identityService}}/connect/token",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAliceToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"AliceToken\", response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "alice",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Pass123$",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "advertisementApp openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identityService}}/connect/token",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Result includes results, pagecount and totalcount properties', function() {",
+									"    pm.expect(jsonData).to.haveOwnProperty('results');",
+									"    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+									"    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/search",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all advertisements with PageSize and PageNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/search?pageNumber=1&pageSize=15",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all cars with genre of Fantasy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('First item is Ford', function() {",
+									"    pm.expect(jsonData.results[0].make).to.eq('Ford');",
+									"})",
+									"",
+									"pm.test('Result includes results, pagecount and totalcount properties', function() {",
+									"    pm.expect(jsonData).to.haveOwnProperty('results');",
+									"    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+									"    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/search?searchTerm=10",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Advertisement as Alice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response body contains Alice as seller\", function () {",
+									"    pm.expect(jsonData).to.haveOwnProperty('seller');",
+									"    pm.expect(jsonData.seller).to.eq('alice');",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"createdItemId\", jsonData.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var date = new Date()",
+									"date.setDate(date.getDate() + 14);",
+									"var dateString = date.toISOString();",
+									"pm.variables.set(\"dateString\", dateString);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sellingPrice\": 100,\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"imageUrl\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/advertisement",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Item by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Item has correct make and model', function() {",
+									"    pm.expect(jsonData.make).to.eq('Ford');",
+									"    pm.expect(jsonData.model).to.eq('Escort');",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 1000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/{{createdItemId}}",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the created advertisement as Bob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 403', function() {",
+									"    pm.response.to.have.status(403);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BobToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/advertisement/{{createdItemId}}",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the created advertisement as Alice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/advertisement/{{createdItemId}}",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the created advertisement as Alice Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway}}/advertisement/c6c171ad-1219-45d5-baec-0e2c8f7d8d00",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"c6c171ad-1219-45d5-baec-0e2c8f7d8d00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Updated Item by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Item has correct make and model', function() {",
+									"    pm.expect(jsonData.make).to.eq('Ford Updated');",
+									"    pm.expect(jsonData.model).to.eq('Updated');",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 1000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/{{createdItemId}}",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Updated Item by Id Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Item has correct make and model', function() {",
+									"    pm.expect(jsonData.make).to.eq('Ford Updated');",
+									"    pm.expect(jsonData.model).to.eq('Updated');",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 1000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/c6c171ad-1219-45d5-baec-0e2c8f7d8d00",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"c6c171ad-1219-45d5-baec-0e2c8f7d8d00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Advertisement as Alice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/{{createdItemId}}",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Advertisement as Alice Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/c6c171ad-1219-45d5-baec-0e2c8f7d8d00",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"c6c171ad-1219-45d5-baec-0e2c8f7d8d00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Deleted Item return 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 404', function() {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 1000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/{{createdItemId}}",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Deleted Item return 404 Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 404', function() {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 1000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/c6c171ad-1219-45d5-baec-0e2c8f7d8d00",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"c6c171ad-1219-45d5-baec-0e2c8f7d8d00"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "advertisementService",
+			"value": "http://localhost:7001"
+		},
+		{
+			"key": "searchService",
+			"value": "http://localhost:7002"
+		},
+		{
+			"key": "bidService",
+			"value": "http://localhost:7003"
+		},
+		{
+			"key": "identityService",
+			"value": "http://localhost:5000"
+		},
+		{
+			"key": "gateway",
+			"value": "http://localhost:6001"
+		},
+		{
+			"key": "BobToken",
+			"value": ""
+		},
+		{
+			"key": "TomToken",
+			"value": ""
+		},
+		{
+			"key": "AliceToken",
+			"value": ""
+		},
+		{
+			"key": "createdItemId",
+			"value": ""
+		}
+	]
+}
