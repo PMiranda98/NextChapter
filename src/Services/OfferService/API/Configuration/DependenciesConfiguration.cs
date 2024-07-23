@@ -1,8 +1,7 @@
-﻿using Persistence.Configuration;
-using Application.Configuration;
+﻿using Application.Configuration;
 using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-
+using Persistence.Configuration;
 
 namespace API.Configuration
 {

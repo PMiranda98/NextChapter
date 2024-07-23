@@ -1,5 +1,5 @@
-using API.Extensions;
 using AdvertisementService.Persistence.Data;
+using API.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

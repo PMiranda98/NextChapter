@@ -39,6 +39,26 @@ services:
       - mongodb
       - rabbitmq
 
+  offer:
+    container_name: offerService
+    image: ${DOCKER_REGISTRY-}offer
+    build:
+      context: .
+      dockerfile: src/Services/OfferService/API/Dockerfile
+    environment:
+      - ServiceName=offer
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=7003
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=postgres-offer:5432;User Id=postgres;Password=postgrespw;Database=offer
+      - IdentityServiceUrl=http://identity:8080 
+    ports:
+      - "7003:7003"
+    depends_on:
+      - postgres-offer
+      - rabbitmq
+      - identity 
+
   postgres-advertisement:
     container_name: advertisementServiceDb
     image: postgres
@@ -49,6 +69,17 @@ services:
       - 5432:5432
     volumes:
       - pgdata-advertisement:/var/lib/postgresql
+
+  postgres-offer:
+    container_name: offerServiceDb
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgrespw
+    ports:
+      - 6000:5432
+    volumes:
+      - pgdata-offer:/var/lib/postgresql
 
   pgadmin:
     container_name: postgresDbsUI
@@ -138,4 +169,5 @@ volumes:
   mongodata:
   mongoexpress:
   pg-identitydata:
+  pgdata-offer:
 
