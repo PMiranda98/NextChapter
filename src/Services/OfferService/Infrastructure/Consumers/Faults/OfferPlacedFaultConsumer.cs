@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Consumers.Faults
 {
-    public class AdvertisementDeletedFaultConsumer : IConsumer<Fault<AdvertisementDeleted>>
+    public class OfferPlacedFaultConsumer : IConsumer<Fault<OfferPlaced>>
     {
-        public async Task Consume(ConsumeContext<Fault<AdvertisementDeleted>> context)
+        public async Task Consume(ConsumeContext<Fault<OfferPlaced>> context)
         {
-            Console.WriteLine("--> Consuming faulty creation");
+            Console.WriteLine("--> Consuming faulty offer placed");
             // Simple will try to send it again. We can do more with the context object that is received.
             await context.Publish(context.Message.Message);
         }

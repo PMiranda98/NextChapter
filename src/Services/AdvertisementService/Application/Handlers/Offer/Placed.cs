@@ -24,7 +24,8 @@ namespace Application.Handlers.Offer;
                 var advertisement = await _advertisementRepository.DetailsAdvertisement(request.OfferPlacedDto.AdvertisementId, cancellationToken);
                 if (advertisement != null)
                 {
-                        await _advertisementRepository.SaveChangesAsync(cancellationToken);
+                    advertisement.NumberOfOffers++;
+                    await _advertisementRepository.SaveChangesAsync(cancellationToken);
                 }
             }
         }
