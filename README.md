@@ -9,10 +9,13 @@ A solution implementing a website for selling used books using a services-based 
 ## About the solution
 
 
+## Technologies used
+
+
 ## Running the solution
 
-### Prerequisites
 
+### Prerequisites
 - Clone the NextChapter repository: 
 - [Install & start Docker Desktop](https://docs.docker.com/engine/install/)
 - Open the command line and change the directory to the docker-compose.yml file directory.
@@ -20,3 +23,5 @@ A solution implementing a website for selling used books using a services-based 
 ```powershell
 docker compose up -d
 ```
+
+## Author
