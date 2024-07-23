@@ -32,7 +32,7 @@ namespace Application.Handlers.Advertisements
                         auction.SoldAmount = request.FinishedAdvertisementDto.Amount;
                     }
 
-                    auction.Status = Status.Finished;
+                    auction.Status = AdvertisementStatus.Finished;
 
                     await _auctionsRepository.SaveChangesAsync(cancellationToken);
                 }

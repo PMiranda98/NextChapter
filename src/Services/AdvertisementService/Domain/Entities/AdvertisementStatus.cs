@@ -1,6 +1,6 @@
 ﻿namespace AdvertisementService.Domain.Entities;
 
-public enum Status
+public enum AdvertisementStatus
 {
   Live,
   Finished,

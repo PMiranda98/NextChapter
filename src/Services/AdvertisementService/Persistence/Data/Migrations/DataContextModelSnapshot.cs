@@ -37,6 +37,12 @@ namespace Persistence.Data.Migrations
                     b.Property<DateTime?>("EndedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("NumberOfOffers")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OfferTypePretended")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Seller")
                         .HasColumnType("text");
 
@@ -70,7 +76,8 @@ namespace Persistence.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LiteraryGenre")

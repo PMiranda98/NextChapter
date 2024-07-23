@@ -1,4 +1,6 @@
-﻿namespace AdvertisementService.Domain.Entities;
+﻿using Domain.Entities;
+
+namespace AdvertisementService.Domain.Entities;
 
 public class Advertisement
 {
@@ -11,6 +13,7 @@ public class Advertisement
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
     public DateTime? EndedAt { get; set; }
-    public Status Status { get; set; } = Status.Live;
+    public AdvertisementStatus Status { get; set; } = AdvertisementStatus.Live;
+    public required OfferTypePretended OfferTypePretended { get; set; }
     public required Item Item { get; set; }
 }

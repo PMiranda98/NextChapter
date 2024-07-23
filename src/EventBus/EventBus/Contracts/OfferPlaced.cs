@@ -11,10 +11,6 @@ namespace EventBus.Contracts
     {
         public required string Id { get; set; }
         public required string AdvertisementId { get; set; }
-        public required string Buyer { get; set; }
         public required DateTime Date { get; set; }
-        public required string Status { get; set; }
-        public required string Type{ get; set; }
-        public required int Amount { get; set; }
     }
 }

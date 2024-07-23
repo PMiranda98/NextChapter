@@ -15,6 +15,7 @@ namespace Domain.Entities
         public required OfferStatus Status { get; set; }
         public required OfferType Type { get; set; }
         public int Amount { get; set; } = 0;
+        public string? Comment { get; set; }
         public List<Item>? ItemsToExchange { get; set; }
     }
 }

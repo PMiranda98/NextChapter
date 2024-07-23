@@ -1,4 +1,5 @@
 ﻿using AdvertisementService.Domain.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AdvertisementService.Persistence.Data;
@@ -21,14 +22,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Purchase,
                 Item = new Item
                 {
                     Name = "And Then There Were None",
                     Author = "Agatha Christie",
                     LiteraryGenre = "Mystery",
                     Year = 1939,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -39,14 +41,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Purchase,
                 Item = new Item
                 {
                     Name = "The Little Prince",
                     Author = "Antoine de Saint-Exupéry",
                     LiteraryGenre = "Fiction",
                     Year = 1943,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -57,14 +60,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Both,
                 Item = new Item
                 {
                     Name = "Dream of the Red Chamber",
                     Author = "Cao Xueqin",
                     LiteraryGenre = "Novel",
                     Year = 1700,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -75,14 +79,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = 25,
                 EndedAt = DateTime.UtcNow.AddDays(-6),
-                Status = Status.Sold,
+                Status = AdvertisementStatus.Sold,
+                OfferTypePretended = OfferTypePretended.Purchase,
                 Item = new Item
                 {
                     Name = "The Da Vinci Code",
                     Author = "Dan Brown",
                     LiteraryGenre = "Thriller",
                     Year = 2003,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -93,14 +98,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Purchase,
                 Item = new Item
                 {
                     Name = "The Lord of the Rings",
                     Author = "J.R.R Tolkien",
                     LiteraryGenre = "Fantasy",
                     Year = 1954,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -111,14 +117,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Exchange,
                 Item = new Item
                 {
                     Name = "Harry Potter and the Philosopher's Stone",
                     Author = "J.K. Rowling",
                     LiteraryGenre = "Fantasy",
                     Year = 1997,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -129,14 +136,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Exchange,
                 Item = new Item
                 {
                     Name = "The Hobbit",
                     Author = "J.R.R. Tolkien",
                     LiteraryGenre = "Fantasy",
                     Year = 1937,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -147,14 +155,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Purchase,
                 Item = new Item
                 {
                     Name = "Don Quixote",
                     Author = "Miguel de Cervantes",
                     LiteraryGenre = "Novel",
                     Year = 1605,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -165,14 +174,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Purchase,
                 Item = new Item
                 {
                     Name = "A Tale of Two Cities",
                     Author = "Charles Dickens",
                     LiteraryGenre = "Historical Fiction",
                     Year = 1859,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
             new Advertisement()
@@ -183,14 +193,15 @@ public class DbSeed
                 Buyer = null,
                 SoldAmount = null,
                 EndedAt = null,
-                Status = Status.Live,
+                Status = AdvertisementStatus.Live,
+                OfferTypePretended = OfferTypePretended.Both,
                 Item = new Item
                 {
                     Name = "The Lion, the Witch and the Wardrobe",
                     Author = "C.S. Lewis",
                     LiteraryGenre = "Fantasy",
                     Year = 1950,
-                    ImageUrl = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
                 }
             },
       };

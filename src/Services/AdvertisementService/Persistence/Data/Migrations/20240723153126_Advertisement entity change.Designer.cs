@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Persistence.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240721193649_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240723153126_Advertisement entity change")]
+    partial class Advertisemententitychange
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,12 @@ namespace Persistence.Data.Migrations
 
                     b.Property<DateTime?>("EndedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("NumberOfOffers")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OfferTypePretended")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Seller")
                         .HasColumnType("text");
@@ -74,6 +80,7 @@ namespace Persistence.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LiteraryGenre")

@@ -14,6 +14,7 @@ namespace EventBus.Contracts
         public DateTime UpdateAt { get; set; }
         public DateTime? EndedAt { get; set; }
         public required string Status { get; set; }
+        public required string OfferTypePretended { get; set; }
         public required ItemCreated Item { get; set; }
     }
 }

@@ -10,8 +10,6 @@ namespace Domain.DTOs.Input.Offer
     {
         public required string Id { get; set; }
         public required string AdvertisementId { get; set; }
-        public required string Buyer { get; set; }
         public required DateTime Date { get; set; }
-        public required int Amount { get; set; }
     }
 }

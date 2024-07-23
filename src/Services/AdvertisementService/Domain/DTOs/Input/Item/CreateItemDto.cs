@@ -13,5 +13,5 @@ public class CreateItemDto
     [Required]
     public int Year { get; set; }
     [Required]
-    public required string ImageUrl { get; set; }
+    public required string Image { get; set; }
 }
