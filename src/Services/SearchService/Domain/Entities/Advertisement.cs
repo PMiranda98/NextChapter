@@ -14,10 +14,11 @@ namespace Domain.Entities
         public string? Seller { get; set; }
         public string? Buyer { get; set; }
         public int? SoldAmount { get; set; }
+        public int NumberOfOffers { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdateAt { get; set; }
         public DateTime? EndedAt { get; set; }
-        public string Status { get; set; }
+        public required string Status { get; set; }
         public required Item Item { get; set; }
     }
 }

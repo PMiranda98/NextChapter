@@ -7,6 +7,7 @@ public class Advertisement
     public string? Seller { get; set; }  
     public string? Buyer { get; set; }
     public int? SoldAmount { get; set; }
+    public int NumberOfOffers { get; set; } = 0;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
     public DateTime? EndedAt { get; set; }
