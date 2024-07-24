@@ -20,7 +20,7 @@ namespace Application.Handlers.Offers
         {
             public required CreateOfferDto CreateOfferDto { get; set; }
             public required string Buyer { get; set; }
-            public Guid AdvertisementId { get; set; }
+            public required string AdvertisementId { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<CreatedOfferDto>>
@@ -45,7 +45,7 @@ namespace Application.Handlers.Offers
                 offer.AdvertisementId = request.AdvertisementId;
 
                 // Make a gRPC call to the advertisement service to check if the advertisement exists.
-                var reply = _grpcAdvertisementClient.AdvertisementExists(request.AdvertisementId.ToString());
+                var reply = _grpcAdvertisementClient.AdvertisementExists(request.AdvertisementId);
                 if(!reply) return Result<CreatedOfferDto>.Failure("Failed to create Offer!");
 
                 await _offerRepository.CreateOffer(offer, cancellationToken);

@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,11 @@ namespace Persistence.Repositories
         public async Task CreateOffer(Offer offer, CancellationToken cancellationToken)
         {
             await _dataContext.Offers.AddAsync(offer);
+        }
+
+        public async Task<List<Offer>> ListOffersByAdvertisement(string advertisementId, CancellationToken cancellationToken)
+        {
+            return await _dataContext.Offers.Where(p => p.AdvertisementId == advertisementId).ToListAsync(cancellationToken);
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)

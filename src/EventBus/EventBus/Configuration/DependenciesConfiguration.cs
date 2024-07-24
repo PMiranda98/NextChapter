@@ -39,7 +39,7 @@ namespace EventBus.Configuration
                 config.AddEntityFrameworkOutbox<T>(cfg =>
                 {
                     // If some message go to the Outbox (bacause of a failure in the event bus or something elese) this will enforce going to that Outbox x at x time check if there is some message to retry to send.
-                    cfg.QueryDelay = TimeSpan.FromSeconds(30);
+                    cfg.QueryDelay = TimeSpan.FromMinutes(1);
                     cfg.UsePostgres();
                     cfg.UseBusOutbox();
                 });

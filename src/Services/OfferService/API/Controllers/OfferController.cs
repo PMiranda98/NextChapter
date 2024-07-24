@@ -21,9 +21,15 @@ namespace API.Controllers
 
         [Authorize]
         [HttpPost("{advertisementId}")]
-        public async Task<IActionResult> Create(Guid advertisementId, CreateOfferDto createOfferDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create(string advertisementId, CreateOfferDto createOfferDto, CancellationToken cancellationToken)
         {
             return HandleResult(await _mediator.Send(new Create.Command { CreateOfferDto = createOfferDto, Buyer = User.Identity.Name, AdvertisementId = advertisementId }, cancellationToken));
+        }
+
+        [HttpGet("{advertisementId}")]
+        public async Task<IActionResult> GetOffersForAdvertisement(string advertisementId, CancellationToken cancellationToken)
+        {
+            return HandleResult(await _mediator.Send(new ListByAdvertisement.Query { AdvertisementId = advertisementId }, cancellationToken));
         }
 
         private ActionResult HandleResult<T>(Result<T>? result, string? uri = null)

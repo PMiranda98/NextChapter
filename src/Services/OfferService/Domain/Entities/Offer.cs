@@ -9,7 +9,7 @@ namespace Domain.Entities
     public class Offer
     {
         public Guid Id { get; set; }
-        public required Guid AdvertisementId { get; set; }
+        public required string AdvertisementId { get; set; }
         public required string Buyer { get; set; }
         public required DateTime Date { get; set; } = DateTime.UtcNow;
         public required OfferStatus Status { get; set; } = OfferStatus.Live;

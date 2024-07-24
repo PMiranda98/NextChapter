@@ -23,6 +23,10 @@ namespace Application.Mapping
             CreateMap<Offer,CreatedOfferDto>()
                 .ForMember(dest => dest.ItemsToExchange, opt => opt.MapFrom(src => src.ItemsToExchange));
             CreateMap<CreatedItemDto, Item>();
+
+            CreateMap<Offer,OfferDto>()
+                .ForMember(dest => dest.ItemsToExchange, opt => opt.MapFrom(src => src.ItemsToExchange));
+            CreateMap<Item, ItemDto>();
         }
     }
 }

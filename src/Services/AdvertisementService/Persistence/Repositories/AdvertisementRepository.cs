@@ -41,13 +41,13 @@ namespace Persistence.Repositories
                 // _dataContext.Entry(advertisement).Collections(x => x.Items).LoadAsync(cancelationToken);
              */
             // Eager Loading
-            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id == Id).FirstAsync() ?? null;
+            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id == Id).FirstAsync(cancellationToken) ?? null;
         }
 
 
         public async Task CreateAdvertisement(Advertisement advertisement, CancellationToken cancellationToken)
         {
-            await _dataContext.Advertisements.AddAsync(advertisement);
+            await _dataContext.Advertisements.AddAsync(advertisement, cancellationToken);
         }
 
         /*
@@ -60,7 +60,7 @@ namespace Persistence.Repositories
         public async Task DeleteAdvertisement(Guid Id, CancellationToken cancellationToken)
         {
             // Does not need to do a Eager loading because the foreign key constraint is of type ON DELETE CASCADE.
-            var advertisement = await _dataContext.Advertisements.FindAsync(Id);
+            var advertisement = await _dataContext.Advertisements.FindAsync(Id, cancellationToken);
             if (advertisement != null)
                 _dataContext.Advertisements.Remove(advertisement);
         }
@@ -72,14 +72,14 @@ namespace Persistence.Repositories
 
         public async Task<Advertisement?> DetailsAdvertisement(string Id, CancellationToken cancellationToken)
         {
-            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id.ToString() == Id).FirstAsync() ?? null;
+            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id.ToString() == Id).FirstAsync(cancellationToken) ?? null;
         }
 
         public async Task<Advertisement?> FindAdvertisement(string Id, CancellationToken cancellationToken)
         {
             if(Guid.TryParse(Id, out Guid id))
             {
-                return await _dataContext.Advertisements.FindAsync(id) ?? null;
+                return await _dataContext.Advertisements.FindAsync(id, cancellationToken) ?? null;
             } else
             {
                 return null;
