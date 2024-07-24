@@ -12,18 +12,18 @@ public class List
 
     public class Handler : IRequestHandler<Query, Result<List<AdvertisementDto>>>
     {
-        private readonly IAdvertisementRepository _auctionsRepository;
+        private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IMapper _mapper;
 
-        public Handler(IAdvertisementRepository auctionsRepository, IMapper mapper)
+        public Handler(IAdvertisementRepository advertisementRepository, IMapper mapper)
         {
-            _auctionsRepository = auctionsRepository;
+            _advertisementRepository = advertisementRepository;
             _mapper = mapper;
         }
         public async Task<Result<List<AdvertisementDto>>> Handle(Query request, CancellationToken cancellationToken)
         {
-            var auctions = await _auctionsRepository.ListAdvertisement(cancellationToken);
-            return Result<List<AdvertisementDto>>.Success(_mapper.Map<List<AdvertisementDto>>(auctions));
+            var advertisements = await _advertisementRepository.ListAdvertisement(cancellationToken);
+            return Result<List<AdvertisementDto>>.Success(_mapper.Map<List<AdvertisementDto>>(advertisements));
         }
     }
 }

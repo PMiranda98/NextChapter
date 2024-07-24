@@ -1,4 +1,4 @@
-﻿using Domain.DTOs.Input.Item;
+﻿using Domain.DTOs.Output.Item;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +11,7 @@ namespace Domain.DTOs.Output.Advertisement
     public class CreatedAdvertisementDto
     {
         public Guid Id { get; set; }
-        public int SellingPrice { get; set; }
-        public required CreateItemDto Item { get; set; }
+        public required int SellingPrice { get; set; }
+        public required CreatedItemDto Item { get; set; }
     }
 }

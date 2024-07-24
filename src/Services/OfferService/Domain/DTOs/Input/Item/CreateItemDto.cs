@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Domain.DTOs.Input.Item
 {
-    public class Item
+    public class CreateItemDto
     {
-        public Guid Id { get; set; }
+        [Required]
         public required string Name { get; set; }
+        [Required]
         public required string Author { get; set; }
+        [Required]
         public required string LiteraryGenre { get; set; }
+        [Required]
         public required int Year { get; set; }
+        [Required]
         public required string Image { get; set; }
     }
 }

@@ -15,19 +15,19 @@ public class Details
 
     public class Handler : IRequestHandler<Query, Result<AdvertisementDto>?>
     {
-        private readonly IAdvertisementRepository _auctionsRepository;
+        private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IMapper _mapper;
 
-        public Handler(IAdvertisementRepository auctionsRepository, IMapper mapper)
+        public Handler(IAdvertisementRepository advertisementRepository, IMapper mapper)
         {
-            _auctionsRepository = auctionsRepository;
+            _advertisementRepository = advertisementRepository;
             _mapper = mapper;
         }
 
         public async Task<Result<AdvertisementDto>?> Handle(Query request, CancellationToken cancellationToken)
         {
-            var auction = await _auctionsRepository.DetailsAdvertisement(request.Id, cancellationToken);
-            return Result<AdvertisementDto>.Success(_mapper.Map<AdvertisementDto>(auction));
+            var advertisement = await _advertisementRepository.DetailsAdvertisement(request.Id, cancellationToken);
+            return Result<AdvertisementDto>.Success(_mapper.Map<AdvertisementDto>(advertisement));
         }
     }
 }

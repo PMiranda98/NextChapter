@@ -14,27 +14,27 @@ namespace Application.Handlers.Advertisements
 
         public class Handler : IRequestHandler<Command>
         {
-            private readonly IAdvertisementRepository _auctionsRepository;
+            private readonly IAdvertisementRepository _advertisementRepository;
 
-            public Handler(IAdvertisementRepository auctionsRepository)
+            public Handler(IAdvertisementRepository advertisementRepository)
             {
-                _auctionsRepository = auctionsRepository;
+                _advertisementRepository = advertisementRepository;
             }
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var auction = await _auctionsRepository.DetailsAdvertisement(request.FinishedAdvertisementDto.AdvertisementId, cancellationToken);
-                if (auction != null)
+                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.FinishedAdvertisementDto.AdvertisementId, cancellationToken);
+                if (advertisement != null)
                 {
                     if (request.FinishedAdvertisementDto.ItemSold)
                     {
-                        auction.Buyer = request.FinishedAdvertisementDto.Buyer;
-                        auction.SoldAmount = request.FinishedAdvertisementDto.Amount;
+                        advertisement.Buyer = request.FinishedAdvertisementDto.Buyer;
+                        advertisement.SoldAmount = request.FinishedAdvertisementDto.Amount;
                     }
 
-                    auction.Status = AdvertisementStatus.Finished;
+                    advertisement.Status = AdvertisementStatus.Finished;
 
-                    await _auctionsRepository.SaveChangesAsync(cancellationToken);
+                    await _advertisementRepository.SaveChangesAsync(cancellationToken);
                 }
             }
         }

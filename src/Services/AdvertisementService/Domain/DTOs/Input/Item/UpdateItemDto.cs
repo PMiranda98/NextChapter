@@ -11,7 +11,7 @@ public class UpdateItemDto
     [Required]
     public required string LiteraryGenre { get; set; }
     [Required]
-    public int Year { get; set; }
+    public required int Year { get; set; }
     [Required]
     public required string Image { get; set; }
 }

@@ -20,29 +20,29 @@ public class Create
     public class Handler : IRequestHandler<Command, Result<CreatedAdvertisementDto>>
     {
         private readonly IMapper _mapper;
-        private readonly IAdvertisementRepository _auctionsRepository;
-        private readonly IAdvertisementPublisher _auctionsPublisher;
+        private readonly IAdvertisementRepository _advertisementRepository;
+        private readonly IAdvertisementPublisher _advertisementPublisher;
 
-        public Handler(IMapper mapper, IAdvertisementRepository auctionsRepository, IAdvertisementPublisher auctionsPublisher)
+        public Handler(IMapper mapper, IAdvertisementRepository advertisementRepository, IAdvertisementPublisher advertisementPublisher)
         {
             _mapper = mapper;
-            _auctionsRepository = auctionsRepository;
-            _auctionsPublisher = auctionsPublisher;
+            _advertisementRepository = advertisementRepository;
+            _advertisementPublisher = advertisementPublisher;
         }
 
         public async Task<Result<CreatedAdvertisementDto>> Handle(Command request, CancellationToken cancellationToken)
         {
-            var auction = _mapper.Map<Advertisement>(request.CreateAdvertisementDto);
-            auction.Seller = request.Seller;
-            _auctionsRepository.CreateAdvertisement(auction, cancellationToken);
-            await _auctionsPublisher.PublishAdvertisementCreated(auction);
+            var advertisement = _mapper.Map<Advertisement>(request.CreateAdvertisementDto);
+            advertisement.Seller = request.Seller;
+            _advertisementRepository.CreateAdvertisement(advertisement, cancellationToken);
+            await _advertisementPublisher.PublishAdvertisementCreated(advertisement);
 
-            var result = await _auctionsRepository.SaveChangesAsync(cancellationToken) > 0;
-            if (!result) return Result<CreatedAdvertisementDto>.Failure("Failed to create Auction!");
+            var result = await _advertisementRepository.SaveChangesAsync(cancellationToken) > 0;
+            if (!result) return Result<CreatedAdvertisementDto>.Failure("Failed to create Advertisement!");
 
-            var createdAuctionDto = _mapper.Map<CreatedAdvertisementDto>(request.CreateAdvertisementDto);
-            createdAuctionDto.Id = auction.Id;
-            return Result<CreatedAdvertisementDto>.Success(createdAuctionDto);
+            var createdAdvertisementDto = _mapper.Map<CreatedAdvertisementDto>(request.CreateAdvertisementDto);
+            createdAdvertisementDto.Id = advertisement.Id;
+            return Result<CreatedAdvertisementDto>.Success(createdAdvertisementDto);
         }
     }
 }

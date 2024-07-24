@@ -1,11 +1,18 @@
-﻿namespace Domain.DTOs.Input.Advertisement
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.DTOs.Input.Advertisement
 {
     public class FinishedAdvertisementDto
     {
-        public bool ItemSold { get; set; }
+        [Required]
+        public required bool ItemSold { get; set; }
+        [Required]
         public required string AdvertisementId { get; set; }
-        public string? Buyer { get; set; }
+        [Required]
+        public required string? Buyer { get; set; }
+        [Required]
         public required string Seller { get; set; }
-        public int? Amount { get; set; }
+        [Required]
+        public required int? Amount { get; set; }
     }
 }

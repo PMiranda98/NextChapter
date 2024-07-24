@@ -15,30 +15,30 @@ public class Delete
 
     public class Handler : IRequestHandler<Command, Result<Unit>?>
     {
-        private readonly IAdvertisementRepository _auctionsRepository;
-        private readonly IAdvertisementPublisher _auctionsPublisher;
+        private readonly IAdvertisementRepository _advertisementRepository;
+        private readonly IAdvertisementPublisher _advertisementPublisher;
 
-        public Handler(IAdvertisementRepository auctionsRepository, IAdvertisementPublisher auctionsPublisher)
+        public Handler(IAdvertisementRepository advertisementRepository, IAdvertisementPublisher advertisementPublisher)
         {
-            _auctionsRepository = auctionsRepository;
-            _auctionsPublisher = auctionsPublisher;
+            _advertisementRepository = advertisementRepository;
+            _advertisementPublisher = advertisementPublisher;
         }
 
         public async Task<Result<Unit>?> Handle(Command request, CancellationToken cancellationToken)
         {
-            var auction = await _auctionsRepository.DetailsAdvertisement(request.Id, cancellationToken);
-            if (auction == null) return null;
-            if (auction.Seller != request.User)
+            var advertisement = await _advertisementRepository.DetailsAdvertisement(request.Id, cancellationToken);
+            if (advertisement == null) return null;
+            if (advertisement.Seller != request.User)
             {
                 var result = Result<Unit>.Failure("Forbid!");
                 result.ErrorCode = "403";
                 return result;
             }
-            _auctionsRepository.DeleteAdvertisement(request.Id, cancellationToken);
-            await _auctionsPublisher.PublishAdvertisementDeleted(request.Id);
+            _advertisementRepository.DeleteAdvertisement(request.Id, cancellationToken);
+            await _advertisementPublisher.PublishAdvertisementDeleted(request.Id);
 
-            var saveChangesResult = await _auctionsRepository.SaveChangesAsync(cancellationToken) > 0;
-            if (!saveChangesResult) return Result<Unit>.Failure("Failed to delete the auction!");
+            var saveChangesResult = await _advertisementRepository.SaveChangesAsync(cancellationToken) > 0;
+            if (!saveChangesResult) return Result<Unit>.Failure("Failed to delete the advertisement!");
             return Result<Unit>.Success(Unit.Value);
         }
     }
