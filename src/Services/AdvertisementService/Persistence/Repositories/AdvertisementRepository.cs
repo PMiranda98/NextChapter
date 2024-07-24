@@ -45,9 +45,9 @@ namespace Persistence.Repositories
         }
 
 
-        public void CreateAdvertisement(Advertisement advertisement, CancellationToken cancellationToken)
+        public async Task CreateAdvertisement(Advertisement advertisement, CancellationToken cancellationToken)
         {
-            _dataContext.Advertisements.Add(advertisement);
+            await _dataContext.Advertisements.AddAsync(advertisement);
         }
 
         /*
@@ -57,7 +57,7 @@ namespace Persistence.Repositories
         }
         */
 
-        public async void DeleteAdvertisement(Guid Id, CancellationToken cancellationToken)
+        public async Task DeleteAdvertisement(Guid Id, CancellationToken cancellationToken)
         {
             // Does not need to do a Eager loading because the foreign key constraint is of type ON DELETE CASCADE.
             var advertisement = await _dataContext.Advertisements.FindAsync(Id);

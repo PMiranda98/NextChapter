@@ -13,7 +13,7 @@ public class Details
         public Guid Id { get; set; }
     }
 
-    public class Handler : IRequestHandler<Query, Result<AdvertisementDto>?>
+    public class Handler : IRequestHandler<Query, Result<AdvertisementDto>>
     {
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IMapper _mapper;
@@ -24,7 +24,7 @@ public class Details
             _mapper = mapper;
         }
 
-        public async Task<Result<AdvertisementDto>?> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<Result<AdvertisementDto>> Handle(Query request, CancellationToken cancellationToken)
         {
             var advertisement = await _advertisementRepository.DetailsAdvertisement(request.Id, cancellationToken);
             return Result<AdvertisementDto>.Success(_mapper.Map<AdvertisementDto>(advertisement));

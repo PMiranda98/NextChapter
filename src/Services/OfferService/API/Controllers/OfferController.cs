@@ -1,6 +1,8 @@
-﻿using Domain.DTOs.Input.Offer;
+﻿using Application.Handlers.Offers;
+using Domain.DTOs.Input.Offer;
 using Domain.DTOs.Output;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +19,11 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpPost("{advertisementId}")]
         public async Task<IActionResult> Create(Guid advertisementId, CreateOfferDto createOfferDto, CancellationToken cancellationToken)
         {
-            return HandleResult(await Mediator.Send(new Create.Command { CreateOfferDto = createOfferDto, Buyer = User.Identity.Name, AdvertisementId = advertisementId }, cancellationToken));
+            return HandleResult(await _mediator.Send(new Create.Command { CreateOfferDto = createOfferDto, Buyer = User.Identity.Name, AdvertisementId = advertisementId }, cancellationToken));
         }
 
 

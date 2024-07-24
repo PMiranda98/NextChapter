@@ -11,7 +11,7 @@ namespace Application.Handlers.Advertisements;
 
 public class Create
 {
-    public class Command : IRequest<Result<CreatedAdvertisementDto?>>
+    public class Command : IRequest<Result<CreatedAdvertisementDto>>
     {
         public required CreateAdvertisementDto CreateAdvertisementDto { get; set; }
         public required string Seller { get; set; }
@@ -34,7 +34,7 @@ public class Create
         {
             var advertisement = _mapper.Map<Advertisement>(request.CreateAdvertisementDto);
             advertisement.Seller = request.Seller;
-            _advertisementRepository.CreateAdvertisement(advertisement, cancellationToken);
+            await _advertisementRepository.CreateAdvertisement(advertisement, cancellationToken);
             await _advertisementPublisher.PublishAdvertisementCreated(advertisement);
 
             var result = await _advertisementRepository.SaveChangesAsync(cancellationToken) > 0;

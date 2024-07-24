@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.DTOs.Output.Offer;
+using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,7 @@ namespace Domain.Repositories
 {
     public interface IOfferRepository
     {
+        public Task CreateOffer(Offer offer, CancellationToken cancellationToken);
+        public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

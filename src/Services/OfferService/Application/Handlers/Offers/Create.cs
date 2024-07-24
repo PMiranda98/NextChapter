@@ -16,14 +16,14 @@ namespace Application.Handlers.Offers
 {
     public class Create
     {
-        public class Command : IRequest<Result<CreateOfferDto?>>
+        public class Command : IRequest<Result<CreatedOfferDto>>
         {
             public required CreateOfferDto CreateOfferDto { get; set; }
             public required string Buyer { get; set; }
             public Guid AdvertisementId { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command, Result<CreateOfferDto>>
+        public class Handler : IRequestHandler<Command, Result<CreatedOfferDto>>
         {
             private readonly IMapper _mapper;
             private readonly IOfferRepository _offerRepository;
@@ -43,7 +43,7 @@ namespace Application.Handlers.Offers
 
                 // TODO : Make a gRPC call to the advertisements service to check if the advertisement exists.
 
-                _offerRepository.CreateOffer(offer, cancellationToken);
+                await _offerRepository.CreateOffer(offer, cancellationToken);
                 await _offerPublisher.PublishOfferPlaced(offer);
 
                 var result = await _offerRepository.SaveChangesAsync(cancellationToken) > 0;

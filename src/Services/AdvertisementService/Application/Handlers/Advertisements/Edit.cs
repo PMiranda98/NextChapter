@@ -9,7 +9,7 @@ namespace Application.Handlers.Advertisements;
 
 public class Edit
 {
-    public class Command : IRequest<Result<Unit>?>
+    public class Command : IRequest<Result<Unit>>
     {
         public required Guid Id { get; set; }
         public required UpdateAdvertisementDto UpdateAdvertisementDto { get; set; }
@@ -17,7 +17,7 @@ public class Edit
 
     }
 
-    public class Handler : IRequestHandler<Command, Result<Unit>?>
+    public class Handler : IRequestHandler<Command, Result<Unit>>
     {
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IMapper _mapper;
@@ -30,7 +30,7 @@ public class Edit
             _advertisementPublisher = advertisementPublisher;
         }
 
-        public async Task<Result<Unit>?> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
         {
             var advertisement = await _advertisementRepository.DetailsAdvertisement(request.Id, cancellationToken);
             if (advertisement == null) return null;
