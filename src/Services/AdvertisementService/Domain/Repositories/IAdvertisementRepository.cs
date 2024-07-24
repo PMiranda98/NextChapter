@@ -8,8 +8,9 @@ namespace Domain.Repositories
         //public Task UpdateAdvertisement(CancellationToken cancellationToken);
         public Task DeleteAdvertisement(Guid Id, CancellationToken cancellationToken);
         public Task<List<Advertisement>> ListAdvertisement (CancellationToken cancellationToken);
-        public Task<Advertisement> DetailsAdvertisement(Guid Id, CancellationToken cancellationToken);
-        public Task<Advertisement> DetailsAdvertisement(string Id, CancellationToken cancellationToken);
+        public Task<Advertisement?> DetailsAdvertisement(Guid Id, CancellationToken cancellationToken);
+        public Task<Advertisement?> DetailsAdvertisement(string Id, CancellationToken cancellationToken);
+        public Task<Advertisement?> FindAdvertisement(string Id, CancellationToken cancellationToken);
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
     }

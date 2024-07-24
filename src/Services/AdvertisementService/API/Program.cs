@@ -1,5 +1,6 @@
 using AdvertisementService.Persistence.Data;
 using API.Configuration;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGrpcService<GrpcAdvertisementService>();
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;

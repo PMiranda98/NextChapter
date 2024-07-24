@@ -15,6 +15,8 @@ namespace Infrastructure.Configuration
 
             services.AddScoped<IAdvertisementPublisher, AdvertisementPublisher>();
 
+            services.AddGrpc();
+
             return services;
         }
     }

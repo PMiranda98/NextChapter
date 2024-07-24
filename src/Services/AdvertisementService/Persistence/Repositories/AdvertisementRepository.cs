@@ -20,7 +20,7 @@ namespace Persistence.Repositories
             return await _dataContext.Advertisements.Include(x => x.Item).OrderBy(x => x.Item.Name).ToListAsync(cancellationToken);
         }
 
-        public async Task<Advertisement> DetailsAdvertisement(Guid Id, CancellationToken cancellationToken)
+        public async Task<Advertisement?> DetailsAdvertisement(Guid Id, CancellationToken cancellationToken)
         {
             // Lazy Loading - If we only have this line this is consider Lazy Loading, the advertisement wont have the Item property filled.
             // This is used when we are confident that we don't need to use the related entites instantly.
@@ -41,7 +41,7 @@ namespace Persistence.Repositories
                 // _dataContext.Entry(advertisement).Collections(x => x.Items).LoadAsync(cancelationToken);
              */
             // Eager Loading
-            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id == Id).FirstAsync();
+            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id == Id).FirstAsync() ?? null;
         }
 
 
@@ -70,9 +70,14 @@ namespace Persistence.Repositories
             return await _dataContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<Advertisement> DetailsAdvertisement(string Id, CancellationToken cancellationToken)
+        public async Task<Advertisement?> DetailsAdvertisement(string Id, CancellationToken cancellationToken)
         {
-            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id.ToString() == Id).FirstAsync();
+            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id.ToString() == Id).FirstAsync() ?? null;
+        }
+
+        public async Task<Advertisement?> FindAdvertisement(string Id, CancellationToken cancellationToken)
+        {
+            return await _dataContext.Advertisements.FindAsync(Id) ?? null;
         }
     }
 }

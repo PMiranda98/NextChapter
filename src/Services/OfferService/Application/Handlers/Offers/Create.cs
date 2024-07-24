@@ -40,6 +40,7 @@ namespace Application.Handlers.Offers
             {
                 var offer = _mapper.Map<Offer>(request.CreateOfferDto);
                 offer.Buyer = request.Buyer;
+                offer.AdvertisementId = request.AdvertisementId;
 
                 // TODO : Make a gRPC call to the advertisements service to check if the advertisement exists.
 
