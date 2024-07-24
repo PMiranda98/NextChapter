@@ -19,7 +19,7 @@ namespace Infrastructure.Consumers.AdvertisementService
         }
         public async Task Consume(ConsumeContext<AdvertisementUpdated> context)
         {
-            Console.WriteLine("--> Consuming advertisement updated: " + context.Message.Id);
+            Console.WriteLine("=====> Consuming advertisement updated: " + context.Message.Id);
 
             var updatedAdvertisementDto = _mapper.Map<UpdatedAdvertisementDto>(context.Message);
             await _mediator.Send(new Edit.Command { UpdatedAdvertisementDto = updatedAdvertisementDto });

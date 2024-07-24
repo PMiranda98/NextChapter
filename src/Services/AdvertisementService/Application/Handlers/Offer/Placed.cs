@@ -1,4 +1,5 @@
-﻿using Domain.DTOs.Input.Offer;
+﻿using Application.Interfaces;
+using Domain.DTOs.Input.Offer;
 using Domain.Repositories;
 using MediatR;
 
@@ -13,11 +14,13 @@ namespace Application.Handlers.Offer;
         public class Handler : IRequestHandler<Command>
         {
             private readonly IAdvertisementRepository _advertisementRepository;
+        private readonly IAdvertisementPublisher _advertisementPublisher;
 
-            public Handler(IAdvertisementRepository advertisementRepository)
+        public Handler(IAdvertisementRepository advertisementRepository, IAdvertisementPublisher advertisementPublisher)
             {
                 _advertisementRepository = advertisementRepository;
-            }
+            _advertisementPublisher = advertisementPublisher;
+        }
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
@@ -25,6 +28,7 @@ namespace Application.Handlers.Offer;
                 if (advertisement != null)
                 {
                     advertisement.NumberOfOffers++;
+                    await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
                     await _advertisementRepository.SaveChangesAsync(cancellationToken);
                 }
             }

@@ -77,7 +77,13 @@ namespace Persistence.Repositories
 
         public async Task<Advertisement?> FindAdvertisement(string Id, CancellationToken cancellationToken)
         {
-            return await _dataContext.Advertisements.FindAsync(Id) ?? null;
+            if(Guid.TryParse(Id, out Guid id))
+            {
+                return await _dataContext.Advertisements.FindAsync(id) ?? null;
+            } else
+            {
+                return null;
+            }
         }
     }
 }

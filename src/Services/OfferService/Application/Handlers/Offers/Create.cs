@@ -28,12 +28,14 @@ namespace Application.Handlers.Offers
             private readonly IMapper _mapper;
             private readonly IOfferRepository _offerRepository;
             private readonly IOfferPublisher _offerPublisher;
+            private readonly IGrpcAdvertisementClient _grpcAdvertisementClient;
 
-            public Handler(IMapper mapper, IOfferRepository offerRepository, IOfferPublisher offerPublisher)
+            public Handler(IMapper mapper, IOfferRepository offerRepository, IOfferPublisher offerPublisher, IGrpcAdvertisementClient grpcAdvertisementClient)
             {
                 _mapper = mapper;
                 _offerRepository = offerRepository;
                 _offerPublisher = offerPublisher;
+                _grpcAdvertisementClient = grpcAdvertisementClient;
             }
 
             public async Task<Result<CreatedOfferDto>> Handle(Command request, CancellationToken cancellationToken)
@@ -42,7 +44,9 @@ namespace Application.Handlers.Offers
                 offer.Buyer = request.Buyer;
                 offer.AdvertisementId = request.AdvertisementId;
 
-                // TODO : Make a gRPC call to the advertisements service to check if the advertisement exists.
+                // Make a gRPC call to the advertisement service to check if the advertisement exists.
+                var reply = _grpcAdvertisementClient.AdvertisementExists(request.AdvertisementId.ToString());
+                if(!reply) return Result<CreatedOfferDto>.Failure("Failed to create Offer!");
 
                 await _offerRepository.CreateOffer(offer, cancellationToken);
                 await _offerPublisher.PublishOfferPlaced(offer);
@@ -50,8 +54,7 @@ namespace Application.Handlers.Offers
                 var result = await _offerRepository.SaveChangesAsync(cancellationToken) > 0;
                 if (!result) return Result<CreatedOfferDto>.Failure("Failed to create Offer!");
 
-                var createdOfferDto = _mapper.Map<CreatedOfferDto>(request.CreateOfferDto);
-                createdOfferDto.Id = offer.Id;
+                var createdOfferDto = _mapper.Map<CreatedOfferDto>(offer);
                 return Result<CreatedOfferDto>.Success(createdOfferDto);
             }
         }

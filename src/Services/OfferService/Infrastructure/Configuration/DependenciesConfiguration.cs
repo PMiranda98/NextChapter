@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using EventBus.Configuration;
 using Infrastructure.Publishers;
+using Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Data;
@@ -19,6 +20,8 @@ namespace Infrastructure.Configuration
             services.AddEventBusDependencies<DataContext>(configuration);
 
             services.AddScoped<IOfferPublisher, OfferPublisher>();
+
+            services.AddScoped<IGrpcAdvertisementClient, GrpcAdvertisementClient>();
 
             return services;
         }

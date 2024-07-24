@@ -4,7 +4,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0.3 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 80
 
 # Stage 2: Install the specific .NET SDK version and build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0.202 AS build

@@ -15,7 +15,7 @@ namespace Infrastructure.Consumers.AdvertisementService
         }
         public async Task Consume(ConsumeContext<AdvertisementDeleted> context)
         {
-            Console.WriteLine("--> Consuming advertisement deleted: " + context.Message.Id);
+            Console.WriteLine("=====> Consuming advertisement deleted: " + context.Message.Id);
 
             await _mediator.Send(new Delete.Command { Id = context.Message.Id });
         }

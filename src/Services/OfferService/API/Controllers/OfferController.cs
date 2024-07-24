@@ -26,8 +26,6 @@ namespace API.Controllers
             return HandleResult(await _mediator.Send(new Create.Command { CreateOfferDto = createOfferDto, Buyer = User.Identity.Name, AdvertisementId = advertisementId }, cancellationToken));
         }
 
-
-
         private ActionResult HandleResult<T>(Result<T>? result, string? uri = null)
         {
             if (result == null) return NotFound();

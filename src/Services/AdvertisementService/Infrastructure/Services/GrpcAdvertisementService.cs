@@ -22,7 +22,7 @@ namespace Infrastructure.Services
 
         public override async Task<GrpcAdvertisementExistsResponse> AdvertisementExists(GrpcAdvertisementExistsRequest request, ServerCallContext context)
         {
-            Console.WriteLine("==> Received Grpc request for Advertisement");
+            Console.WriteLine("=====> Received Grpc request for Advertisement");
             var exists = await _mediator.Send(new Exists.Query { Id = request.Id });
             return new GrpcAdvertisementExistsResponse
             {

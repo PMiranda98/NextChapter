@@ -8,14 +8,20 @@ services:
       context: .
       dockerfile: src/Services/AdvertisementService/API/Dockerfile
     environment:
-      - ServiceName=advertisement
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=7001
-      - RabbitMq__Host=rabbitmq
+      - ASPNETCORE_HTTP_PORTS=80
+      - ASPNETCORE_HTTP_PORTS=7777 
       - ConnectionStrings__DefaultConnection=Server=postgres-advertisement:5432;User Id=postgres;Password=postgrespw;Database=advertisement
-      - IdentityServiceUrl=http://identity:8080 
+      - IdentityServiceUrl=http://identity:80 
+      - RabbitMq__Host=rabbitmq
+      - ServiceName=advertisement
+      - Kestrel__Endpoints__Grpc__Protocols=Http2
+      - Kestrel__Endpoints__Grpc__Url=http://+:7777
+      - Kestrel__Endpoints__WebApi__Protocols=Http1
+      - Kestrel__Endpoints__WebApi__Url=http://+:80
     ports:
-      - "7001:7001"
+      - "7001:80"
+      - "7777:7777"
     depends_on:
       - postgres-advertisement
       - rabbitmq
@@ -30,11 +36,11 @@ services:
     environment:
       - ServiceName=search
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=7002
+      - ASPNETCORE_HTTP_PORTS=80
       - RabbitMq__Host=rabbitmq
       - ConnectionStrings__MongoDbConnection=mongodb://mongo:mongopw@mongodb 
     ports:
-      - "7002:7002"
+      - "7002:80"
     depends_on:
       - mongodb
       - rabbitmq
@@ -46,14 +52,15 @@ services:
       context: .
       dockerfile: src/Services/OfferService/API/Dockerfile
     environment:
-      - ServiceName=offer
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=7003
-      - RabbitMq__Host=rabbitmq
+      - ASPNETCORE_HTTP_PORTS=80
       - ConnectionStrings__DefaultConnection=Server=postgres-offer:5432;User Id=postgres;Password=postgrespw;Database=offer
-      - IdentityServiceUrl=http://identity:8080 
+      - IdentityServiceUrl=http://identity:80
+      - RabbitMq__Host=rabbitmq
+      - ServiceName=offer 
+      - GrpcAdvertisement=http://advertisement:7777
     ports:
-      - "7003:7003"
+      - "7003:80"
     depends_on:
       - postgres-offer
       - rabbitmq
@@ -134,10 +141,10 @@ services:
       dockerfile: src/Services/IdentityService/Identity/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
-      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTP_PORTS=80
       - ConnectionStrings__DefaultConnection=Server=postgres-identity:5432;User Id=postgres;Password=postgrespw;Database=identity
     ports:
-      - "5000:8080"
+      - "5000:80"
     depends_on:
       - postgres-identity
 
@@ -159,9 +166,9 @@ services:
       dockerfile: src/Services/GatewayService/GatewayService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
-      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTP_PORTS=80
     ports:
-      - "6001:8080"
+      - "6001:80"
 
 volumes:
   pgdata-advertisement:

@@ -6,13 +6,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      //"applicationUrl": "http://localhost:7001"
+      "applicationUrl": "http://localhost:7001"
     },
     "Container (Dockerfile)": {
       "commandName": "Docker",
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
-        "ASPNETCORE_HTTP_PORTS": "7001"
+        "ASPNETCORE_HTTP_PORTS": "80"
       },
       "publishAllPorts": true
     }

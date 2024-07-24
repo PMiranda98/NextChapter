@@ -42,7 +42,6 @@ public class Edit
             }
 
             advertisement = _mapper.Map(request.UpdateAdvertisementDto, advertisement);
-            // TODO - Bug here! Its setting default values in the Item (for example public int Mileage { get; set; } gets value of zero)
             await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
 
             var saveChangesResult = await _advertisementRepository.SaveChangesAsync(cancellationToken) > 0;

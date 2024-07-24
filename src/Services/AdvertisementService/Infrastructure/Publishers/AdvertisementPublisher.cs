@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using EventBus.Contracts;
 using MassTransit;
+using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Publishers
 {
@@ -18,17 +19,20 @@ namespace Infrastructure.Publishers
         }
         public async Task PublishAdvertisementCreated(Advertisement advertisement)
         {
+            Console.WriteLine($"=====> Publish Advertisement created: {advertisement.Id}");
             var advertisementCreated = _mapper.Map<AdvertisementCreated>(advertisement);
             await _publishEndpoint.Publish(advertisementCreated);
         }
 
         public async Task PublishAdvertisementUpdated(Advertisement advertisement)
         {
+            Console.WriteLine($"=====> Publish Advertisement updated: {advertisement.Id}");
             var advertisementUpdated = _mapper.Map<AdvertisementUpdated>(advertisement);
             await _publishEndpoint.Publish(advertisementUpdated);
         }
         public async Task PublishAdvertisementDeleted(Guid id)
         {
+            Console.WriteLine($"=====> Publish Advertisement deleted: {id}");
             var advertisementDeleted = new AdvertisementDeleted { Id = id.ToString() };
             await _publishEndpoint.Publish(advertisementDeleted);
         }

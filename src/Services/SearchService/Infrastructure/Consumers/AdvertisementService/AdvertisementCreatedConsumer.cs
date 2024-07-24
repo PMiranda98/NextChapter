@@ -19,7 +19,7 @@ namespace Infrastructure.Consumers.AdvertisementService
         }
         public async Task Consume(ConsumeContext<AdvertisementCreated> context)
         {
-            Console.WriteLine("--> Consuming advertisement created: " + context.Message.Id);
+            Console.WriteLine("=====> Consuming advertisement created: " + context.Message.Id);
 
             var advertisement = _mapper.Map<Advertisement>(context.Message);
             await _mediator.Send(new Create.Command { Advertisement = advertisement });

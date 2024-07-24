@@ -19,7 +19,7 @@ namespace Persistence.Repositories
         }
         public async Task CreateOffer(Offer offer, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _dataContext.Offers.AddAsync(offer);
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)

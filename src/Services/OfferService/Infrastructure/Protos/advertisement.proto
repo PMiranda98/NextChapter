@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "AdvertisementService";
+
+service GrpcAdvertisement {
+	rpc AdvertisementExists(GrpcAdvertisementExistsRequest) returns (GrpcAdvertisementExistsResponse);
+}
+
+message GrpcAdvertisementExistsRequest {
+	string id = 1;
+}
+
+message GrpcAdvertisementExistsResponse {
+	bool exists = 1;
+}
+
+/*
+message GrpcAdvertisementModel {
+	string id = 1;
+	string seller = 2;
+	string offerTypePrefered = 3;
+}
+
+message GrpcAdvertisementResponse {
+	GrpcAdvertisementModel advertisement = 1;
+}
+*/

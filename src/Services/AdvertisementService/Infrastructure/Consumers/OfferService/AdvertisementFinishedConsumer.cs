@@ -19,7 +19,7 @@ namespace Infrastructure.Consumers.OfferService
         }
         public async Task Consume(ConsumeContext<AdvertisementFinished> context)
         {
-            Console.WriteLine("--> Consuming advertisement finished: " + context.Message.AdvertisementId);
+            Console.WriteLine("=====> Consuming advertisement finished: " + context.Message.AdvertisementId);
 
             var finishedAdvertisementDto = _mapper.Map<FinishedAdvertisementDto>(context.Message);
             await _mediator.Send(new Finished.Command { FinishedAdvertisementDto = finishedAdvertisementDto });

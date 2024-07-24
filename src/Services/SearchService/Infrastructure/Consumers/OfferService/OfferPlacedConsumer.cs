@@ -19,7 +19,7 @@ namespace Infrastructure.Consumers.OfferService
         }
         public async Task Consume(ConsumeContext<OfferPlaced> context)
         {
-            Console.WriteLine("--> Consuming offer placed");
+            Console.WriteLine("=====> Consuming offer placed");
 
             var placedOfferDto = _mapper.Map<PlacedOfferDto>(context.Message);
             await _mediator.Send(new Placed.Command { PlacedOfferDto = placedOfferDto });

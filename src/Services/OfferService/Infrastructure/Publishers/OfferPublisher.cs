@@ -3,6 +3,7 @@ using AutoMapper;
 using Domain.Entities;
 using EventBus.Contracts;
 using MassTransit;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,17 @@ namespace Infrastructure.Publishers
     {
         private readonly IPublishEndpoint _publishEndpoint;
         private readonly IMapper _mapper;
+        private readonly ILogger<OfferPublisher> _logger;
 
-        public OfferPublisher(IPublishEndpoint publishEndpoint, IMapper mapper) 
+        public OfferPublisher(IPublishEndpoint publishEndpoint, IMapper mapper, ILogger<OfferPublisher> logger)  
         {
             _publishEndpoint = publishEndpoint;
             _mapper = mapper;
+            _logger = logger;
         }
         public async Task PublishOfferPlaced(Offer offer)
         {
+            _logger.LogInformation($"=====> Publish Offer placed: {offer.Id}");
             var offerPlaced = _mapper.Map<OfferPlaced>(offer);
             await _publishEndpoint.Publish(offerPlaced);
         }

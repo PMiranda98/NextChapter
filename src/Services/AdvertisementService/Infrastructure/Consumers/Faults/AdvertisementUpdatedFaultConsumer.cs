@@ -12,7 +12,7 @@ namespace Infrastructure.Consumers.Faults
     {
         public async Task Consume(ConsumeContext<Fault<AdvertisementUpdated>> context)
         {
-            Console.WriteLine("--> Consuming faulty update");
+            Console.WriteLine("=====> Consuming faulty update");
             // Simple will try to send it again. We can do more with the context object that is received.
             await context.Publish(context.Message.Message);
         }
