@@ -55,8 +55,7 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						},
 						{
@@ -69,8 +68,7 @@
 									"console.log(dateString);\r",
 									"pm.variables.set(\"dateString\", dateString);"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -79,7 +77,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"sellingPrice\": 100,\r\n  \"item\": {\r\n    \"name\": \"The Catcher in the Rye\",\r\n    \"author\": \"J.D. Salinger\",\r\n    \"literaryGenre\": \"Fiction\",\r\n    \"year\": \"1951\",\r\n    \"imageUrl\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\r\n  }\r\n}",
+							"raw": "{\r\n  \"sellingPrice\": 100,\r\n  \"offerTypePretended\": \"Purchase\",\r\n  \"item\": {\r\n    \"name\": \"The Catcher in the Rye\",\r\n    \"author\": \"J.D. Salinger\",\r\n    \"literaryGenre\": \"Fiction\",\r\n    \"year\": \"1951\",\r\n    \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -106,7 +104,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"item\": {\r\n    \"name\": \"The Catcher in the Rye updated\",\r\n    \"author\": \"J.D. Salinger updated\",\r\n    \"literaryGenre\": \"Fiction\",\r\n    \"year\": \"1951\"\r\n  }\r\n}\r\n",
+							"raw": "{\r\n    \"sellingPrice\": 100,\r\n    \"offerTypePretended\": \"Exchange\",\r\n    \"item\": {\r\n        \"name\": \"The Catcher in the Rye updated\",\r\n        \"author\": \"J.D. Salinger updated\",\r\n        \"literaryGenre\": \"Fiction\",\r\n        \"year\": \"1951\",\r\n        \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\r\n    }\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -175,7 +173,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{searchService}}/api/search?searchTerm=ford",
+							"raw": "{{searchService}}/api/search?searchTerm=bob",
 							"host": [
 								"{{searchService}}"
 							],
@@ -186,7 +184,7 @@
 							"query": [
 								{
 									"key": "searchTerm",
-									"value": "ford"
+									"value": "bob"
 								}
 							]
 						}
@@ -532,8 +530,7 @@
 									"    pm.response.to.have.status(401);",
 									"});"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						},
 						{
@@ -545,8 +542,7 @@
 									"var dateString = date.toISOString();",
 									"pm.variables.set(\"dateString\", dateString);"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -558,7 +554,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"sellingPrice\": 100,\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"imageUrl\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
+							"raw": "{\n  \"sellingPrice\": 100,\n  \"offerTypePretended\": \"Purchase\",\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -598,8 +594,7 @@
 									"",
 									"pm.collectionVariables.set(\"createdItemId\", jsonData.id);"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						},
 						{
@@ -611,8 +606,7 @@
 									"var dateString = date.toISOString();",
 									"pm.variables.set(\"dateString\", dateString);"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -631,7 +625,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"sellingPrice\": 100,\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"imageUrl\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
+							"raw": "{\n  \"sellingPrice\": 100,\n  \"offerTypePretended\": \"Purchase\",\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,8 +656,7 @@
 									"    pm.response.to.have.status(403);",
 									"})"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -682,7 +675,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n\n",
+							"raw": "{\n    \"sellingPrice\": 100,\n    \"offerTypePretended\": \"Exchange\",\n    \"item\": {\n        \"name\": \"The Catcher in the Rye updated\",\n        \"author\": \"J.D. Salinger updated\",\n        \"literaryGenre\": \"Fiction\",\n        \"year\": \"1951\",\n        \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n    }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -714,8 +707,7 @@
 									"    pm.response.to.have.status(200);",
 									"})"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -734,7 +726,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n",
+							"raw": "{\n    \"sellingPrice\": 100,\n    \"offerTypePretended\": \"Exchange\",\n    \"item\": {\n        \"name\": \"The Catcher in the Rye updated\",\n        \"author\": \"J.D. Salinger updated\",\n        \"literaryGenre\": \"Fiction\",\n        \"year\": \"1951\",\n        \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -981,7 +973,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{gateway}}/search?pageNumber=1&pageSize=15",
+							"raw": "{{gateway}}/search?pageNumber=1&pageSize=15&seller=bob",
 							"host": [
 								"{{gateway}}"
 							],
@@ -996,6 +988,10 @@
 								{
 									"key": "pageSize",
 									"value": "15"
+								},
+								{
+									"key": "seller",
+									"value": "bob"
 								}
 							]
 						}
@@ -1003,7 +999,7 @@
 					"response": []
 				},
 				{
-					"name": "Get all cars with genre of Fantasy",
+					"name": "Get all advertisements with genre of Fantasy",
 					"event": [
 						{
 							"listen": "test",
@@ -1034,7 +1030,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{gateway}}/search?searchTerm=10",
+							"raw": "{{gateway}}/search?searchTerm=Fantasy",
 							"host": [
 								"{{gateway}}"
 							],
@@ -1044,7 +1040,7 @@
 							"query": [
 								{
 									"key": "searchTerm",
-									"value": "10"
+									"value": "Fantasy"
 								}
 							]
 						}
@@ -1071,8 +1067,7 @@
 									"",
 									"pm.collectionVariables.set(\"createdItemId\", jsonData.id);"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						},
 						{
@@ -1084,8 +1079,7 @@
 									"var dateString = date.toISOString();",
 									"pm.variables.set(\"dateString\", dateString);"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1104,7 +1098,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"sellingPrice\": 100,\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"imageUrl\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
+							"raw": "{\n  \"sellingPrice\": 100,\n  \"offerTypePretended\": \"Purchase\",\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1183,8 +1177,7 @@
 									"    pm.response.to.have.status(403);",
 									"})"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1203,7 +1196,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n",
+							"raw": "{\n    \"sellingPrice\": 100,\n    \"offerTypePretended\": \"Exchange\",\n    \"item\": {\n        \"name\": \"The Catcher in the Rye updated\",\n        \"author\": \"J.D. Salinger updated\",\n        \"literaryGenre\": \"Fiction\",\n        \"year\": \"1951\",\n        \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n    }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1234,8 +1227,7 @@
 									"    pm.response.to.have.status(200);",
 									"})"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1254,7 +1246,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n",
+							"raw": "{\n    \"sellingPrice\": 100,\n    \"offerTypePretended\": \"Exchange\",\n    \"item\": {\n        \"name\": \"The Catcher in the Rye updated\",\n        \"author\": \"J.D. Salinger updated\",\n        \"literaryGenre\": \"Fiction\",\n        \"year\": \"1951\",\n        \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n    }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1285,8 +1277,7 @@
 									"    pm.response.to.have.status(200);",
 									"})"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1305,7 +1296,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"item\": {\n    \"name\": \"The Catcher in the Rye updated\",\n    \"author\": \"J.D. Salinger updated\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\"\n  }\n}\n",
+							"raw": "{\n    \"sellingPrice\": 100,\n    \"offerTypePretended\": \"Exchange\",\n    \"item\": {\n        \"name\": \"The Catcher in the Rye updated\",\n        \"author\": \"J.D. Salinger updated\",\n        \"literaryGenre\": \"Fiction\",\n        \"year\": \"1951\",\n        \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n    }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1592,6 +1583,395 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "OfferService",
+			"item": [
+				{
+					"name": "GetBobToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"BobToken\", response.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "bob",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Pass123$",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "advertisementApp openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identityService}}/connect/token",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Advertisement as Bob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response body contains Alice as seller\", function () {",
+									"    pm.expect(jsonData).to.haveOwnProperty('seller');",
+									"    pm.expect(jsonData.seller).to.eq('bob');",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"createdItemId\", jsonData.id);",
+									"pm.collectionVariables.set(\"createdItemMileage\", jsonData.mileage);",
+									"pm.collectionVariables.set(\"createdItemModel\", jsonData.model);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var date = new Date()",
+									"date.setDate(date.getDate() + 14);",
+									"var dateString = date.toISOString();",
+									"pm.variables.set(\"dateString\", dateString);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BobToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sellingPrice\": 300,\n  \"offerTypePretended\": \"Purchase\",\n  \"item\": {\n    \"name\": \"The Catcher in the Rye\",\n    \"author\": \"J.D. Salinger\",\n    \"literaryGenre\": \"Fiction\",\n    \"year\": \"1951\",\n    \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{advertisementService}}/api/advertisement",
+							"host": [
+								"{{advertisementService}}"
+							],
+							"path": [
+								"api",
+								"advertisement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTomToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"TomToken\", response.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "tom",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Pass123$",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "advertisementApp openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identityService}}/connect/token",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAliceToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"AliceToken\", response.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "alice",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Pass123$",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "postman",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "NotASecret",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "advertisementApp openid profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{identityService}}/connect/token",
+							"host": [
+								"{{identityService}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Purchase Offer as Alice for 200",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"Purchase\",\r\n  \"amount\": 200,\r\n  \"comment\": \"I'm interested on that book but it seems to me that selling price is too high.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{offerService}}/api/offer/{{createdItemId}}",
+							"host": [
+								"{{offerService}}"
+							],
+							"path": [
+								"api",
+								"offer",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Exchange Offer as Tom",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TomToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"Exchange\",\r\n  \"amount\": 50,\r\n  \"comment\": \"Perhaps you should take a look at these books.\",\r\n  \"itemsToExchange\": [\r\n    {\r\n        \"name\": \"The Catcher in the Rye\",\r\n        \"author\": \"J.D. Salinger\",\r\n        \"literaryGenre\": \"Fiction\",\r\n        \"year\": \"1951\",\r\n        \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\r\n    },\r\n    {\r\n        \"name\": \"The Alchemist\",\r\n        \"author\": \"Paulo Coelho\",\r\n        \"literaryGenre\": \"Fiction\",\r\n        \"year\": \"1988\",\r\n        \"image\": \"https://cdn.pixabay.com/photo/2018/02/04/15/45/car-3130111_960_720.jpg\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{offerService}}/api/offer/{{createdItemId}}",
+							"host": [
+								"{{offerService}}"
+							],
+							"path": [
+								"api",
+								"offer",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Offers for Advertisement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{offerService}}/api/offer/{{createdItemId}}",
+							"host": [
+								"{{offerService}}"
+							],
+							"path": [
+								"api",
+								"offer",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Created Advertisement details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/{{createdItemId}}",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -1599,7 +1979,6 @@
 			"listen": "prerequest",
 			"script": {
 				"type": "text/javascript",
-				"packages": {},
 				"exec": [
 					""
 				]
@@ -1609,7 +1988,6 @@
 			"listen": "test",
 			"script": {
 				"type": "text/javascript",
-				"packages": {},
 				"exec": [
 					""
 				]
@@ -1626,7 +2004,7 @@
 			"value": "http://localhost:7002"
 		},
 		{
-			"key": "bidService",
+			"key": "offerService",
 			"value": "http://localhost:7003"
 		},
 		{
@@ -1651,6 +2029,14 @@
 		},
 		{
 			"key": "createdItemId",
+			"value": ""
+		},
+		{
+			"key": "createdItemMileage",
+			"value": ""
+		},
+		{
+			"key": "createdItemModel",
 			"value": ""
 		}
 	]
