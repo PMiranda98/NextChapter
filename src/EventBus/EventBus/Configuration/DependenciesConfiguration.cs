@@ -75,12 +75,13 @@ namespace EventBus.Configuration
                 // This will try to consume the message from the event bus if the previous consumption of that message had an error.
                 // After some time it will stop retrying and it will set the message on a event bus queue specific for errors of that type of message.
                 var consumers = GetConsumersTypes(consumersAssembly);
+                var service = configuration["ServiceName"];
                 foreach (var consumer in consumers)
                 {
-                    var queueName = ConvertToKebabCaseWithPrefix(Environment.GetEnvironmentVariable("SERVICE_NAME"), consumer.Name);
+                    var queueName = ConvertToKebabCaseWithPrefix(service, consumer.Name);
                     config.ReceiveEndpoint(queueName, cfg =>
                     {
-                        cfg.UseMessageRetry(r => r.Interval(5, 5));
+                        cfg.UseMessageRetry(r => r.Interval(5, 20));
 
                         cfg.ConfigureConsumer(context, consumer);
                     });
