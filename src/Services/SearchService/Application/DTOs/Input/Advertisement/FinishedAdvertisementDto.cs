@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.Input.Advertisements
+namespace Application.DTOs.Input.Advertisement
 {
     public class FinishedAdvertisementDto
     {

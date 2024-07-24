@@ -25,6 +25,7 @@ namespace Application.Handlers.Offers
                 var advertisement = await _advertisementRepository.DetailsAdvertisement(request.PlacedOfferDto.AdvertisementId);
                 if (advertisement != null)
                 {
+                    advertisement.NumberOfOffers++;
                     await _advertisementRepository.SaveAsync(advertisement);
                 }
             }

@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Input.Advertisements;
+﻿using Application.DTOs.Input.Advertisement;
 using Application.Handlers.Advertisements;
 using AutoMapper;
 using EventBus.Contracts;

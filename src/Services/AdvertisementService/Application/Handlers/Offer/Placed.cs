@@ -28,7 +28,6 @@ namespace Application.Handlers.Offer;
                 if (advertisement != null)
                 {
                     advertisement.NumberOfOffers++;
-                    await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
                     await _advertisementRepository.SaveChangesAsync(cancellationToken);
                 }
             }

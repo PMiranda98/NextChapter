@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Input.Advertisements;
+﻿using Application.DTOs.Input.Advertisement;
 using AutoMapper;
 using Domain.DTOs.Output;
 using Domain.Repositories;

@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Input.Advertisements;
+﻿using Application.DTOs.Input.Advertisement;
 using Application.DTOs.Input.Item;
 using Application.DTOs.Input.Offers;
 using AutoMapper;
