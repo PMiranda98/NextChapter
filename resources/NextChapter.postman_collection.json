@@ -2,8 +2,7 @@
 	"info": {
 		"_postman_id": "58189e44-cd7f-414e-8256-6087b956ddfc",
 		"name": "NextChapter",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36521486"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -1437,6 +1436,47 @@
 								{
 									"key": "token",
 									"value": "{{AliceToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway}}/advertisement/{{createdItemId}}",
+							"host": [
+								"{{gateway}}"
+							],
+							"path": [
+								"advertisement",
+								"{{createdItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Advertisement as Bob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BobToken}}",
 									"type": "string"
 								}
 							]
