@@ -28,6 +28,12 @@ namespace Persistence.Repositories
             return await _dataContext.Offers.Where(p => p.AdvertisementId == advertisementId).ToListAsync(cancellationToken);
         }
 
+        public async Task<List<Offer>> ListOffersNeededToBeRejected(CancellationToken cancellationToken)
+        {
+            //return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.Date).Days > 7).ToListAsync(cancellationToken);
+            return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.Date).Minutes > 2).ToListAsync(cancellationToken);
+        }
+
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await _dataContext.SaveChangesAsync(cancellationToken);

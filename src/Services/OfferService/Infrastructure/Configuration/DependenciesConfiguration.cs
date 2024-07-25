@@ -23,6 +23,8 @@ namespace Infrastructure.Configuration
 
             services.AddScoped<IGrpcAdvertisementClient, GrpcAdvertisementClient>();
 
+            services.AddHostedService<BackgroundServiceCheckOfferDate>();
+
             return services;
         }
     }
