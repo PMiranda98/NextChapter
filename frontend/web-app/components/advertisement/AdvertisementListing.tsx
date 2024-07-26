@@ -9,9 +9,11 @@ import Filters from '../core/Filters';
 import useParamsStore from '@/hooks/useParamsStore';
 import qs from 'query-string'
 import EmptyFilter from '../core/EmptyFilter';
+import useAdvertisementStore from '@/hooks/useAdvertisementStore';
 
 export default function AdvertisementListing() {
-  const [data, setData] = useState<PagedResults<Advertisement>>();
+  const [loading, setLoading] = useState(true)
+
   // This is not advisable because if any of the state changes (we might have a lot more in the store than what we actually need here)
   // that would cause this component to rerender. 
   // const params = useParamsStore(state => state)
@@ -27,19 +29,26 @@ export default function AdvertisementListing() {
     winner: state.winner
   }))
 
+  const data = useAdvertisementStore(state => ({
+    advertisements: state.advertisements,
+    totalCount: state.totalCount,
+    pageCount: state.pageCount
+  }))
+
+  const setData = useAdvertisementStore(state => state.setData)
+
   const setParams = useParamsStore(state => state.setParams)
   const queryString = qs.stringifyUrl({url: '', query: params})
   const setPageNumber = (pageNumber: number) => setParams({pageNumber})
 
   useEffect(() => {
-      console.log(queryString)
       getData(queryString).then(data => {
-        console.log(data)
         setData(data)
+        setLoading(false)
       })
   }, [queryString])
 
-  if(!data) return <h3>Loading...</h3>
+  if(loading) return <h3>Loading...</h3>
 
   //console.log(data);
   return (
@@ -50,7 +59,7 @@ export default function AdvertisementListing() {
       ) : (
         <>
           <div className='grid grid-cols-4 gap-6'>
-            {data.results.map((advertisement) => (
+            {data.advertisements.map((advertisement) => (
               <AdvertisementCard key={advertisement.id} advertisement={advertisement}/>
             ))}
           </div>
