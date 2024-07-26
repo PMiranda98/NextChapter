@@ -1,6 +1,6 @@
 'use client'
 
-import { deleteAuction } from "@/actions/auction";
+import { deleteAdvertisement } from "@/actions/advertisement";
 import { Button } from "flowbite-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,13 +11,13 @@ type Props = {
     id: string
 }
 
-export default function AuctionEditButton({id} : Props){
+export default function AdvertisementEditButton({id} : Props){
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
     const doDelete = () => {
         setLoading(true)
-        deleteAuction(id).then((response) => {
+        deleteAdvertisement(id).then((response) => {
             if(response.error) throw response.error
             router.push('/')
         }).catch(error => {
@@ -30,7 +30,7 @@ export default function AuctionEditButton({id} : Props){
     return (
         <div>
             <Button color='failure' isProcessing={loading} onClick={doDelete}>
-                Delete Auction
+                Delete Advertisement
             </Button>
         </div>
     )

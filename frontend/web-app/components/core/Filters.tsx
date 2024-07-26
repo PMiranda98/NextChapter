@@ -10,12 +10,7 @@ const orderButtons = [
   {
     label: 'Alphabetical',
     icon: AiOutlineSortAscending,
-    value: 'make'
-  },
-  {
-    label: 'End date',
-    icon: AiOutlineClockCircle,
-    value: 'endingSoon'
+    value: 'name'
   },
   {
     label: 'Recently added',
@@ -25,19 +20,14 @@ const orderButtons = [
 ]
 const filterButtons = [
   {
-    label: 'Live Auctions',
+    label: 'Live Advertisement',
     icon: GiFlame,
     value: 'live'
   },
   {
-    label: 'Ending < 6 hours',
-    icon: GiFinishLine,
-    value: 'endingSoon'
-  },
-  {
-    label: 'Completed',
+    label: 'Sold',
     icon: BsStopwatchFill,
-    value: 'finished'
+    value: 'sold'
   }
 ]
 

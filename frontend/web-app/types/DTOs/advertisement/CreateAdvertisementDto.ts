@@ -1,8 +1,8 @@
 import { CreateItemDto } from "../item/CreateItemDto"
 
-export type CreateAuctionDto = {
+export type CreateAdvertisementDto = {
   id: string
-  reservePrice: number
-  auctionEnd: string
+  sellingPrice: number
+  offerTypePretended: string
   item: CreateItemDto
 }

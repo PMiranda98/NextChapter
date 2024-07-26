@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
       issuer: 'http://localhost:5000',
       authorization: {
         params: {
-          scope: 'openid profile auctionApp'
+          scope: 'openid profile advertisementApp'
         } 
       },
       idToken: true

@@ -1,17 +1,17 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import AuctionCard from './AuctionCard';
-import { Auction, PagedResults } from '@/types';
+import AdvertisementCard from './AdvertisementCard';
+import { Advertisement, PagedResults } from '@/types';
 import AppPagination from '../core/AppPagination';
-import { getData } from '@/actions/auction';
+import { getData } from '@/actions/advertisement';
 import Filters from '../core/Filters';
 import useParamsStore from '@/hooks/useParamsStore';
 import qs from 'query-string'
 import EmptyFilter from '../core/EmptyFilter';
 
-export default function AuctionListing() {
-  const [data, setData] = useState<PagedResults<Auction>>();
+export default function AdvertisementListing() {
+  const [data, setData] = useState<PagedResults<Advertisement>>();
   // This is not advisable because if any of the state changes (we might have a lot more in the store than what we actually need here)
   // that would cause this component to rerender. 
   // const params = useParamsStore(state => state)
@@ -50,8 +50,8 @@ export default function AuctionListing() {
       ) : (
         <>
           <div className='grid grid-cols-4 gap-6'>
-            {data.results.map((auction) => (
-              <AuctionCard key={auction.id} auction={auction}/>
+            {data.results.map((advertisement) => (
+              <AdvertisementCard key={advertisement.id} advertisement={advertisement}/>
             ))}
           </div>
           <div className='flex justify-center mt-4'>

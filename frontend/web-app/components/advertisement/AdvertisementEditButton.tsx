@@ -8,11 +8,11 @@ type Props = {
     id: string
 }
 
-export default function AuctionEditButton({id} : Props){
+export default function AdvertisementEditButton({id} : Props){
     return (
         <div>
             <Button outline>
-                <Link href={`/auctions/update/${id}`}>Update Auction</Link>
+                <Link href={`/advertisement/update/${id}`}>Update Advertisement</Link>
             </Button>
         </div>
     )

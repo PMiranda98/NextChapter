@@ -1,12 +1,12 @@
 'use client';
 
-import {Auction} from "@/types";
+import {Advertisement} from "@/types";
 import {Table} from "flowbite-react";
 
 type Props = {
-    auction: Auction
+    advertisement: Advertisement
 }
-export default function AuctionDetailedSpecs({auction}: Props) {
+export default function AdvertisementDetailedSpecs({advertisement}: Props) {
     return (
         <Table striped={true}>
             <Table.Body className="divide-y">
@@ -15,47 +15,63 @@ export default function AuctionDetailedSpecs({auction}: Props) {
                         Seller
                     </Table.Cell>
                     <Table.Cell>
-                        {auction.seller}
+                        {advertisement.seller}
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Make
+                        Name
                     </Table.Cell>
                     <Table.Cell>
-                        {auction.item.make}
+                        {advertisement.item.name}
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Model
+                        Author
                     </Table.Cell>
                     <Table.Cell>
-                        {auction.item.model}
+                        {advertisement.item.author}
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Year manufactured
+                        Year
                     </Table.Cell>
                     <Table.Cell>
-                        {auction.item.year}
+                        {advertisement.item.year}
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Mileage
+                        Literary Genre
                     </Table.Cell>
                     <Table.Cell>
-                        {auction.item.mileage}
+                        {advertisement.item.literaryGenre}
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Has reserve price?
+                        Offer Type Pretended
                     </Table.Cell>
                     <Table.Cell>
-                        {auction.reservePrice > 0 ? 'Yes' : 'No'}
+                        {advertisement.offerTypePretended}
+                    </Table.Cell>
+                </Table.Row>
+                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        Selling Price
+                    </Table.Cell>
+                    <Table.Cell>
+                        {advertisement.sellingPrice}
+                    </Table.Cell>
+                </Table.Row>
+                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        Number Of Offers Received
+                    </Table.Cell>
+                    <Table.Cell>
+                        {advertisement.numberOfOffers}
                     </Table.Cell>
                 </Table.Row>
             </Table.Body>

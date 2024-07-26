@@ -38,13 +38,13 @@ export default function UserActions({user} : Props) {
   return (
     <Dropdown label={`Welcome ${user.name}`} inline>
       <Dropdown.Item icon={HiUser} onClick={setSeller}>
-        My Auctions
+        My Advertisements
       </Dropdown.Item>
       <Dropdown.Item icon={AiFillTrophy} onClick={setWinner}>
-        Auctions won
+        Books bought
       </Dropdown.Item>
       <Dropdown.Item icon={AiFillCar}>
-        <Link href='/auctions/create'>Sell my car</Link>
+        <Link href='/advertisement/create'>Sell my book</Link>
       </Dropdown.Item>
       <Dropdown.Item icon={HiCog}>
         <Link href='/session'>Session (dev only)</Link>

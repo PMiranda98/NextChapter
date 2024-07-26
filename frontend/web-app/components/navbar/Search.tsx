@@ -29,7 +29,7 @@ export default function Search() {
         onChange={onChange}
         value={searchValue}
         type='text'
-        placeholder='Search for cars by make, model or color'
+        placeholder='Search for books by name, author or literary genre'
         className='flex-grow pl-5 bg-transparent focus:outline-none border-transparent focus:border-transparent focus:ring-0 text-sm text-gray-600'
       />
       <button onClick={search}>

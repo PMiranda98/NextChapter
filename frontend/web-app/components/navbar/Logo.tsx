@@ -18,7 +18,7 @@ export default function Logo() {
   return (
     <div onClick={doReset} className='flex items-center gap-2 text-lg font-semibold text-red-500 cursor-pointer'>
         <AiOutlineCar size={28} />
-        <div>Car Auctions</div>
+        <div>Book Advertisements</div>
     </div>
   )
 }

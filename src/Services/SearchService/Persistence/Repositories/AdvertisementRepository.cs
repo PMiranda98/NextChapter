@@ -17,9 +17,7 @@ namespace Persistence.Repositories
             //Filtering
             switch (searchAdvertisementParams.FilterBy)
             {
-                case "finished": query.Match(x => x.Status == "Finished"); break;
                 case "sold": query.Match(x => x.Status == "Sold"); break;
-                case "archived": query.Match(x => x.Status == "Archived"); break;
                 default: query.Match(x => x.Status == "Live"); break;
             }
 
@@ -36,9 +34,7 @@ namespace Persistence.Repositories
             // Sorting
             switch (searchAdvertisementParams.OrderBy)
             {
-                case "genre":  query.Sort(x => x.Ascending(a => a.Item.LiteraryGenre)); break;
                 case "new": query.Sort(x => x.Descending(a => a.CreatedAt)); break;
-                case "author": query.Sort(x => x.Descending(a => a.Item.Author)); break;
                 default: query.Sort(x=> x.Ascending(a => a.Item.Name)); break;
             }
 

@@ -4,14 +4,14 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 
 type Props = {
-  imageUrl: string
+  image: string
 }
 
-export default function ItemImage({ imageUrl } : Props) {
+export default function ItemImage({ image } : Props) {
   const [isLoading, setLoading] = useState(true);
   return (
     <Image 
-            src={imageUrl}
+            src={image}
             alt='image'
             fill
             priority

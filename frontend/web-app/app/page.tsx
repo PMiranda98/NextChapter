@@ -1,4 +1,4 @@
-import AuctionListing from "../components/auctions/AuctionListing";
+import AuctionListing from "../components/advertisement/AdvertisementListing";
 
 export default function Home() {
   return (
