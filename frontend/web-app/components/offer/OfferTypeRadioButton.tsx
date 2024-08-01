@@ -10,7 +10,7 @@ type Props = {
 export default function OfferTypeRadioButton({handleSetExchangeSection} : Props) {
   return (
     <fieldset className="flex max-w-md flex-col gap-4">
-      <legend className="mb-4">Choose the offer type</legend>
+      <legend className="mb-2">Choose the offer type:</legend>
       <div className="flex items-center gap-2">
         <Radio id="purchase" name="offer-type" value="Purchase" defaultChecked onClick={() => handleSetExchangeSection(false)}/>
         <Label htmlFor="purchase">Purchase</Label>

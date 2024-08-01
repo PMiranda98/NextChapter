@@ -8,7 +8,11 @@ import OfferTypeRadioButton from './OfferTypeRadioButton'
 import OfferAmoutRangeSlider from './OfferAmoutRangeSlider'
 import Heading from '../core/Heading'
 
-export default function OfferForm() {
+type Props = {
+  sellingPrice: number
+}
+
+export default function OfferForm({sellingPrice} : Props) {
 
   const {control, handleSubmit, formState: {isSubmitting, isValid}} = useForm()
   const onSubmit = async (data: FieldValues) => {}
@@ -26,7 +30,7 @@ export default function OfferForm() {
         <div className='ml-3'>
           <form className='flex flex-col mt-3' onSubmit={handleSubmit(onSubmit)}>
             <OfferTypeRadioButton handleSetExchangeSection={handleSetExchangeSection}/>
-            <OfferAmoutRangeSlider />
+            <OfferAmoutRangeSlider sellingPrice={sellingPrice} offerType={exchangeSection ? 'exchange' : 'purchase'}/>
             <Input label='Comment' name='comment' control={control} rules={{required: 'Comment is required.'}} />
             <Button
               isProcessing={isSubmitting}
