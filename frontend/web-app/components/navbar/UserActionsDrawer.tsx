@@ -63,7 +63,7 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
                   <Sidebar.ItemGroup>
                     <div onClick={setSeller}>
                       <Sidebar.Item icon={HiUser}>
-                        MyAdvertisements
+                        My Advertisements
                       </Sidebar.Item>
                     </div>
                     <div onClick={setWinner}>
