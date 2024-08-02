@@ -30,7 +30,7 @@ export default function OfferForm({sellingPrice} : Props) {
         <div className='ml-3'>
           <form className='flex flex-col mt-3' onSubmit={handleSubmit(onSubmit)}>
             <OfferTypeRadioButton handleSetExchangeSection={handleSetExchangeSection}/>
-            <OfferAmoutRangeSlider sellingPrice={sellingPrice} offerType={exchangeSection ? 'exchange' : 'purchase'}/>
+            <OfferAmoutRangeSlider sellingPrice={sellingPrice} isExchange={exchangeSection}/>
             <Input label='Comment' name='comment' control={control} rules={{required: 'Comment is required.'}} />
             <Button
               isProcessing={isSubmitting}
