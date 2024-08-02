@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Cloudinary config
+/src/Services/AdvertisementService/API/appsettings.Cloudinary.json

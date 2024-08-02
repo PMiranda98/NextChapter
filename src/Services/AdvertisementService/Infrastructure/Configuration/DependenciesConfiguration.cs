@@ -4,6 +4,7 @@ using EventBus.Configuration;
 using Application.Interfaces;
 using Infrastructure.Publishers;
 using AdvertisementService.Persistence.Data;
+using Infrastructure.Photos;
 
 namespace Infrastructure.Configuration
 {
@@ -14,6 +15,7 @@ namespace Infrastructure.Configuration
             services.AddEventBusDependencies<DataContext>(configuration);
 
             services.AddScoped<IAdvertisementPublisher, AdvertisementPublisher>();
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
 
             services.AddGrpc();
 

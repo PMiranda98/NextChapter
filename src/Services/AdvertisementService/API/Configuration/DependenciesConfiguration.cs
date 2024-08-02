@@ -2,6 +2,7 @@
 using Application.Configuration;
 using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Infrastructure.Photos;
 
 
 namespace API.Configuration
@@ -27,9 +28,12 @@ namespace API.Configuration
                     options.TokenValidationParameters.NameClaimType = "username";
                 });
 
+
             services.AddApplicationDependencies();
             services.AddPersistenceDependencies(configuration);
             services.AddInfrastructureDependencies(configuration);
+
+            services.Configure<CloudinarySettings>(configuration.GetSection("Cloudinary"));
 
             return services;
         }
