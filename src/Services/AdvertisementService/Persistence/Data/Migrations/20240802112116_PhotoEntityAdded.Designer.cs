@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Persistence.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240723182214_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240802112116_PhotoEntityAdded")]
+    partial class PhotoEntityAdded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,16 +79,15 @@ namespace Persistence.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Photo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("LiteraryGenre")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhotoId")
                         .HasColumnType("text");
 
                     b.Property<int>("Year")
@@ -99,7 +98,23 @@ namespace Persistence.Data.Migrations
                     b.HasIndex("AdvertisementId")
                         .IsUnique();
 
+                    b.HasIndex("PhotoId");
+
                     b.ToTable("Item");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Photo", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Photo");
                 });
 
             modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.InboxState", b =>
@@ -280,7 +295,13 @@ namespace Persistence.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Photo", "Photo")
+                        .WithMany()
+                        .HasForeignKey("PhotoId");
+
                     b.Navigation("Advertisement");
+
+                    b.Navigation("Photo");
                 });
 
             modelBuilder.Entity("AdvertisementService.Domain.Entities.Advertisement", b =>

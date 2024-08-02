@@ -30,7 +30,7 @@ public class DbSeed
                     Author = "Agatha Christie",
                     LiteraryGenre = "Mystery",
                     Year = 1939,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
             new Advertisement()
@@ -49,7 +49,7 @@ public class DbSeed
                     Author = "Antoine de Saint-Exupéry",
                     LiteraryGenre = "Fiction",
                     Year = 1943,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
             new Advertisement()
@@ -68,7 +68,7 @@ public class DbSeed
                     Author = "Cao Xueqin",
                     LiteraryGenre = "Novel",
                     Year = 1700,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
             new Advertisement()
@@ -87,7 +87,7 @@ public class DbSeed
                     Author = "Dan Brown",
                     LiteraryGenre = "Thriller",
                     Year = 2003,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
             new Advertisement()
@@ -105,8 +105,9 @@ public class DbSeed
                     Name = "The Lord of the Rings",
                     Author = "J.R.R Tolkien",
                     LiteraryGenre = "Fantasy",
-                    Year = 1954,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Year = 1954, 
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
+
                 }
             },
             new Advertisement()
@@ -125,7 +126,7 @@ public class DbSeed
                     Author = "J.K. Rowling",
                     LiteraryGenre = "Fantasy",
                     Year = 1997,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
             new Advertisement()
@@ -144,7 +145,7 @@ public class DbSeed
                     Author = "J.R.R. Tolkien",
                     LiteraryGenre = "Fantasy",
                     Year = 1937,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
             new Advertisement()
@@ -163,7 +164,7 @@ public class DbSeed
                     Author = "Miguel de Cervantes",
                     LiteraryGenre = "Novel",
                     Year = 1605,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
             new Advertisement()
@@ -182,7 +183,7 @@ public class DbSeed
                     Author = "Charles Dickens",
                     LiteraryGenre = "Historical Fiction",
                     Year = 1859,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
             new Advertisement()
@@ -201,7 +202,7 @@ public class DbSeed
                     Author = "C.S. Lewis",
                     LiteraryGenre = "Fantasy",
                     Year = 1950,
-                    Image = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg"
+                    Photo = new Photo{ Url = "https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg" }
                 }
             },
       };
