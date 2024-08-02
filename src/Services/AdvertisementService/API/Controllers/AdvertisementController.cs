@@ -3,7 +3,9 @@ using Domain.DTOs.Input.Advertisement;
 using Domain.DTOs.Output;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace AdvertisementService.Controllers;
 
@@ -32,9 +34,17 @@ public class AdvertisementController : ControllerBase
 
     [Authorize]
     [HttpPost] //api/advertisement
-    public async Task<IActionResult> Create(CreateAdvertisementDto createAdvertisementDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromForm] IFormFile file, [FromForm] string createAdvertisementDtoJson, CancellationToken cancellationToken)
     {
-        return HandleResult(await _mediator.Send(new Create.Command { CreateAdvertisementDto = createAdvertisementDto, Seller = User.Identity.Name }, cancellationToken));
+        var createAdvertisementDto = JsonConvert.DeserializeObject<CreateAdvertisementDto>(createAdvertisementDtoJson);
+
+        if (createAdvertisementDto == null || !TryValidateModel(createAdvertisementDto))
+        {
+            return BadRequest(ModelState);
+        }
+
+        
+        return HandleResult(await _mediator.Send(new Create.Command { CreateAdvertisementDto = createAdvertisementDto, File=file, Seller = User.Identity.Name }, cancellationToken));
     }
 
     [Authorize]

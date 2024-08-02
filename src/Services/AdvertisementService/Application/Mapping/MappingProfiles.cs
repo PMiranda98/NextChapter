@@ -13,7 +13,8 @@ public class MappingProfiles : Profile
     {
         CreateMap<Advertisement, AdvertisementDto>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-        CreateMap<Item, ItemDto>();
+        CreateMap<Item, ItemDto>()
+            .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
         CreateMap<CreateAdvertisementDto, Advertisement>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
@@ -21,7 +22,8 @@ public class MappingProfiles : Profile
 
         CreateMap<CreateAdvertisementDto, CreatedAdvertisementDto>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-        CreateMap<CreateItemDto, CreatedItemDto>();
+        CreateMap<CreateItemDto, CreatedItemDto>()
+            .ForMember(dest => dest.Photo, opt => opt.Ignore());
 
         CreateMap<UpdateAdvertisementDto, Advertisement>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));

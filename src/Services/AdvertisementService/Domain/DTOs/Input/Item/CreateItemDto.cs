@@ -12,6 +12,4 @@ public class CreateItemDto
     public required string LiteraryGenre { get; set; }
     [Required]
     public required int Year { get; set; }
-    [Required]
-    public required string Image { get; set; }
 }
