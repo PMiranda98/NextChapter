@@ -1,9 +1,13 @@
-﻿using EventBus.Contracts.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using Domain.DTOs.Input.Item;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace EventBus.Contracts
+namespace Domain.DTOs.Input.Advertisement
 {
-    public class AdvertisementUpdated
+    public class UpdateAdvertisementDto
     {
         public required Guid Id { get; set; }
         public required DateTime UpdateAt { get; set; }
@@ -11,6 +15,6 @@ namespace EventBus.Contracts
         public required int SellingPrice { get; set; }
         public required string OfferTypePretended { get; set; }
 
-        public required ItemUpdated Item { get; set; }
+        public required UpdateItemDto Item { get; set; }
     }
 }

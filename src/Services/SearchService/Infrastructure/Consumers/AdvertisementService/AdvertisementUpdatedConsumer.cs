@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Input.Advertisement;
-using Application.Handlers.Advertisements;
+﻿using Application.Handlers.Advertisements;
 using AutoMapper;
+using Domain.DTOs.Input.Advertisement;
 using EventBus.Contracts;
 using MassTransit;
 using MediatR;
@@ -21,7 +21,7 @@ namespace Infrastructure.Consumers.AdvertisementService
         {
             Console.WriteLine("=====> Consuming advertisement updated: " + context.Message.Id);
 
-            var updatedAdvertisementDto = _mapper.Map<UpdatedAdvertisementDto>(context.Message);
+            var updatedAdvertisementDto = _mapper.Map<UpdateAdvertisementDto>(context.Message);
             await _mediator.Send(new Edit.Command { UpdatedAdvertisementDto = updatedAdvertisementDto });
         }
     }

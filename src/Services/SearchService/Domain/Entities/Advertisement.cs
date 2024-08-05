@@ -19,6 +19,7 @@ namespace Domain.Entities
         public DateTime UpdateAt { get; set; }
         public DateTime? EndedAt { get; set; }
         public required string Status { get; set; }
+        public required string OfferTypePretended { get; set; }
         public required Item Item { get; set; }
     }
 }

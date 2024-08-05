@@ -37,21 +37,25 @@ public class AdvertisementController : ControllerBase
     public async Task<IActionResult> Create([FromForm] IFormFile file, [FromForm] string createAdvertisementDtoJson, CancellationToken cancellationToken)
     {
         var createAdvertisementDto = JsonConvert.DeserializeObject<CreateAdvertisementDto>(createAdvertisementDtoJson);
-
         if (createAdvertisementDto == null || !TryValidateModel(createAdvertisementDto))
         {
             return BadRequest(ModelState);
         }
 
-        
         return HandleResult(await _mediator.Send(new Create.Command { CreateAdvertisementDto = createAdvertisementDto, File=file, Seller = User.Identity.Name }, cancellationToken));
     }
 
     [Authorize]
     [HttpPut("{id}")]
-    public async Task<IActionResult> Edit(Guid id, UpdateAdvertisementDto updateAdvertisementDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Edit(Guid id, [FromForm] IFormFile file, [FromForm] string updateAdvertisementDtoJson, CancellationToken cancellationToken)
     {
-        return HandleResult(await _mediator.Send(new  Edit.Command { UpdateAdvertisementDto = updateAdvertisementDto, Id = id, User=User.Identity.Name }, cancellationToken));
+        var updateAdvertisementDto = JsonConvert.DeserializeObject<UpdateAdvertisementDto>(updateAdvertisementDtoJson);        
+        if(updateAdvertisementDto == null || !TryValidateModel(updateAdvertisementDto))
+        {
+            return BadRequest(ModelState);
+        }
+
+        return HandleResult(await _mediator.Send(new  Edit.Command { UpdateAdvertisementDto = updateAdvertisementDto, File=file, Id = id, User=User.Identity.Name }, cancellationToken));
     }
 
     [Authorize]

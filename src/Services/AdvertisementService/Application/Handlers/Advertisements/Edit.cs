@@ -2,8 +2,11 @@
 using AutoMapper;
 using Domain.DTOs.Input.Advertisement;
 using Domain.DTOs.Output;
+using Domain.DTOs.Output.Advertisement;
+using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Handlers.Advertisements;
 
@@ -13,6 +16,7 @@ public class Edit
     {
         public required Guid Id { get; set; }
         public required UpdateAdvertisementDto UpdateAdvertisementDto { get; set; }
+        public required IFormFile File { get; set; }
         public required string User { get; set; }
 
     }
@@ -22,12 +26,14 @@ public class Edit
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IMapper _mapper;
         private readonly IAdvertisementPublisher _advertisementPublisher;
+        private readonly IPhotoAccessor _photoAccessor;
 
-        public Handler(IAdvertisementRepository advertisementRepository, IMapper mapper, IAdvertisementPublisher advertisementPublisher)
+        public Handler(IAdvertisementRepository advertisementRepository, IMapper mapper, IAdvertisementPublisher advertisementPublisher, IPhotoAccessor photoAccessor)
         {
             _advertisementRepository = advertisementRepository;
             _mapper = mapper;
             _advertisementPublisher = advertisementPublisher;
+            _photoAccessor = photoAccessor;
         }
 
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
@@ -41,7 +47,13 @@ public class Edit
                 return result;
             }
 
+            var photoUpdateResult = await _photoAccessor.UpdatePhotoAsync(request.File, advertisement.Item.Photo.Id);
+            if (photoUpdateResult == null) return Result<Unit>.Failure("Failed to save photo!");
+            advertisement.Item.Photo.Url = photoUpdateResult.Url;
+
             advertisement = _mapper.Map(request.UpdateAdvertisementDto, advertisement);
+            advertisement.UpdateAt = DateTime.UtcNow;
+
             await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
 
             var saveChangesResult = await _advertisementRepository.SaveChangesAsync(cancellationToken) > 0;

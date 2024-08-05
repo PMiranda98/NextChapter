@@ -59,5 +59,32 @@ namespace Infrastructure.Photos
             return result.Result == "ok" ? result.Result : null;
         }
 
+        public async Task<PhotoUploadResult?> UpdatePhotoAsync(IFormFile file, string publicId)
+        {
+            if (file.Length > 0)
+            {
+                await using var stream = file.OpenReadStream();
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, stream),
+                    PublicId = publicId,
+                    Overwrite = true,
+                    Transformation = new Transformation().Height(500).Width(300).Crop("fill")
+                };
+                var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                if (uploadResult.Error != null)
+                {
+                    throw new Exception(uploadResult.Error.Message);
+                }
+
+                return new PhotoUploadResult
+                {
+                    PublicId = uploadResult.PublicId,
+                    Url = uploadResult.SecureUrl.ToString()
+                };
+            }
+
+            return null;
+        }
     }
 }

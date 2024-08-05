@@ -1,7 +1,8 @@
 ﻿using Application.DTOs.Input.Advertisement;
-using Application.DTOs.Input.Item;
-using Application.DTOs.Input.Offers;
 using AutoMapper;
+using Domain.DTOs.Input.Advertisement;
+using Domain.DTOs.Input.Item;
+using Domain.DTOs.Input.Offer;
 using Domain.Entities;
 using EventBus.Contracts;
 using EventBus.Contracts.Models;
@@ -20,9 +21,10 @@ namespace Infrastructure.Mapping
 
             CreateMap<EventBus.Contracts.Models.Photo, Domain.Entities.Photo>();
 
-            CreateMap<AdvertisementUpdated, UpdatedAdvertisementDto>()
+            CreateMap<AdvertisementUpdated, UpdateAdvertisementDto>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-            CreateMap<ItemUpdated, UpdatedItemDto>();
+            CreateMap<ItemUpdated, UpdateItemDto>()
+                .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
             CreateMap<OfferPlaced, PlacedOfferDto>();
 

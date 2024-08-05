@@ -16,14 +16,14 @@ public class MappingProfiles : Profile
         CreateMap<Item, ItemDto>()
             .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
-        CreateMap<CreateAdvertisementDto, Advertisement>()
-            .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-        CreateMap<CreateItemDto, Item>();
-
         CreateMap<Advertisement, CreatedAdvertisementDto>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
         CreateMap<Item, CreatedItemDto>()
             .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
+        
+        CreateMap<CreateAdvertisementDto, Advertisement>()
+            .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
+        CreateMap<CreateItemDto, Item>();
 
         CreateMap<UpdateAdvertisementDto, Advertisement>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));

@@ -41,7 +41,7 @@ namespace Persistence.Repositories
                 // _dataContext.Entry(advertisement).Collections(x => x.Items).LoadAsync(cancelationToken);
              */
             // Eager Loading
-            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id == Id).FirstAsync(cancellationToken) ?? null;
+            return await _dataContext.Advertisements.Include(x => x.Item).ThenInclude(y => y.Photo).Where(x => x.Id == Id).FirstAsync(cancellationToken) ?? null;
         }
 
 

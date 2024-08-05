@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Input.Offers;
+﻿using Domain.DTOs.Input.Offer;
 using Domain.Repositories;
 using MediatR;
 

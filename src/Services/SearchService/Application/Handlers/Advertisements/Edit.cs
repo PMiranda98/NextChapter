@@ -1,5 +1,5 @@
-﻿using Application.DTOs.Input.Advertisement;
-using AutoMapper;
+﻿using AutoMapper;
+using Domain.DTOs.Input.Advertisement;
 using Domain.DTOs.Output;
 using Domain.Repositories;
 using MediatR;
@@ -10,7 +10,7 @@ namespace Application.Handlers.Advertisements
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public UpdatedAdvertisementDto UpdatedAdvertisementDto { get; set; }
+            public UpdateAdvertisementDto UpdatedAdvertisementDto { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>

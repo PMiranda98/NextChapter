@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Input.Advertisement;
-using Application.DTOs.Input.Item;
-using AutoMapper;
+﻿using AutoMapper;
+using Domain.DTOs.Input.Advertisement;
+using Domain.DTOs.Input.Item;
 using Domain.Entities;
 
 namespace Application.Mapping
@@ -9,9 +9,9 @@ namespace Application.Mapping
     {
         public MappingProfiles()
         {
-            CreateMap<UpdatedAdvertisementDto, Advertisement>()
+            CreateMap<UpdateAdvertisementDto, Advertisement>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-            CreateMap<UpdatedItemDto, Item>();
+            CreateMap<UpdateItemDto, Item>();
         }
     }
 }

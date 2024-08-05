@@ -5,6 +5,7 @@ using Domain.DTOs.Input.Offer;
 using Domain.Entities;
 using EventBus.Contracts;
 using EventBus.Contracts.Models;
+using Npgsql.PostgresTypes;
 
 namespace Infrastructure.Mapping
 {
@@ -18,12 +19,13 @@ namespace Infrastructure.Mapping
             CreateMap<Item, ItemCreated>()
                 .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
-            CreateMap<Domain.Entities.Photo, EventBus.Contracts.Models.Photo>();
-
             CreateMap<Advertisement, AdvertisementUpdated>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-            CreateMap<Item, ItemUpdated>();
+            CreateMap<Item, ItemUpdated>()
+                .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
+            CreateMap<Domain.Entities.Photo, EventBus.Contracts.Models.Photo>();
+            
             CreateMap<AdvertisementFinished, FinishedAdvertisementDto>();
 
             CreateMap<OfferPlaced, OfferPlacedDto>();
