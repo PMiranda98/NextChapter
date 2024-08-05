@@ -50,9 +50,7 @@ public class Create
             var result = await _advertisementRepository.SaveChangesAsync(cancellationToken) > 0;
             if (!result) return Result<CreatedAdvertisementDto>.Failure("Failed to create Advertisement!");
 
-            var createdAdvertisementDto = _mapper.Map<CreatedAdvertisementDto>(request.CreateAdvertisementDto);
-            createdAdvertisementDto.Id = advertisement.Id;
-            createdAdvertisementDto.Item.Photo = advertisement.Item.Photo;
+            var createdAdvertisementDto = _mapper.Map<CreatedAdvertisementDto>(advertisement);
             return Result<CreatedAdvertisementDto>.Success(createdAdvertisementDto);
         }
     }

@@ -20,10 +20,10 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
         CreateMap<CreateItemDto, Item>();
 
-        CreateMap<CreateAdvertisementDto, CreatedAdvertisementDto>()
+        CreateMap<Advertisement, CreatedAdvertisementDto>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-        CreateMap<CreateItemDto, CreatedItemDto>()
-            .ForMember(dest => dest.Photo, opt => opt.Ignore());
+        CreateMap<Item, CreatedItemDto>()
+            .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
         CreateMap<UpdateAdvertisementDto, Advertisement>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));

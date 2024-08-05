@@ -15,7 +15,10 @@ namespace Infrastructure.Mapping
             // Event bus maps
             CreateMap<AdvertisementCreated, Advertisement>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-            CreateMap<ItemCreated, Item>();
+            CreateMap<ItemCreated, Item>()
+                .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
+
+            CreateMap<EventBus.Contracts.Models.Photo, Domain.Entities.Photo>();
 
             CreateMap<AdvertisementUpdated, UpdatedAdvertisementDto>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
