@@ -1,20 +1,28 @@
+import { Label } from 'flowbite-react'
 import React, {useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
+import { FaUpload } from 'react-icons/fa'
 
-export default function PhotoWidgetDropzone() {
+type Props = {
+  setFiles: (files: File[]) => void
+}
+
+export default function PhotoWidgetDropzone({setFiles} : Props) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles)
-  }, [])
+    //setFiles(acceptedFiles.map((file: any) => {
+    //  Object.assign(file, {
+    //    preview: URL.createObjectURL(file)
+    //  })
+    //}))
+    setFiles(acceptedFiles)
+  }, [setFiles])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   return (
-    <div {...getRootProps()}>
+    <div className={`rounded-md border-dashed border-2 p-10 content-center text-wrap hover:border-green-400 ${isDragActive ? 'border-green-400' : 'border-[#eee]'}`} {...getRootProps()}>
       <input {...getInputProps()} />
-      {
-        isDragActive ?
-          <p>Drop the files here ...</p> :
-          <p>Drag 'n' drop some files here, or click to select files</p>
-      }
+      <FaUpload />
+      <Label value='Drop photo here.'/>
     </div>
   )
 }
