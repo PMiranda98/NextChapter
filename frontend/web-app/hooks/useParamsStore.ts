@@ -26,7 +26,7 @@ const initialState: State = {
   pageCount: 1,
   searchTerm: '',
   searchValue:'',
-  orderBy: 'make',
+  orderBy: '',
   filterBy: '',
   seller: undefined,
   winner: undefined

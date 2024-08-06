@@ -43,6 +43,7 @@ export default function AdvertisementListing() {
 
   useEffect(() => {
       getData(queryString).then(data => {
+        console.log(data) 
         setData(data)
         setLoading(false)
       })

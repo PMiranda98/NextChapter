@@ -1,7 +1,9 @@
+import { Photo } from "./Photo"
+
 export type Item = {
   name: string
   author: string
   literaryGenre: number
   year: string
-  image: string
+  photo: Photo
 }

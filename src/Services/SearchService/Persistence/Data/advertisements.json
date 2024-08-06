@@ -9,6 +9,7 @@
     "updateAt": "2024-07-01T06:30:40.837298Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Purchase",
     "item": {
       "name": "Don Quixote",
       "author": "Miguel de Cervantes",
@@ -30,6 +31,7 @@
     "updateAt": "2024-07-01T06:30:40.837298Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Purchase",
     "item": {
       "name": "A Tale of Two Cities",
       "author": "Charles Dickens",
@@ -51,6 +53,7 @@
     "updateAt": "2024-07-01T06:30:40.837295Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Both",
     "item": {
       "name": "The Lord of the Rings",
       "author": "J.R.R Tolkien",
@@ -72,6 +75,7 @@
     "updateAt": "2024-07-01T06:30:40.837293Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Purchase",
     "item": {
       "name": "The Little Prince",
       "author": "Antoine de Saint-Exupéry",
@@ -93,6 +97,7 @@
     "updateAt": "2024-07-01T06:30:40.837297Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Purchase",
     "item": {
       "name": "Harry Potter and the Philosopher's Stone",
       "author": "J.K. Rowling",
@@ -114,6 +119,7 @@
     "updateAt": "2024-07-01T06:30:40.837298Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Exchange",
     "item": {
       "name": "The Hobbit",
       "author": "J.R.R. Tolkien",
@@ -135,6 +141,7 @@
     "updateAt": "2024-07-01T06:30:40.836693Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Exchange",
     "item": {
       "name": "And Then There Were None",
       "author": "Agatha Christie",
@@ -156,6 +163,7 @@
     "updateAt": "2024-07-01T06:30:40.837295Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Purchase",
     "item": {
       "name": "Dream of the Red Chamber",
       "author": "Cao Xueqin",
@@ -177,6 +185,7 @@
     "updateAt": "2024-07-01T06:30:40.837299Z",
     "endedAt": null,
     "status": "Live",
+    "offerTypePretended": "Purchase",
     "item": {
       "name": "The Lion, the Witch and the Wardrobe",
       "author": "C.S. Lewis",
@@ -198,6 +207,7 @@
     "updateAt": "2024-07-01T06:30:40.837295Z",
     "endedAt": "2024-07-15T06:30:40.837295Z",
     "status": "Sold",
+    "offerTypePretended": "Both",
     "item": {
       "name": "The Da Vinci Code",
       "author": "Dan Brown",
