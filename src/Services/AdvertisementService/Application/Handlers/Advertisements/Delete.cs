@@ -17,23 +17,27 @@ public class Delete
     {
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IAdvertisementPublisher _advertisementPublisher;
+        private readonly IPhotoAccessor _photoAccessor;
 
-        public Handler(IAdvertisementRepository advertisementRepository, IAdvertisementPublisher advertisementPublisher)
+        public Handler(IAdvertisementRepository advertisementRepository, IAdvertisementPublisher advertisementPublisher, IPhotoAccessor photoAccessor)
         {
             _advertisementRepository = advertisementRepository;
             _advertisementPublisher = advertisementPublisher;
+            _photoAccessor = photoAccessor;
         }
 
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
         {
             var advertisement = await _advertisementRepository.DetailsAdvertisement(request.Id, cancellationToken);
-            if (advertisement == null) return null;
+            if (advertisement == null) return Result<Unit>.Failure("That advertisement doesn't exist!");
             if (advertisement.Seller != request.User)
             {
                 var result = Result<Unit>.Failure("Forbid!");
                 result.ErrorCode = "403";
                 return result;
             }
+            var deletePhotoResult = await _photoAccessor.DeletePhotoAsync(advertisement.Item.Photo.Id);
+            if (deletePhotoResult == null) return Result<Unit>.Failure("Failed to delete photo!");
             await _advertisementRepository.DeleteAdvertisement(request.Id, cancellationToken);
             await _advertisementPublisher.PublishAdvertisementDeleted(request.Id);
 

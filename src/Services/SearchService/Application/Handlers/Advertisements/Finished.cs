@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Input.Advertisement;
+﻿using Domain.DTOs.Input.Advertisement;
 using Domain.Repositories;
 using MediatR;
 using System;

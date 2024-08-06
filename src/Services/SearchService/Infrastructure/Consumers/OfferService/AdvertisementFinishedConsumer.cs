@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Input.Advertisement;
-using Application.Handlers.Advertisements;
+﻿using Application.Handlers.Advertisements;
 using AutoMapper;
+using Domain.DTOs.Input.Advertisement;
 using EventBus.Contracts;
 using MassTransit;
 using MediatR;
