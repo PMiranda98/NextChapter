@@ -10,6 +10,7 @@ import { Advertisement } from '@/types'
 import { CreateAdvertisementDto } from '@/types/DTOs/advertisement/CreateAdvertisementDto'
 import toast from 'react-hot-toast'
 import { UpdateAdvertisementDto } from '@/types/DTOs/advertisement/UpdateAdvertisementDto'
+import PhotoUploadWidget from '../core/PhotoUploadWidget'
 
 type Props = {
   advertisement?: Advertisement
@@ -24,8 +25,8 @@ export default function AdvertisementForm({advertisement} : Props) {
 
   useEffect(() => {
     if(advertisement) {
-      const {name, author, literaryGenre, year, image} = advertisement.item
-      reset({name, author, literaryGenre, year, image})
+      const {name, author, literaryGenre, year} = advertisement.item
+      reset({name, author, literaryGenre, year})
     }
     setFocus('name')
   }, [setFocus])
@@ -34,10 +35,9 @@ export default function AdvertisementForm({advertisement} : Props) {
     try {
       let id 
       let response
-      console.log('Path name: ' + pathname)
       if(pathname === '/advertisement/create'){
         const createAdvertisementDto = mapToCreateAdvertisementDto(data)
-        response = await createAdvertisement(createAdvertisementDto)
+        response = await createAdvertisement(createAdvertisementDto, data.photo)
         id = response.id
       } else {
         if(advertisement){
@@ -66,12 +66,14 @@ export default function AdvertisementForm({advertisement} : Props) {
 
       {pathname === '/advertisement/create' && 
       <>
-        <Input label='Image' name='image' control={control} rules={{required: 'Image is required.'}} />
         <div className='grid grid-cols-2 gap-3'>
           <Input label='Selling Price' name='sellingPrice' control={control} type='number' rules={{required: 'Selling price is required.'}} />
           <Input label='Offer type pretended' name='offerTypePretended' control={control} rules={{required: 'Offer type pretended is required.'}} />
         </div>
+        <Input label='Photo' name='photo' control={control} rules={{required: 'Photo is required.'}} />
       </>}
+
+      <PhotoUploadWidget />
       
       <div className='flex justify-between'>
         <Button outline color='gray'>Cancel</Button>
@@ -98,7 +100,6 @@ const mapToCreateAdvertisementDto = (data: FieldValues) => {
       author: data.author,
       year: data.year,
       literaryGenre: data.literaryGenre,
-      image: data.image,
     }
   }
   return createAdvertisementDto 
@@ -113,7 +114,6 @@ const mapToUpdateAdvertisementDto = (data: FieldValues) => {
       author: data.author,
       year: data.year,
       literaryGenre: data.literaryGenre,
-      image: data.image,
     }
   }
   return updateAdvertisementDto 

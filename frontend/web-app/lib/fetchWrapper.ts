@@ -5,13 +5,33 @@ const baseUrl = 'http://localhost:6001/'
 async function get(url: string) {
   const requestOptions = {
     method: 'GET',
-    headers: await getHeaders()
+    headers: await getHeaders('application/json')
   }
 
   const response = await fetch(baseUrl + url, requestOptions)
   return await handleResponse(response)
 }
 
+
+
+async function post(url: string, body: {}, file: string){
+  const formData = new FormData()
+  const file2 = new Blob()
+  formData.append('file', file2)
+  formData.append('createAdvertisementDto', JSON.stringify(body))
+  const requestOptions = {
+    method: 'POST',
+    headers: await getHeaders('multipart/form-data'),
+    body: formData
+  }
+
+  console.log(requestOptions)
+  //const response = await fetch(baseUrl + url, requestOptions)
+  const response = new Response()
+  return await handleResponse(response)
+}
+
+/*
 async function post(url: string, body: {}){
   const requestOptions = {
     method: 'POST',
@@ -22,11 +42,12 @@ async function post(url: string, body: {}){
   const response = await fetch(baseUrl + url, requestOptions)
   return await handleResponse(response)
 }
+*/
 
 async function put(url: string, body: {}){
   const requestOptions = {
     method: 'PUT',
-    headers: await getHeaders(),
+    headers: await getHeaders('application/json'),
     body: JSON.stringify(body)
   }
 
@@ -37,7 +58,7 @@ async function put(url: string, body: {}){
 async function del(url: string){
   const requestOptions = {
     method: 'DELETE',
-    headers: await getHeaders()
+    headers: await getHeaders('application/json')
   }
 
   const response = await fetch(baseUrl + url, requestOptions)
@@ -45,16 +66,14 @@ async function del(url: string){
 }
 
 
-async function getHeaders(){
+async function getHeaders(contentType: string){
   const token = await getTokenWorkaround()
   const headers = {
-    'Content-Type' : 'application/json'
-    
+    'Content-Type' : contentType
   } as any
   if(token){
     headers.Authorization = 'Bearer ' + token.access_token
   }
-  console.log(headers)
   return headers
 }
 
