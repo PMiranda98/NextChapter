@@ -19,7 +19,7 @@ export default function PhotoWidgetDropzone({setFiles} : Props) {
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   return (
-    <div className={`rounded-md border-dashed border-2 p-10 content-center text-wrap hover:border-green-400 ${isDragActive ? 'border-green-400' : 'border-[#eee]'}`} {...getRootProps()}>
+    <div className={`grid place-items-center rounded-md border-dashed border-2 p-10 text-wrap hover:border-green-400 ${isDragActive ? 'border-green-400' : 'border-[#eee]'}`} {...getRootProps()}>
       <input {...getInputProps()} />
       <FaUpload />
       <Label value='Drop photo here.'/>
