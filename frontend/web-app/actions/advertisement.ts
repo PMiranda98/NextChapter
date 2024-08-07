@@ -10,7 +10,7 @@ export async function getData(queryString: string): Promise<PagedResults<Adverti
   return await fetchWrapper.get(`search${queryString}`)
 }
 
-export async function createAdvertisement(data: CreateAdvertisementDto, file: string){
+export async function createAdvertisement(data: CreateAdvertisementDto, file: Blob){
   return await fetchWrapper.post(`advertisement`, data, file)
 }
 

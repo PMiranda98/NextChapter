@@ -7,14 +7,22 @@ import PhotoWidgetCropper from './PhotoWidgetCropper'
 import { FaCheck } from 'react-icons/fa'
 import { IoClose } from 'react-icons/io5'
 
+type Props = {
+  setFiles: (file: Blob[]) => void
+}
 
-export default function PhotoUploadWidget() {
-  const [files, setFiles] = useState<any>([])
+export default function PhotoUploadWidget({setFiles} : Props) {
   const [cropper, setCropper] = useState<Cropper>()
+  const [photos, setPhotos] = useState<Blob[]>([])
 
   function onCrop() {
     if(cropper){
-      cropper.getCroppedCanvas().toBlob(blob => console.log(blob))
+      cropper.getCroppedCanvas().toBlob(blob => {
+        if(blob !== null){
+          const file = [blob]
+          setFiles(file)
+        }
+      })
     }
   }
 
@@ -25,7 +33,7 @@ export default function PhotoUploadWidget() {
           <Label value='Step 1 - Add Photo'/>
         </div>
         <div className='row-span-4'>
-          <PhotoWidgetDropzone setFiles={setFiles}/>
+          <PhotoWidgetDropzone setPhotos={setPhotos}/>
         </div>
       </div>
       <div className='grid grid-rows-5 place-items-center'>
@@ -33,8 +41,8 @@ export default function PhotoUploadWidget() {
           <Label value='Step 2 - Resize Photo'/>
         </div>
         <div className='row-span-4'>
-          {files && files.length > 0 && (
-            <PhotoWidgetCropper file={files[0]} setCropper={setCropper}/>
+          {photos && photos.length > 0 && (
+            <PhotoWidgetCropper photo={photos[0]} setCropper={setCropper}/>
           )}
         </div>
       </div>
@@ -42,7 +50,7 @@ export default function PhotoUploadWidget() {
         <div className='row-span-1'>
           <Label value='Step 3 - Preview'/>
         </div>
-        {files && files.length > 0 && (
+        {photos && photos.length > 0 && (
           <>
             {console.log(cropper)}
             <div className='row-span-4 img-preview' />
@@ -50,7 +58,7 @@ export default function PhotoUploadWidget() {
               <Button onClick={onCrop} color="success">
                 <FaCheck className="mr-2 h-5 w-5" />
               </Button>
-              <Button onClick={() => setFiles([])} color="failure">
+              <Button onClick={() => setPhotos([])} color="failure">
                 <IoClose className="mr-2 h-5 w-5" />
               </Button>
             </ButtonGroup>

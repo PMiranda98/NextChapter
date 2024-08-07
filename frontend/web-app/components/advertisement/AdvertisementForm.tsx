@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 import Input from '../core/Input'
 import { Button } from 'flowbite-react'
@@ -11,6 +11,7 @@ import { CreateAdvertisementDto } from '@/types/DTOs/advertisement/CreateAdverti
 import toast from 'react-hot-toast'
 import { UpdateAdvertisementDto } from '@/types/DTOs/advertisement/UpdateAdvertisementDto'
 import PhotoUploadWidget from '../core/PhotoUploadWidget'
+import Image from 'next/image'
 
 type Props = {
   advertisement?: Advertisement
@@ -22,6 +23,8 @@ export default function AdvertisementForm({advertisement} : Props) {
   const {control, handleSubmit, setFocus, reset, formState: {isSubmitting, isValid, isDirty, errors}} = useForm({
     mode: 'onTouched'
   })
+
+  const [files, setFiles] = useState<Blob[]>([])
 
   useEffect(() => {
     if(advertisement) {
@@ -35,9 +38,10 @@ export default function AdvertisementForm({advertisement} : Props) {
     try {
       let id 
       let response
+      if(files && files.length === 0) throw new Error('A Photo is required!');
       if(pathname === '/advertisement/create'){
         const createAdvertisementDto = mapToCreateAdvertisementDto(data)
-        response = await createAdvertisement(createAdvertisementDto, data.photo)
+        response = await createAdvertisement(createAdvertisementDto, files[0])
         id = response.id
       } else {
         if(advertisement){
@@ -70,10 +74,20 @@ export default function AdvertisementForm({advertisement} : Props) {
           <Input label='Selling Price' name='sellingPrice' control={control} type='number' rules={{required: 'Selling price is required.'}} />
           <Input label='Offer type pretended' name='offerTypePretended' control={control} rules={{required: 'Offer type pretended is required.'}} />
         </div>
-        <Input label='Photo' name='photo' control={control} rules={{required: 'Photo is required.'}} />
       </>}
+      
+      {files && files.length === 0 && (
+        <PhotoUploadWidget setFiles={setFiles}/>
+      )}
 
-      <PhotoUploadWidget />
+      {files && files.length > 0 && (
+        <div className='grid grid-rows-80/20 place-items-center'>
+          <Image src={URL.createObjectURL(files[0])} alt='Book Image' width='200' height='200' />
+          <Button outline color='red' onClick={() => setFiles([])} className='border'>
+            Remove
+          </Button>
+        </div>
+      )}
       
       <div className='flex justify-between'>
         <Button outline color='gray'>Cancel</Button>
@@ -92,14 +106,13 @@ export default function AdvertisementForm({advertisement} : Props) {
 
 const mapToCreateAdvertisementDto = (data: FieldValues) => {
   const createAdvertisementDto : CreateAdvertisementDto = {
-    id: data.id,
     sellingPrice: data.sellingPrice,
     offerTypePretended: data.offerTypePretended,
     item: {
       name: data.name,
       author: data.author,
-      year: data.year,
       literaryGenre: data.literaryGenre,
+      year: data.year,
     }
   }
   return createAdvertisementDto 
@@ -112,8 +125,8 @@ const mapToUpdateAdvertisementDto = (data: FieldValues) => {
     item: {
       name: data.name,
       author: data.author,
-      year: data.year,
       literaryGenre: data.literaryGenre,
+      year: data.year,
     }
   }
   return updateAdvertisementDto 

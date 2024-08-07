@@ -14,10 +14,9 @@ async function get(url: string) {
 
 
 
-async function post(url: string, body: {}, file: string){
+async function post(url: string, body: {}, file: Blob){
   const formData = new FormData()
-  const file2 = new Blob()
-  formData.append('file', file2)
+  formData.append('file', file)
   formData.append('createAdvertisementDto', JSON.stringify(body))
   const requestOptions = {
     method: 'POST',

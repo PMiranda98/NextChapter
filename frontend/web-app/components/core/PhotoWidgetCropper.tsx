@@ -1,17 +1,19 @@
+'use client'
+
 import { setConfig } from 'next/config'
 import React from 'react'
 import { Cropper } from 'react-cropper'
 import "cropperjs/dist/cropper.css";
 
 type Props = {
-  file: File
+  photo: Blob
   setCropper: (cropper: Cropper) => void
 }
 
-export default function PhotoWidgetCropper({file, setCropper} : Props) {
+export default function PhotoWidgetCropper({photo, setCropper} : Props) {
   return (
     <Cropper 
-      src={URL.createObjectURL(file)}
+      src={URL.createObjectURL(photo)}
       width='200'
       height='200'
       initialAspectRatio={1}

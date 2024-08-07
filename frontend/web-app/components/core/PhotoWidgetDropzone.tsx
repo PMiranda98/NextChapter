@@ -1,21 +1,23 @@
+'use client'
+
 import { Label } from 'flowbite-react'
 import React, {useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { FaUpload } from 'react-icons/fa'
 
 type Props = {
-  setFiles: (files: File[]) => void
+  setPhotos: (photos: Blob[]) => void
 }
 
-export default function PhotoWidgetDropzone({setFiles} : Props) {
+export default function PhotoWidgetDropzone({setPhotos} : Props) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     //setFiles(acceptedFiles.map((file: any) => {
     //  Object.assign(file, {
     //    preview: URL.createObjectURL(file)
     //  })
     //}))
-    setFiles(acceptedFiles)
-  }, [setFiles])
+    setPhotos(acceptedFiles)
+  }, [setPhotos])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   return (
