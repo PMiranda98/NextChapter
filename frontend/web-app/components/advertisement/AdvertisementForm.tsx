@@ -47,6 +47,7 @@ export default function AdvertisementForm({advertisement} : Props) {
         formData.append('file', files[0])
         formData.append('createAdvertisementDtoJson', JSON.stringify(createAdvertisementDto))
         response = await createAdvertisement(formData)
+        console.log(response)
         id = response.id
       } else {
         if(advertisement){

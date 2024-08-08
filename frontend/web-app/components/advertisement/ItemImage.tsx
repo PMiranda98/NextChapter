@@ -9,6 +9,7 @@ type Props = {
 
 export default function ItemImage({ image } : Props) {
   const [isLoading, setLoading] = useState(true);
+  console.log(image)
   return (
     <Image 
             src={image}

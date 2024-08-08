@@ -12,7 +12,7 @@ export default function AdvertisementCard({advertisement}: Props) {
     <Link href={`/advertisement/details/${advertisement.id}`} className='group'>
       <div className='w-full bg-gray-200 aspect-h-6 aspect-w-10 rounded-lg overflow-hidden'>
         <div>
-          <ItemImage image={advertisement.item.image} />
+          <ItemImage image={advertisement.item.photo.Url} />
         </div>
 
       </div>

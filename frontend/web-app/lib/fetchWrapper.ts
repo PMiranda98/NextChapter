@@ -17,7 +17,7 @@ async function get(url: string) {
 async function post(url: string, formData: FormData){
   const requestOptions = {
     method: 'POST',
-    headers: await getHeaders('multipart/form-data'),
+    headers: await getHeaders(),
     body: formData
   }
 
@@ -61,14 +61,11 @@ async function del(url: string){
 }
 
 
-async function getHeaders(contentType: string){
+async function getHeaders(contentType?: string){
   const token = await getTokenWorkaround()
-  const headers = {
-    'Content-Type' : contentType
-  } as any
-  if(token){
-    headers.Authorization = 'Bearer ' + token.access_token
-  }
+  const headers = {} as any
+  if(contentType) headers['Content-Type'] = contentType
+  if(token) headers['Authorization'] = 'Bearer ' + token.access_token
   return headers
 }
 
