@@ -13,6 +13,6 @@ namespace Domain.Entities
         public required string Author { get; set; }
         public required string LiteraryGenre { get; set; }
         public required int Year { get; set; }
-        public required string Image { get; set; }
+        public required Photo Photo { get; set; }
     }
 }
