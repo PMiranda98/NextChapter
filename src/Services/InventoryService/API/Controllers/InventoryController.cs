@@ -1,0 +1,103 @@
+﻿using Application.Handlers.Items;
+using Domain.DTOs.Input.Item;
+using Domain.DTOs.Output;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+
+namespace API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class InventoryController : ControllerBase
+    {
+        private readonly IMediator _mediator;
+
+        public InventoryController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        [HttpGet] //api/inventory
+        public async Task<IActionResult> Get(CancellationToken cancellationToken)
+        {
+            return HandleResult(await _mediator.Send(new List.Query(), cancellationToken));
+        }
+
+        [HttpGet("{id}")] //api/inventory/id
+        public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
+        {
+            return HandleResult(await _mediator.Send(new Details.Query { Id = id }, cancellationToken));
+        }
+
+        [Authorize]
+        [HttpPost] //api/inventory
+        public async Task<IActionResult> Create([FromForm] IFormFile file, [FromForm] string createAdvertisementDtoJson, CancellationToken cancellationToken)
+        {
+            var createAdvertisementDto = JsonConvert.DeserializeObject<CreateItemDto>(createAdvertisementDtoJson);
+            if (createAdvertisementDto == null || !TryValidateModel(createAdvertisementDto))
+            {
+                return BadRequest(ModelState);
+            }
+
+            return HandleResult(await _mediator.Send(new Create.Command { CreateItemDto = createAdvertisementDto, File = file, Owner = User.Identity.Name }, cancellationToken));
+        }
+
+        [Authorize]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit(Guid id, [FromForm] IFormFile file, [FromForm] string updateAdvertisementDtoJson, CancellationToken cancellationToken)
+        {
+            var updateAdvertisementDto = JsonConvert.DeserializeObject<UpdateItemDto>(updateAdvertisementDtoJson);
+            if (updateAdvertisementDto == null || !TryValidateModel(updateAdvertisementDto))
+            {
+                return BadRequest(ModelState);
+            }
+
+            return HandleResult(await _mediator.Send(new Edit.Command { UpdateAdvertisementDto = updateAdvertisementDto, File = file, Id = id, User = User.Identity.Name }, cancellationToken));
+        }
+
+        [Authorize]
+        [HttpDelete("{id}")] //api/inventory/id
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+        {
+            return HandleResult(await _mediator.Send(new Delete.Command { Id = id, User = User.Identity.Name }, cancellationToken));
+        }
+
+        private ActionResult HandleResult<T>(Result<T>? result, string? uri = null)
+        {
+            if (result == null) return NotFound();
+
+            if (result.IsSuccess && result.Value != null)
+            {
+                switch (HttpContext.Request.Method)
+                {
+                    case "GET":
+                        return Ok(result.Value);
+                    case "POST":
+                        return CreatedAtAction(uri, result.Value);
+                    case "PUT":
+                        return Ok();
+                    case "DELETE":
+                        return Ok();
+                }
+            }
+
+            if (result.IsSuccess && result.Value == null)
+                return NotFound();
+
+            if (!result.IsSuccess)
+            {
+                switch (result.ErrorCode)
+                {
+                    case "403":
+                        return Forbid();
+                    case "401":
+                        return Unauthorized(result.Error);
+                }
+            }
+
+            return BadRequest(result.Error);
+        }
+    }
+}

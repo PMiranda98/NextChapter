@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # Cloudinary config
 /src/Services/AdvertisementService/API/appsettings.Cloudinary.json
+/src/Services/InventoryService/API/appsettings.Cloudinary.json
