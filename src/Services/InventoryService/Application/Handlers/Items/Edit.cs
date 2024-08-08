@@ -13,7 +13,7 @@ public class Edit
     public class Command : IRequest<Result<Unit>>
     {
         public required Guid Id { get; set; }
-        public required UpdateItemDto UpdateAdvertisementDto { get; set; }
+        public required UpdateItemDto UpdateItemDto { get; set; }
         public required IFormFile File { get; set; }
         public required string User { get; set; }
 
@@ -49,7 +49,7 @@ public class Edit
             if (photoUpdateResult == null) return Result<Unit>.Failure("Failed to save photo!");
             advertisement.Item.Photo.Url = photoUpdateResult.Url;
 
-            advertisement = _mapper.Map(request.UpdateAdvertisementDto, advertisement);
+            advertisement = _mapper.Map(request.UpdateItemDto, advertisement);
             advertisement.UpdateAt = DateTime.UtcNow;
 
             await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);

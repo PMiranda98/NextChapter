@@ -33,28 +33,28 @@ namespace API.Controllers
 
         [Authorize]
         [HttpPost] //api/inventory
-        public async Task<IActionResult> Create([FromForm] IFormFile file, [FromForm] string createAdvertisementDtoJson, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create([FromForm] IFormFile file, [FromForm] string createItemDtoJson, CancellationToken cancellationToken)
         {
-            var createAdvertisementDto = JsonConvert.DeserializeObject<CreateItemDto>(createAdvertisementDtoJson);
-            if (createAdvertisementDto == null || !TryValidateModel(createAdvertisementDto))
+            var createItemDto = JsonConvert.DeserializeObject<CreateItemDto>(createItemDtoJson);
+            if (createItemDto == null || !TryValidateModel(createItemDto))
             {
                 return BadRequest(ModelState);
             }
 
-            return HandleResult(await _mediator.Send(new Create.Command { CreateItemDto = createAdvertisementDto, File = file, Owner = User.Identity.Name }, cancellationToken));
+            return HandleResult(await _mediator.Send(new Create.Command { CreateItemDto = createItemDto, File = file, Owner = User.Identity.Name }, cancellationToken));
         }
 
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(Guid id, [FromForm] IFormFile file, [FromForm] string updateAdvertisementDtoJson, CancellationToken cancellationToken)
+        public async Task<IActionResult> Edit(Guid id, [FromForm] IFormFile file, [FromForm] string updateItemDtoJson, CancellationToken cancellationToken)
         {
-            var updateAdvertisementDto = JsonConvert.DeserializeObject<UpdateItemDto>(updateAdvertisementDtoJson);
-            if (updateAdvertisementDto == null || !TryValidateModel(updateAdvertisementDto))
+            var updateItemDto = JsonConvert.DeserializeObject<UpdateItemDto>(updateItemDtoJson);
+            if (updateItemDto == null || !TryValidateModel(updateItemDto))
             {
                 return BadRequest(ModelState);
             }
 
-            return HandleResult(await _mediator.Send(new Edit.Command { UpdateAdvertisementDto = updateAdvertisementDto, File = file, Id = id, User = User.Identity.Name }, cancellationToken));
+            return HandleResult(await _mediator.Send(new Edit.Command { UpdateItemDto = updateItemDto, File = file, Id = id, User = User.Identity.Name }, cancellationToken));
         }
 
         [Authorize]
