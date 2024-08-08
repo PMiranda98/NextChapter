@@ -51,7 +51,6 @@ export default function AdvertisementListing() {
 
   if(loading) return <h3>Loading...</h3>
 
-  //console.log(data);
   return (
     <>
       <Filters/>

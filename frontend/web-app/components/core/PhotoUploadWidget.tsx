@@ -52,7 +52,6 @@ export default function PhotoUploadWidget({setFiles} : Props) {
         </div>
         {photos && photos.length > 0 && (
           <>
-            {console.log(cropper)}
             <div className='row-span-4 img-preview' />
             <ButtonGroup>
               <Button onClick={onCrop} color="success">

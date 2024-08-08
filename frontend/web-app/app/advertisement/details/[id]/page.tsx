@@ -27,7 +27,7 @@ export default async function Details({params} : {params: {id : string}}) {
       </div>
       <div className={`grid grid-cols-2 gap-6 mt-3`}>
         <div className='w-full bg-gray-200 aspect-h-10 aspect-w-16 rounded-lg overflow-hidden'>
-          <ItemImage image={data.item.photo.Url}/>
+          <ItemImage image={data.item.photo}/>
         </div>
         
         <div className='rounded-lg'>

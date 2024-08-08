@@ -39,7 +39,6 @@ export default function AdvertisementForm({advertisement} : Props) {
     try {
       let id 
       let response
-      console.log(data)
       if(files && files.length === 0) throw new Error('A Photo is required!');
       if(pathname === '/advertisement/create'){
         const createAdvertisementDto = mapToCreateAdvertisementDto(data)
@@ -47,7 +46,6 @@ export default function AdvertisementForm({advertisement} : Props) {
         formData.append('file', files[0])
         formData.append('createAdvertisementDtoJson', JSON.stringify(createAdvertisementDto))
         response = await createAdvertisement(formData)
-        console.log(response)
         id = response.id
       } else {
         if(advertisement){

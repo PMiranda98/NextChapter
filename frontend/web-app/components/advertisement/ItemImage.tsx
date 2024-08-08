@@ -2,17 +2,17 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
+import { Photo } from '@/types/Photo'
 
 type Props = {
-  image: string
+  image: Photo
 }
 
 export default function ItemImage({ image } : Props) {
   const [isLoading, setLoading] = useState(true);
-  console.log(image)
   return (
     <Image 
-            src={image}
+            src={image.url}
             alt='image'
             fill
             priority
