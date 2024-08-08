@@ -28,8 +28,9 @@ export default function AdvertisementForm({advertisement} : Props) {
 
   useEffect(() => {
     if(advertisement) {
+      const {sellingPrice, offerTypePretended} = advertisement
       const {name, author, literaryGenre, year} = advertisement.item
-      reset({name, author, literaryGenre, year})
+      reset({name, author, literaryGenre, year, sellingPrice, offerTypePretended})
     }
     setFocus('name')
   }, [setFocus])
@@ -38,10 +39,14 @@ export default function AdvertisementForm({advertisement} : Props) {
     try {
       let id 
       let response
+      console.log(data)
       if(files && files.length === 0) throw new Error('A Photo is required!');
       if(pathname === '/advertisement/create'){
         const createAdvertisementDto = mapToCreateAdvertisementDto(data)
-        response = await createAdvertisement(createAdvertisementDto, files[0])
+        const formData = new FormData()
+        formData.append('file', files[0])
+        formData.append('createAdvertisementDtoJson', JSON.stringify(createAdvertisementDto))
+        response = await createAdvertisement(formData)
         id = response.id
       } else {
         if(advertisement){

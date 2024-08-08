@@ -14,10 +14,7 @@ async function get(url: string) {
 
 
 
-async function post(url: string, body: {}, file: Blob){
-  const formData = new FormData()
-  formData.append('file', file)
-  formData.append('createAdvertisementDto', JSON.stringify(body))
+async function post(url: string, formData: FormData){
   const requestOptions = {
     method: 'POST',
     headers: await getHeaders('multipart/form-data'),
@@ -25,8 +22,7 @@ async function post(url: string, body: {}, file: Blob){
   }
 
   console.log(requestOptions)
-  //const response = await fetch(baseUrl + url, requestOptions)
-  const response = new Response()
+  const response = await fetch(baseUrl + url, requestOptions)
   return await handleResponse(response)
 }
 
