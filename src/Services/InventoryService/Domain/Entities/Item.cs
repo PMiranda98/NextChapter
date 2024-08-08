@@ -13,6 +13,9 @@ namespace Domain.Entities
         public required string Author { get; set; }
         public required string LiteraryGenre { get; set; }
         public required int Year { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
+        public string? Owner { get; set; }
         public required Photo Photo { get; set; }
     }
 }

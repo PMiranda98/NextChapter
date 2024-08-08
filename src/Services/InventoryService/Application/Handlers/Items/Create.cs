@@ -22,36 +22,32 @@ public class Create
     public class Handler : IRequestHandler<Command, Result<CreatedItemDto>>
     {
         private readonly IMapper _mapper;
-        private readonly IItemRepository _advertisementRepository;
+        private readonly IItemRepository _itemRepository;
         private readonly IPhotoAccessor _photoAccessor;
 
-        public Handler(IMapper mapper, IItemRepository advertisementRepository, IPhotoAccessor photoAccessor)
+        public Handler(IMapper mapper, IItemRepository itemRepository, IPhotoAccessor photoAccessor)
         {
             _mapper = mapper;
-            _advertisementRepository = advertisementRepository;
+            _itemRepository = itemRepository;
             _photoAccessor = photoAccessor;
         }
 
         public async Task<Result<CreatedItemDto>> Handle(Command request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-            /*
-            var advertisement = _mapper.Map<Advertisement>(request.CreateItemDto);
-            advertisement.Seller = request.Seller;
+            var item = _mapper.Map<Item>(request.CreateItemDto);
+            item.Owner = request.Owner;
 
             var photoUploadResult = await _photoAccessor.UploadPhotoAsync(request.File);
-            if (photoUploadResult == null) return Result<CreatedAdvertisementDto>.Failure("Failed to save photo!");
-            advertisement.Item.Photo = new Photo { Id = photoUploadResult.PublicId, Url = photoUploadResult.Url };
+            if (photoUploadResult == null) return Result<CreatedItemDto>.Failure("Failed to save photo!");
+            item.Photo = new Photo { Id = photoUploadResult.PublicId, Url = photoUploadResult.Url };
 
-            await _itemRepository.CreateAdvertisement(advertisement, cancellationToken);
-            await _advertisementPublisher.PublishAdvertisementCreated(advertisement);
+            await _itemRepository.CreateItem(item, cancellationToken);
 
             var result = await _itemRepository.SaveChangesAsync(cancellationToken) > 0;
-            if (!result) return Result<CreatedAdvertisementDto>.Failure("Failed to create Advertisement!");
+            if (!result) return Result<CreatedItemDto>.Failure("Failed to create Item!");
 
-            var createdAdvertisementDto = _mapper.Map<CreatedAdvertisementDto>(advertisement);
-            return Result<CreatedAdvertisementDto>.Success(createdAdvertisementDto);
-            */
+            var createdItemDto = _mapper.Map<CreatedItemDto>(item);
+            return Result<CreatedItemDto>.Success(createdItemDto);
         }
     }
 }

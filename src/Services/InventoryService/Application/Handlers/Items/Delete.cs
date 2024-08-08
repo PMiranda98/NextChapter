@@ -26,25 +26,21 @@ public class Delete
 
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-            /*
-            var advertisement = await _itemRepository.DetailsItem(request.Id, cancellationToken);
-            if (advertisement == null) return Result<Unit>.Failure("That advertisement doesn't exist!");
-            if (advertisement.Seller != request.User)
+            var item = await _itemRepository.DetailsItem(request.Id, cancellationToken);
+            if (item == null) return Result<Unit>.Failure("That item doesn't exist!");
+            if (item.Owner != request.User)
             {
                 var result = Result<Unit>.Failure("Forbid!");
                 result.ErrorCode = "403";
                 return result;
             }
-            var deletePhotoResult = await _photoAccessor.DeletePhotoAsync(advertisement.Item.Photo.Id);
-            if (deletePhotoResult == null) return Result<Unit>.Failure("Failed to delete photo!");
-            await _itemRepository.DeleteAdvertisement(request.Id, cancellationToken);
-            await _advertisementPublisher.PublishAdvertisementDeleted(request.Id);
+            var deletePhotoResult = await _photoAccessor.DeletePhotoAsync(item.Photo.Id);
+            if(deletePhotoResult == null) return Result<Unit>.Failure("Failed to delete photo!");
+            await _itemRepository.DeleteItem(request.Id, cancellationToken);
 
             var saveChangesResult = await _itemRepository.SaveChangesAsync(cancellationToken) > 0;
-            if (!saveChangesResult) return Result<Unit>.Failure("Failed to delete the advertisement!");
+            if (!saveChangesResult) return Result<Unit>.Failure("Failed to delete the item!");
             return Result<Unit>.Success(Unit.Value);
-            */
         }
     }
 }

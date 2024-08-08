@@ -34,30 +34,27 @@ public class Edit
 
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-            /*
-            var advertisement = await _itemRepository.DetailsItem(request.Id, cancellationToken);
-            if (advertisement == null) return null;
-            if (advertisement.Seller != request.User)
+
+            
+            var item = await _itemRepository.DetailsItem(request.Id, cancellationToken);
+            if (item == null) return Result<Unit>.Failure("That item doesn't exist!");
+            if (item.Owner != request.User)
             {
                 var result = Result<Unit>.Failure("Forbid!");
                 result.ErrorCode = "403";
                 return result;
             }
 
-            var photoUpdateResult = await _photoAccessor.UpdatePhotoAsync(request.File, advertisement.Item.Photo.Id);
+            var photoUpdateResult = await _photoAccessor.UpdatePhotoAsync(request.File, item.Photo.Id);
             if (photoUpdateResult == null) return Result<Unit>.Failure("Failed to save photo!");
-            advertisement.Item.Photo.Url = photoUpdateResult.Url;
+            item.Photo.Url = photoUpdateResult.Url;
 
-            advertisement = _mapper.Map(request.UpdateItemDto, advertisement);
-            advertisement.UpdateAt = DateTime.UtcNow;
-
-            await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
+            item = _mapper.Map(request.UpdateItemDto, item);
+            item.UpdateAt = DateTime.UtcNow;
 
             var saveChangesResult = await _itemRepository.SaveChangesAsync(cancellationToken) > 0;
-            if (!saveChangesResult) return Result<Unit>.Failure("Failed to update the advertisement!");
+            if (!saveChangesResult) return Result<Unit>.Failure("Failed to update the item!");
             return Result<Unit>.Success(Unit.Value);
-            */
         }
     }
 }
