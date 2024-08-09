@@ -32,7 +32,7 @@ const initialState: State = {
   winner: undefined
 }
 
-const useParamsStore = createWithEqualityFn<State & Actions>((set) => ({
+const useAdvertisementParamsStore = createWithEqualityFn<State & Actions>((set) => ({
   ...initialState,
   setParams: (newParams: Partial<State>) => {
       set((currentState) => {
@@ -47,4 +47,4 @@ const useParamsStore = createWithEqualityFn<State & Actions>((set) => ({
   reset: () => set(initialState),
 }), shallow);
 
-export default useParamsStore
+export default useAdvertisementParamsStore

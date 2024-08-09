@@ -1,4 +1,7 @@
-﻿using Domain.Entities;
+﻿using Domain.DTOs.Input;
+using Domain.DTOs.Output;
+using Domain.DTOs.Output.Item;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +15,7 @@ namespace Domain.Repositories
         public Task CreateItem(Item item, CancellationToken cancellationToken);
         //public Task UpdateAdvertisement(CancellationToken cancellationToken);
         public Task DeleteItem(Guid Id, CancellationToken cancellationToken);
-        public Task<List<Item>> ListItem(CancellationToken cancellationToken);
+        public Task<SearchOutputDTO<Item>> ListItem(SearchInputDTO searchItemsParams, CancellationToken cancellationToken);
         public Task<Item?> DetailsItem(Guid Id, CancellationToken cancellationToken);
         public Task<Item?> DetailsItem(string Id, CancellationToken cancellationToken);
         public Task<Item?> FindItem(string Id, CancellationToken cancellationToken);

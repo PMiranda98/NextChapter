@@ -1,6 +1,6 @@
 'use client'
 
-import useParamsStore from '@/hooks/useParamsStore'
+import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore'
 import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import { BiBook } from 'react-icons/bi'
@@ -8,7 +8,7 @@ import { BiBook } from 'react-icons/bi'
 export default function Logo() {
   const router = useRouter();
   const pathname = usePathname();  
-  const reset = useParamsStore(state => state.reset)
+  const reset = useAdvertisementParamsStore(state => state.reset)
   const doReset = () => {
     if(pathname !== '/')
       router.push('/')

@@ -2,11 +2,10 @@
 
 import React, { useEffect, useState } from 'react'
 import AdvertisementCard from './AdvertisementCard';
-import { Advertisement, PagedResults } from '@/types';
 import AppPagination from '../core/AppPagination';
 import { getAdvertisementData } from '@/actions/advertisement';
 import Filters from '../core/Filters';
-import useParamsStore from '@/hooks/useParamsStore';
+import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore';
 import qs from 'query-string'
 import EmptyFilter from '../core/EmptyFilter';
 import useAdvertisementStore from '@/hooks/useAdvertisementStore';
@@ -19,7 +18,7 @@ export default function AdvertisementListing() {
   // const params = useParamsStore(state => state)
 
   // This is a more advisable way of getting all the states that we are interesting in this component in a single property.
-  const params = useParamsStore(state => ({
+  const params = useAdvertisementParamsStore(state => ({
     pageNumber: state.pageNumber,
     pageSize: state.pageSize,
     searchTerm: state.searchTerm,
@@ -37,7 +36,7 @@ export default function AdvertisementListing() {
 
   const setData = useAdvertisementStore(state => state.setData)
 
-  const setParams = useParamsStore(state => state.setParams)
+  const setParams = useAdvertisementParamsStore(state => state.setParams)
   const queryString = qs.stringifyUrl({url: '', query: params})
   const setPageNumber = (pageNumber: number) => setParams({pageNumber})
 

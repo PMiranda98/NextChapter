@@ -1,4 +1,4 @@
-import useParamsStore from '@/hooks/useParamsStore';
+import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore';
 import { Button } from 'flowbite-react';
 import React from 'react'
 import { AiOutlineClockCircle, AiOutlineSortAscending } from 'react-icons/ai';
@@ -32,12 +32,12 @@ const filterButtons = [
 ]
 
 export default function Filters() {
-  const params = useParamsStore(state => ({
+  const params = useAdvertisementParamsStore(state => ({
     pageSize: state.pageSize,
     orderBy: state.orderBy,
     filterBy: state.filterBy
   }))
-  const setParams = useParamsStore(state => state.setParams)
+  const setParams = useAdvertisementParamsStore(state => state.setParams)
 
   return (
     <div className='flex justify-between items-center mb-4'>

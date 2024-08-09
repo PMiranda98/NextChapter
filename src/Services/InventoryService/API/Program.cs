@@ -1,4 +1,7 @@
 using API.Configuration;
+using InventoryService.Persistence.Data;
+using Microsoft.EntityFrameworkCore;
+using Persistence.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,5 +19,20 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+
+try
+{
+    var context = services.GetRequiredService<DataContext>();
+    await context.Database.MigrateAsync();
+    await DbSeed.SeedData(context);
+}
+catch (Exception ex)
+{
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "An error ocurred during migration.");
+}
 
 app.Run();

@@ -1,14 +1,14 @@
 'use client'
 
-import useParamsStore from '@/hooks/useParamsStore'
+import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore'
 import { usePathname, useRouter } from 'next/navigation'
 import { FaSearch } from 'react-icons/fa'
 
 export default function Search() {
   const router = useRouter()
   const pathname = usePathname()
-  const setParams = useParamsStore(state => state.setParams)
-  const searchValue = useParamsStore(state => state.searchValue)
+  const setParams = useAdvertisementParamsStore(state => state.setParams)
+  const searchValue = useAdvertisementParamsStore(state => state.searchValue)
 
   const setSearchValue = (searchValue: string) => setParams({searchValue: searchValue})
   const onChange = (event: any) => {

@@ -1,7 +1,7 @@
-import useParamsStore from '@/hooks/useParamsStore'
 import React from 'react'
 import Heading from './Heading'
 import { Button } from 'flowbite-react'
+import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore'
 
 type Props = {
   title?: string
@@ -15,7 +15,7 @@ export default function EmptyFilter({
   showReset
 }: Props) {
   
-  const reset = useParamsStore(state => state.reset)
+  const reset = useAdvertisementParamsStore(state => state.reset)
 
 
   return (

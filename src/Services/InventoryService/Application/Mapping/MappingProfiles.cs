@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.DTOs.Input.Item;
+using Domain.DTOs.Output;
 using Domain.DTOs.Output.Item;
 using Domain.Entities;
 
@@ -18,5 +19,7 @@ public class MappingProfiles : Profile
         CreateMap<CreateItemDto, Item>();
 
         CreateMap<UpdateItemDto, Item>();
+
+        CreateMap<SearchOutputDTO<Item>, SearchOutputDTO<ItemDto>>();
     }
 }

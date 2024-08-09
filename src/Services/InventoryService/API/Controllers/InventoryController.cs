@@ -1,4 +1,7 @@
-﻿using Application.Handlers.Items;
+﻿using API.RequestHelpers;
+using Application.Handlers.Items;
+using AutoMapper;
+using Domain.DTOs.Input;
 using Domain.DTOs.Input.Item;
 using Domain.DTOs.Output;
 using MediatR;
@@ -12,17 +15,19 @@ namespace API.Controllers
     [ApiController]
     public class InventoryController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public InventoryController(IMediator mediator)
+        public InventoryController(IMapper mapper, IMediator mediator)
         {
+            _mapper = mapper;
             _mediator = mediator;
         }
 
         [HttpGet] //api/inventory
-        public async Task<IActionResult> Get(CancellationToken cancellationToken)
+        public async Task<IActionResult> Get([FromQuery] SearchParams searchParams, CancellationToken cancellationToken)
         {
-            return HandleResult(await _mediator.Send(new List.Query(), cancellationToken));
+            return HandleResult(await _mediator.Send(new List.Query { SearchInputDTO = _mapper.Map<SearchInputDTO>(searchParams) }, cancellationToken));
         }
 
         [HttpGet("{id}")] //api/inventory/id

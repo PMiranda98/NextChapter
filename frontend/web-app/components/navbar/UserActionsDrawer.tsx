@@ -1,6 +1,7 @@
 'use client'
 
-import useParamsStore from '@/hooks/useParamsStore'
+import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore'
+import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
 import { Drawer, Sidebar } from 'flowbite-react'
 import { User } from 'next-auth'
 import { signOut } from 'next-auth/react'
@@ -24,12 +25,13 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
     onCloseDrawerClick()
   };
   
-  const setParams = useParamsStore(state => state.setParams)
+  const setAdvertisementParams = useAdvertisementParamsStore(state => state.setParams)
+  const setInventoryParams = useInventoryParamsStore(state => state.setParams)
   const router = useRouter()
   const pathname = usePathname()
 
   const setSeller = () => {
-    setParams({
+    setAdvertisementParams({
       seller: user.username,
       winner: undefined
     })
@@ -39,7 +41,7 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
     if(pathname !== '/') router.push('/')
   }
   const setWinner = () => {
-    setParams({
+    setAdvertisementParams({
       seller: undefined,
       winner: user.username
     })
@@ -50,6 +52,10 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
   }
 
   const goToInventory = () => {
+    setInventoryParams({
+      owner: user.username
+    })
+
     handleClose()
     if(pathname !== '/inventory/list') router.push('/inventory/list')
   }

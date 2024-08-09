@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react'
 import InventoryCard from './InventoryCard'
 import AppPagination from '../core/AppPagination'
 import qs from 'query-string'
-import useParamsStore from '@/hooks/useParamsStore'
 import { getInventoryData } from '@/actions/inventory'
 import useInventoryStore from '@/hooks/useInventoryStore'
+import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
 
 export default function InventoryListing() {
   const [loading, setLoading] = useState(true)
@@ -16,14 +16,12 @@ export default function InventoryListing() {
   // const params = useParamsStore(state => state)
 
   // This is a more advisable way of getting all the states that we are interesting in this component in a single property.
-  const params = useParamsStore(state => ({
+  const params = useInventoryParamsStore(state => ({
     pageNumber: state.pageNumber,
     pageSize: state.pageSize,
-    searchTerm: state.searchTerm,
     orderBy: state.orderBy,
     filterBy: state.filterBy,
-    seller: state.seller,
-    winner: state.winner
+    owner: state.owner
   }))
 
   const data = useInventoryStore(state => ({
@@ -34,7 +32,7 @@ export default function InventoryListing() {
 
   const setData = useInventoryStore(state => state.setData)
 
-  const setParams = useParamsStore(state => state.setParams)
+  const setParams = useInventoryParamsStore(state => state.setParams)
   const queryString = qs.stringifyUrl({url: '', query: params})
   const setPageNumber = (pageNumber: number) => setParams({pageNumber})
 

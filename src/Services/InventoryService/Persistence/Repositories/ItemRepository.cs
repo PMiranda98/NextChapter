@@ -1,6 +1,10 @@
-﻿using Domain.Entities;
+﻿using Domain.DTOs.Input;
+using Domain.DTOs.Output;
+using Domain.DTOs.Output.Item;
+using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update;
 using Persistence.Data;
 
 namespace Persistence.Repositories
@@ -47,9 +51,26 @@ namespace Persistence.Repositories
             }
         }
 
-        public async Task<List<Item>> ListItem(CancellationToken cancellationToken)
+        public async Task<SearchOutputDTO<Item>> ListItem(SearchInputDTO searchItemsParams, CancellationToken cancellationToken)
         {
-            return await _dataContext.Items.Include(x => x.Photo).OrderBy(x => x.Name).ToListAsync(cancellationToken);
+            var results = await _dataContext.Items
+                .Where(x => x.Owner == searchItemsParams.Owner)
+                .Skip((searchItemsParams.PageNumber - 1) * searchItemsParams.PageSize)
+                .Take(searchItemsParams.PageSize)
+                .Include(x => x.Photo)
+                .OrderBy(x => x.Name)
+                .ToListAsync(cancellationToken);
+
+            var totalCount = _dataContext.Items.Where(x => x.Owner == searchItemsParams.Owner).Count();
+
+            var resultDto = new SearchOutputDTO<Item>()
+            {
+                PageCount = (int)Math.Round((totalCount * 1.0) / searchItemsParams.PageSize),
+                TotalCount = totalCount,
+                Results = results
+            };
+
+            return resultDto; 
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
