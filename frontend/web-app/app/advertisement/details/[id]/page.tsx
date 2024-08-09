@@ -31,8 +31,8 @@ export default async function Details({params} : {params: {id : string}}) {
         </div>
         
         <div className='rounded-lg'>
-        <AdvertisementDetailedSpecs advertisement={data}/>
-      </div>
+          <AdvertisementDetailedSpecs advertisement={data}/>
+        </div>
       </div>
       {data.seller !== user?.username && <OfferForm sellingPrice={data.sellingPrice}/>}
     </div>

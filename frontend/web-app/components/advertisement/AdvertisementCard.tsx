@@ -17,7 +17,11 @@ export default function AdvertisementCard({advertisement}: Props) {
 
       </div>
       <div className='flex justify-between items-center mt-4'>
-        <h3 className='text-gray-700'>{advertisement.item.name} {advertisement.item.author} {advertisement.item.literaryGenre}</h3>
+        <h3 className='text-gray-700'>
+          <p>{advertisement.item.name}</p> 
+          <p>{advertisement.item.author}</p> 
+          <p>{advertisement.item.literaryGenre}</p>
+        </h3>
         <p className='font-semibold text-sm'>{advertisement.item.year}</p>
       </div>
     </Link>

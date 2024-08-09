@@ -6,3 +6,8 @@ import { InventoryItem, PagedResults } from "@/types"
 export async function getInventoryData(queryString: string): Promise<PagedResults<InventoryItem>> {
   return await fetchWrapper.get(`inventory${queryString}`)
 }
+
+export async function getDetailedViewData(id: string) : Promise<InventoryItem>{
+  return await fetchWrapper.get(`inventory/${id}`)
+}
+
