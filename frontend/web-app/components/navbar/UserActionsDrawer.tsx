@@ -71,7 +71,7 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
           >
             <div className="flex h-full flex-col justify-between py-2">
               <div>
-                <Sidebar.Items>
+                <Sidebar.Items className='cursor-pointer'>
                   <Sidebar.ItemGroup>
                     <div onClick={setSeller}>
                       <Sidebar.Item icon={HiUser}>
