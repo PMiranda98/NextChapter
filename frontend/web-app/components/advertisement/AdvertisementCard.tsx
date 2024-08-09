@@ -20,7 +20,6 @@ export default function AdvertisementCard({advertisement}: Props) {
         <h3 className='text-gray-700'>{advertisement.item.name} {advertisement.item.author} {advertisement.item.literaryGenre}</h3>
         <p className='font-semibold text-sm'>{advertisement.item.year}</p>
       </div>
-      
     </Link>
   )
 }

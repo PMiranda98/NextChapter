@@ -9,6 +9,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { BiBook, BiBookOpen } from 'react-icons/bi'
+import { GiBookshelf } from 'react-icons/gi'
 import { HiCog, HiUser } from 'react-icons/hi2'
 
 type Props = {
@@ -48,6 +49,11 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
     if(pathname !== '/') router.push('/')
   }
 
+  const goToInventory = () => {
+    handleClose()
+    if(pathname !== '/inventory/list') router.push('/inventory/list')
+  }
+
   return (
     <>
       <Drawer open={isOpen} onClose={handleClose} position='right' >
@@ -64,6 +70,11 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
                     <div onClick={setSeller}>
                       <Sidebar.Item icon={HiUser}>
                         My Advertisements
+                      </Sidebar.Item>
+                    </div>
+                    <div onClick={goToInventory}>
+                      <Sidebar.Item icon={GiBookshelf}>
+                        Inventory
                       </Sidebar.Item>
                     </div>
                     <div onClick={setWinner}>

@@ -6,7 +6,7 @@ import { CreateAdvertisementDto } from "@/types/DTOs/advertisement/CreateAdverti
 import { UpdateAdvertisementDto } from "@/types/DTOs/advertisement/UpdateAdvertisementDto";
 import { revalidatePath } from "next/cache";
 
-export async function getData(queryString: string): Promise<PagedResults<Advertisement>> {
+export async function getAdvertisementData(queryString: string): Promise<PagedResults<Advertisement>> {
   return await fetchWrapper.get(`search${queryString}`)
 }
 
