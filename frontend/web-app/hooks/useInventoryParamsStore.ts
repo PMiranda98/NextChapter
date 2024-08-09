@@ -7,7 +7,6 @@ type State = {
   pageSize: number // page size selected
   pageCount: number // number of pages that exists that depends on the total number of results and the pageSize selected. 
   orderBy: string
-  filterBy: string
   owner: string
 }
 
@@ -22,7 +21,6 @@ const initialState: State = {
   pageSize: 3,
   pageCount: 1,
   orderBy: '',
-  filterBy: '',
   owner: ''
 }
 

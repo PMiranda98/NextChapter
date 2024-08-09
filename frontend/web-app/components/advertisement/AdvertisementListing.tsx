@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import AdvertisementCard from './AdvertisementCard';
 import AppPagination from '../core/AppPagination';
 import { getAdvertisementData } from '@/actions/advertisement';
-import Filters from '../core/Filters';
+import AdvertisementFilters from './AdvertisementFilters';
 import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore';
 import qs from 'query-string'
 import EmptyFilter from '../core/EmptyFilter';
@@ -52,7 +52,7 @@ export default function AdvertisementListing() {
 
   return (
     <>
-      <Filters/>
+      <AdvertisementFilters/>
       {data.totalCount === 0 ? (
         <EmptyFilter showReset/>
       ) : (

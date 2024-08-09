@@ -58,14 +58,18 @@ namespace Persistence.Repositories
                 .Skip((searchItemsParams.PageNumber - 1) * searchItemsParams.PageSize)
                 .Take(searchItemsParams.PageSize)
                 .Include(x => x.Photo)
-                .OrderBy(x => x.Name)
                 .ToListAsync(cancellationToken);
+
+            if (searchItemsParams.OrderBy == "name")
+                results = results.OrderBy(x => x.Name).ToList();
+            else if (searchItemsParams.OrderBy == "new")
+                results = results.OrderBy(x => x.CreatedAt).ToList();
 
             var totalCount = _dataContext.Items.Where(x => x.Owner == searchItemsParams.Owner).Count();
 
             var resultDto = new SearchOutputDTO<Item>()
             {
-                PageCount = (int)Math.Round((totalCount * 1.0) / searchItemsParams.PageSize),
+                PageCount = (int)Math.Ceiling((totalCount * 1.0) / searchItemsParams.PageSize),
                 TotalCount = totalCount,
                 Results = results
             };

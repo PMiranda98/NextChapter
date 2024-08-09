@@ -7,6 +7,8 @@ import qs from 'query-string'
 import { getInventoryData } from '@/actions/inventory'
 import useInventoryStore from '@/hooks/useInventoryStore'
 import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
+import EmptyFilter from '../core/EmptyFilter'
+import InventoryFilters from './InventoryFilters'
 
 export default function InventoryListing() {
   const [loading, setLoading] = useState(true)
@@ -20,7 +22,6 @@ export default function InventoryListing() {
     pageNumber: state.pageNumber,
     pageSize: state.pageSize,
     orderBy: state.orderBy,
-    filterBy: state.filterBy,
     owner: state.owner
   }))
 
@@ -48,14 +49,21 @@ export default function InventoryListing() {
 
   return (
     <>
-      <div className='grid grid-cols-4 gap-6'>
-        {data.inventoryItems.map((item) => (
-          <InventoryCard key={item.id} item={item}/>
-        ))}
-      </div>
-      <div className='flex justify-center mt-4'>
-        <AppPagination currentPage={params.pageNumber} pageCount={data.pageCount} pageChanged={setPageNumber}/>
-      </div>
+      <InventoryFilters />
+      {data.totalCount === 0 ? (
+        <EmptyFilter showReset/>
+      ) : (
+        <>
+          <div className='grid grid-cols-4 gap-6'>
+            {data.inventoryItems.map((item) => (
+              <InventoryCard key={item.id} item={item}/>
+            ))}
+          </div>
+          <div className='flex justify-center mt-4'>
+            <AppPagination currentPage={params.pageNumber} pageCount={data.pageCount} pageChanged={setPageNumber}/>
+          </div>
+        </>
+      )}
     </>
   )
 }
