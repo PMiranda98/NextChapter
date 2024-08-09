@@ -34,8 +34,8 @@ public class Delete
                 result.ErrorCode = "403";
                 return result;
             }
-            var deletePhotoResult = await _photoAccessor.DeletePhotoAsync(item.Photo.Id);
-            if(deletePhotoResult == null) return Result<Unit>.Failure("Failed to delete photo!");
+            //var deletePhotoResult = await _photoAccessor.DeletePhotoAsync(item.Photo.Id);
+            //if(deletePhotoResult == null) return Result<Unit>.Failure("Failed to delete photo!");
             await _itemRepository.DeleteItem(request.Id, cancellationToken);
 
             var saveChangesResult = await _itemRepository.SaveChangesAsync(cancellationToken) > 0;

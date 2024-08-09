@@ -5,6 +5,9 @@ using Persistence.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add configuration files to the configuration.
+builder.Configuration.AddJsonFile("appsettings.Cloudinary.json", optional: false, reloadOnChange: true);
+
 // Add services to the container.
 
 builder.Services.AddControllers();

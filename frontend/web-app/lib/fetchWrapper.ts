@@ -57,6 +57,7 @@ async function del(url: string){
   }
 
   const response = await fetch(baseUrl + url, requestOptions)
+  console.log(response)
   return await handleResponse(response)
 }
 
