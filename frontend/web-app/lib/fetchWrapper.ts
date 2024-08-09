@@ -12,16 +12,12 @@ async function get(url: string) {
   return await handleResponse(response)
 }
 
-
-
 async function post(url: string, formData: FormData){
   const requestOptions = {
     method: 'POST',
     headers: await getHeaders(),
     body: formData
   }
-
-  console.log(requestOptions)
   const response = await fetch(baseUrl + url, requestOptions)
   return await handleResponse(response)
 }
@@ -39,14 +35,14 @@ async function post(url: string, body: {}){
 }
 */
 
-async function put(url: string, body: {}){
+async function put(url: string, formData: FormData){
   const requestOptions = {
     method: 'PUT',
-    headers: await getHeaders('application/json'),
-    body: JSON.stringify(body)
+    headers: await getHeaders(),
+    body: formData
   }
-
   const response = await fetch(baseUrl + url, requestOptions)
+  console.log(response)
   return await handleResponse(response)
 }
 

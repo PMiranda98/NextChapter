@@ -9,6 +9,7 @@ import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore';
 import qs from 'query-string'
 import EmptyFilter from '../core/EmptyFilter';
 import useAdvertisementStore from '@/hooks/useAdvertisementStore';
+import { Spinner } from 'flowbite-react';
 
 export default function AdvertisementListing() {
   const [loading, setLoading] = useState(true)
@@ -48,7 +49,11 @@ export default function AdvertisementListing() {
       })
   }, [queryString])
 
-  if(loading) return <h3>Loading...</h3>
+  if(loading) return (
+    <div className='flex h-screen justify-center items-center'>
+      <Spinner />
+    </div>
+  )
 
   return (
     <>

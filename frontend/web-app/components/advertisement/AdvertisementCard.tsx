@@ -1,6 +1,6 @@
 import { Advertisement } from '@/types'
 import React from 'react'
-import ItemImage from './ItemImage'
+import ItemImage from '../core/ItemImage'
 import Link from 'next/link'
 
 type Props = {

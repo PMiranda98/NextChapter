@@ -18,8 +18,8 @@ export async function getDetailedViewData(id: string) : Promise<Advertisement>{
   return await fetchWrapper.get(`advertisement/${id}`)
 }
 
-export async function updateAdvertisement(data: UpdateAdvertisementDto, id: string) {
-  const response = await fetchWrapper.put(`advertisement/${id}`, data)
+export async function updateAdvertisement(formData: FormData, id: string) {
+  const response = await fetchWrapper.put(`advertisement/${id}`, formData)
   revalidatePath(`/advertisement/details/${id}`)
   return response
 }

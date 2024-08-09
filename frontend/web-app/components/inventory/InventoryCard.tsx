@@ -1,6 +1,6 @@
 import { InventoryItem } from '@/types'
 import React from 'react'
-import ItemImage from '../advertisement/ItemImage'
+import ItemImage from '../core/ItemImage'
 import Link from 'next/link'
 
 type Props = {

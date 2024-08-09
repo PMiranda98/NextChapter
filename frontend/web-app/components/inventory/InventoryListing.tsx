@@ -9,6 +9,9 @@ import useInventoryStore from '@/hooks/useInventoryStore'
 import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
 import EmptyFilter from '../core/EmptyFilter'
 import InventoryFilters from './InventoryFilters'
+import { Button, Spinner } from 'flowbite-react'
+import { IoAddCircleOutline } from 'react-icons/io5'
+import Link from 'next/link'
 
 export default function InventoryListing() {
   const [loading, setLoading] = useState(true)
@@ -45,11 +48,23 @@ export default function InventoryListing() {
       })
   }, [queryString])
 
-  if(loading) return <h3>Loading...</h3>
+  if(loading) return (
+    <div className='flex h-screen justify-center items-center'>
+      <Spinner />
+    </div>
+  )
 
   return (
     <>
       <InventoryFilters />
+      <div className='flex justify-center mb-6'>
+        <Link href='/inventory/create'>
+          <Button outline color='green' className='border'>
+            <IoAddCircleOutline className="mr-2 h-5 w-5" />
+            Add an Item
+          </Button>
+        </Link>
+      </div>
       {data.totalCount === 0 ? (
         <EmptyFilter showReset/>
       ) : (

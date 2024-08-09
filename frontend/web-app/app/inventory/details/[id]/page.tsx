@@ -1,5 +1,5 @@
 import { getDetailedViewData } from "@/actions/inventory";
-import ItemImage from "@/components/advertisement/ItemImage";
+import ItemImage from "@/components/core/ItemImage";
 import Heading from "@/components/core/Heading";
 import InventoryItemDeleteButton from "@/components/inventory/InventoryItemDeleteButton";
 import InventoryItemDetailedSpecs from "@/components/inventory/InventoryItemDetailedSpecs";

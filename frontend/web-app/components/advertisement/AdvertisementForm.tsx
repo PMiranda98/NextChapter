@@ -50,7 +50,10 @@ export default function AdvertisementForm({advertisement} : Props) {
       } else {
         if(advertisement){
           const updateAdvertisementDto = mapToUpdateAdvertisementDto(data)
-          response = await updateAdvertisement(updateAdvertisementDto, advertisement.id)
+          const formData = new FormData()
+          formData.append('file', files[0])
+          formData.append('updateAdvertisementDtoJson', JSON.stringify(updateAdvertisementDto))
+          response = await updateAdvertisement(formData, advertisement.id)
           id = advertisement.id
         }
       }
