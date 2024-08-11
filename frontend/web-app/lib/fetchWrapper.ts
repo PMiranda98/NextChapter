@@ -8,6 +8,7 @@ async function get(url: string) {
     headers: await getHeaders('application/json')
   }
 
+  console.log(url)
   const response = await fetch(baseUrl + url, requestOptions)
   return await handleResponse(response)
 }

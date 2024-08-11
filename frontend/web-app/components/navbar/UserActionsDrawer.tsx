@@ -5,6 +5,7 @@ import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
 import { Drawer, Sidebar } from 'flowbite-react'
 import { User } from 'next-auth'
 import { signOut } from 'next-auth/react'
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
@@ -26,7 +27,7 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
   };
   
   const setAdvertisementParams = useAdvertisementParamsStore(state => state.setParams)
-  const setInventoryParams = useInventoryParamsStore(state => state.setParams)
+  const setInventoryParams = useInventoryParamsStore(state => state.setStateParams)
   const router = useRouter()
   const pathname = usePathname()
 
@@ -52,9 +53,7 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
   }
 
   const goToInventory = () => {
-    setInventoryParams({
-      owner: user.username
-    })
+    setInventoryParams({owner: user.username})
 
     handleClose()
     if(pathname !== '/inventory/list') router.push('/inventory/list')

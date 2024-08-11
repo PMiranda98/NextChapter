@@ -12,7 +12,7 @@ type State = {
 
 type Actions = {
   // The type Partial here gives use the ability of make the State properties optional
-  setParams: (params: Partial<State>) => void
+  setStateParams: (state: Partial<State>) => void
   reset: () => void
 }
 
@@ -24,19 +24,48 @@ const initialState: State = {
   owner: ''
 }
 
+const getFromSessionStorage = <T>(key: string, defaultValue: T): T => {
+  const storedValue = sessionStorage.getItem(key);
+  if (storedValue) {
+    try {
+      return JSON.parse(storedValue) as T;
+    } catch (e) {
+      console.error(`Failed to parse sessionStorage item "${key}":`, e);
+    }
+  }
+  return defaultValue;
+};
+
 const useInventoryParamsStore = createWithEqualityFn<State & Actions>((set) => ({
-  ...initialState,
-  setParams: (newParams: Partial<State>) => {
+  pageNumber: getFromSessionStorage<number>('pageNumber', initialState.pageNumber),
+  pageSize: getFromSessionStorage<number>('pageSize', initialState.pageSize),
+  pageCount: getFromSessionStorage<number>('pageCount', initialState.pageCount),
+  orderBy: getFromSessionStorage<string>('orderBy', initialState.orderBy),
+  owner: getFromSessionStorage<string>('owner', initialState.owner),
+  setStateParams: (newState: Partial<State>) => {
       set((currentState) => {
-          if (newParams.pageNumber)
-              return { ...currentState, pageNumber: newParams.pageNumber };
-          else
-              // The pageNumber:1 is needed because for example if we set the pageSize to 10000 and we have less then 10000 results that means that all result will be in the page 1.
-              // If the pageNumber currently selected is some page different than 1 we will end up with a empty list of results returned.
-              return { ...currentState, ...newParams, pageNumber: 1 };
+          if (newState.pageNumber){
+            const state : State = {...currentState, pageNumber: newState.pageNumber };
+            Object.entries(state).forEach(([key, value])=> {
+              sessionStorage.setItem(key, JSON.stringify(value))
+            })
+            return state
+          }
+          else{
+            // The pageNumber:1 is needed because for example if we set the pageSize to 10000 and we have less then 10000 results that means that all result will be in the page 1.
+            // If the pageNumber currently selected is some page different than 1 we will end up with a empty list of results returned.
+            const state : State = {...currentState, ...newState, pageNumber: 1}
+            Object.entries(state).forEach(([key, value])=> {
+              sessionStorage.setItem(key, JSON.stringify(value))
+            })
+            return state
+          }
       });
   },
-  reset: () => set(initialState),
+  reset: () => {
+    const state : State = initialState
+    set(state)
+  }
 }), shallow);
 
 export default useInventoryParamsStore

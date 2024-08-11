@@ -12,6 +12,7 @@ import InventoryFilters from './InventoryFilters'
 import { Button, Spinner } from 'flowbite-react'
 import { IoAddCircleOutline } from 'react-icons/io5'
 import Link from 'next/link'
+import { copyFileSync } from 'fs'
 
 export default function InventoryListing() {
   const [loading, setLoading] = useState(true)
@@ -21,12 +22,15 @@ export default function InventoryListing() {
   // const params = useParamsStore(state => state)
 
   // This is a more advisable way of getting all the states that we are interesting in this component in a single property.
-  const params = useInventoryParamsStore(state => ({
-    pageNumber: state.pageNumber,
-    pageSize: state.pageSize,
-    orderBy: state.orderBy,
-    owner: state.owner
-  }))
+  const stateParams = useInventoryParamsStore(state => {
+    return {
+      pageNumber: state.pageNumber,
+      pageSize: state.pageSize,
+      pageCount: state.pageCount,
+      orderBy: state.orderBy,
+      owner: state.owner
+    }
+  })
 
   const data = useInventoryStore(state => ({
     inventoryItems: state.inventoryItems,
@@ -36,13 +40,12 @@ export default function InventoryListing() {
 
   const setData = useInventoryStore(state => state.setData)
 
-  const setParams = useInventoryParamsStore(state => state.setParams)
-  const queryString = qs.stringifyUrl({url: '', query: params})
-  const setPageNumber = (pageNumber: number) => setParams({pageNumber})
+  const setParams = useInventoryParamsStore(state => state.setStateParams)
+  const queryString = qs.stringifyUrl({url: '', query: stateParams})
+  const setPageNumber = (pageNumber: number) => setParams({pageNumber: pageNumber})
 
   useEffect(() => {
       getInventoryData(queryString).then(data => {
-        console.log(data) 
         setData(data)
         setLoading(false)
       })
@@ -75,7 +78,7 @@ export default function InventoryListing() {
             ))}
           </div>
           <div className='flex justify-center mt-4'>
-            <AppPagination currentPage={params.pageNumber} pageCount={data.pageCount} pageChanged={setPageNumber}/>
+            <AppPagination currentPage={stateParams.pageNumber} pageCount={data.pageCount} pageChanged={setPageNumber}/>
           </div>
         </>
       )}

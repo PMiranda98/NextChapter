@@ -19,11 +19,13 @@ const orderButtons = [
 ]
 
 export default function InventoryFilters() {
-  const params = useInventoryParamsStore(state => ({
-    pageSize: state.pageSize,
-    orderBy: state.orderBy,
-  }))
-  const setParams = useInventoryParamsStore(state => state.setParams)
+  const stateParams = useInventoryParamsStore(state => {
+    return {
+      orderBy: state.orderBy,
+      pageSize: state.pageSize
+    }
+  })
+  const setParams = useInventoryParamsStore(state => state.setStateParams)
 
   return (
     <div className='flex justify-between items-center mb-4'>
@@ -31,7 +33,7 @@ export default function InventoryFilters() {
         <span className='text-sm text-gray-500 mr-2'>Order by</span>
         <Button.Group>
           {orderButtons.map(({label, icon: Icon, value}, index) => (
-            <Button key={index} onClick={() => setParams({orderBy: value})} color={`${params.orderBy === value ? 'red':'gray'}`}>
+            <Button key={index} onClick={() => setParams({orderBy: value})} color={`${stateParams.orderBy === value ? 'red':'gray'}`}>
               <div className='flex items-center'>
                 <Icon className='mr-3 h-4 w-4'/>
                 {label}
@@ -44,7 +46,7 @@ export default function InventoryFilters() {
         <span className='text-sm text-gray-500 mr-2'>Page Size</span>
         <Button.Group>
           {pageSizeButtons.map((value, index) => (
-            <Button key={index} onClick={() => setParams({pageSize : value})} color={`${params.pageSize === value ? 'red':'gray'}`}>
+            <Button key={index} onClick={() => setParams({pageSize: value})} color={`${stateParams.pageSize === value ? 'red':'gray'}`}>
               {value}
             </Button>
           ))}
