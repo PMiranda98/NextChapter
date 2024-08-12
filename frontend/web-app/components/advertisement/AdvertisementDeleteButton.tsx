@@ -29,7 +29,7 @@ export default function AdvertisementEditButton({id} : Props){
 
     return (
         <div>
-            <Button color='failure' isProcessing={loading} onClick={doDelete}>
+            <Button outline color='failure' className="border" isProcessing={loading} onClick={doDelete}>
                 Delete Advertisement
             </Button>
         </div>

@@ -88,11 +88,6 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
                       </Sidebar.Item>
                     </div>
                     <div onClick={handleClose}>
-                      <Sidebar.Item icon={BiBook}>
-                        <Link href='/advertisement/create'>Sell my book</Link>
-                      </Sidebar.Item>
-                    </div>
-                    <div onClick={handleClose}>
                       <Sidebar.Item icon={HiCog}>
                         <Link href='/session'>Session (dev only)</Link>
                       </Sidebar.Item>

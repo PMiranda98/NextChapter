@@ -4,6 +4,7 @@ import Heading from "@/components/core/Heading";
 import InventoryItemDeleteButton from "@/components/inventory/InventoryItemDeleteButton";
 import InventoryItemDetailedSpecs from "@/components/inventory/InventoryItemDetailedSpecs";
 import InventoryItemEditButton from "@/components/inventory/InventoryItemEditButton";
+import AdvertisementCreateButton from "@/components/advertisement/AdvertisementCreateButton";
 
 export default async function Details({params} : {params: {id : string}}) {
   const data = await getDetailedViewData(params.id)
@@ -15,6 +16,7 @@ export default async function Details({params} : {params: {id : string}}) {
           <Heading title={`${data.name}`}/>
           <InventoryItemEditButton id={data.id}/>
           <InventoryItemDeleteButton id={data.id} />
+          <AdvertisementCreateButton item={data}/>
         </div>
       </div>
       <div className={`grid grid-cols-2 gap-6 mt-3`}>

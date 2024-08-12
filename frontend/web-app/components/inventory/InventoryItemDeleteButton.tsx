@@ -28,7 +28,7 @@ export default function InventoryItemDeleteButton({id} : Props){
 
     return (
         <div>
-            <Button color='failure' isProcessing={loading} onClick={doDelete}>
+            <Button outline className="border" color='failure' isProcessing={loading} onClick={doDelete}>
                 Delete Item
             </Button>
         </div>

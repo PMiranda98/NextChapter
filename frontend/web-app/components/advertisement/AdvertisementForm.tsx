@@ -12,6 +12,7 @@ import toast from 'react-hot-toast'
 import { UpdateAdvertisementDto } from '@/types/DTOs/advertisement/UpdateAdvertisementDto'
 import PhotoUploadWidget from '../core/PhotoUploadWidget'
 import Image from 'next/image'
+import useInventoryStore from '@/hooks/useInventoryStore'
 
 type Props = {
   advertisement?: Advertisement
@@ -23,16 +24,43 @@ export default function AdvertisementForm({advertisement} : Props) {
   const {control, handleSubmit, setFocus, reset, formState: {isSubmitting, isValid, isDirty, errors}} = useForm({
     mode: 'onTouched'
   })
+  const inventoryItemSelected = useInventoryStore(state => state.inventoryItemSelected)
+  const setInventoryItemSelected = useInventoryStore(state => state.setInventoryItemSelected)
 
   const [files, setFiles] = useState<Blob[]>([])
 
   useEffect(() => {
+    // This code runs on mount and whenever dependencies change
+    console.log('Component mounted or updated');
+    
     if(advertisement) {
+      console.log(advertisement)
       const {sellingPrice, offerTypePretended} = advertisement
-      const {name, author, literaryGenre, year} = advertisement.item
+      const {name, author, literaryGenre, year, photo} = advertisement.item
+      if(photo.url !== '') fetch(photo.url).then((response) => {
+        response.blob().then((blob) => {
+          setFiles([blob])
+        })
+      })
       reset({name, author, literaryGenre, year, sellingPrice, offerTypePretended})
     }
+    if(inventoryItemSelected) {
+      console.log(inventoryItemSelected)
+      const {name, author, literaryGenre, year, photo} = inventoryItemSelected
+      if(photo.url !== '') fetch(photo.url).then((response) => {
+        response.blob().then((blob) => {
+          setFiles([blob])
+        })
+      })
+      reset({name, author, literaryGenre, year})
+    }
     setFocus('name')
+
+    return () => {
+      // This code runs on unmount and before the effect runs again
+      console.log('Component will unmount or effect will re-run');
+      if(inventoryItemSelected) setInventoryItemSelected(undefined)
+    }
   }, [setFocus])
 
   const removePhoto = () => {
@@ -91,11 +119,11 @@ export default function AdvertisementForm({advertisement} : Props) {
         </div>
       </>}
       
-      {files && files.length === 0 && advertisement?.item?.photo.url == '' && (
+      {files && files.length === 0 && (
         <PhotoUploadWidget setFiles={setFiles}/>
       )}
 
-      {files && files.length > 0 && (
+      {files && files.length > 0 && inventoryItemSelected?.photo.url === undefined &&(
         <div className='grid grid-rows-80/20 place-items-center'>
           <Image src={URL.createObjectURL(files[0])} alt='Book Image' width='200' height='200' />
           <Button outline color='red' onClick={() => removePhoto()} className='border mt-3'>
@@ -104,12 +132,9 @@ export default function AdvertisementForm({advertisement} : Props) {
         </div>
       )}
 
-      {advertisement?.item?.photo.url && (
+      {inventoryItemSelected && inventoryItemSelected?.photo.url !== undefined && (
         <div className='grid grid-rows-80/20 place-items-center'>
-        <Image src={advertisement.item.photo.url} alt='Book Image' width='200' height='200' />
-        <Button outline color='red' onClick={() => removePhoto()} className='border mt-3'>
-          Remove
-        </Button>
+        <Image src={inventoryItemSelected.photo.url} alt='Book Image' width='200' height='200' />
       </div>
       )}
       

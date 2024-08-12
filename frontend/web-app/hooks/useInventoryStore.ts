@@ -6,16 +6,19 @@ type State = {
   inventoryItems: InventoryItem[]
   totalCount: number
   pageCount: number
+  inventoryItemSelected?: InventoryItem
 }
 
 type Actions = {
   setData: (data: PagedResults<InventoryItem>) => void
+  setInventoryItemSelected: (item?: InventoryItem) => void
 }
 
 const initialState: State = {
   inventoryItems: [],
   totalCount: 0,
-  pageCount: 0
+  pageCount: 0,
+  inventoryItemSelected: undefined
 }
 
 const useInventoryStore = createWithEqualityFn<State & Actions>((set) => ({
@@ -25,6 +28,12 @@ const useInventoryStore = createWithEqualityFn<State & Actions>((set) => ({
       inventoryItems: data.results,
       totalCount: data.totalCount,
       pageCount: data.pageCount
+    }))
+  },
+  setInventoryItemSelected: (item?: InventoryItem) => {
+    set((currentState) => ({
+      ...currentState,
+      inventoryItemSelected: item
     }))
   }
 }), shallow)

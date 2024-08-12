@@ -28,7 +28,12 @@ export default function InventoryItemForm({item} : Props) {
 
   useEffect(() => {
     if(item) {
-      const {name, author, literaryGenre, year} = item
+      const {name, author, literaryGenre, year, photo} = item
+      if(photo.url !== '') fetch(photo.url).then((response) => {
+        response.blob().then((blob) => {
+          setFiles([blob])
+        })
+      })
       reset({name, author, literaryGenre, year})
     }
     setFocus('name')
@@ -82,7 +87,7 @@ export default function InventoryItemForm({item} : Props) {
         <Input label='Year' name='year' control={control} type='number' rules={{required: 'Year is required.'}} />
       </div>
       
-      {files && files.length === 0 && item?.photo.url == '' && (
+      {files && files.length === 0 && (
         <PhotoUploadWidget setFiles={setFiles}/>
       )}
 
@@ -93,15 +98,6 @@ export default function InventoryItemForm({item} : Props) {
             Remove
           </Button>
         </div>
-      )}
-
-      {item?.photo.url && (
-        <div className='grid grid-rows-80/20 place-items-center'>
-        <Image src={item.photo.url} alt='Book Image' width='200' height='200' />
-        <Button outline color='red' onClick={() => removePhoto()} className='border mt-3'>
-          Remove
-        </Button>
-      </div>
       )}
       
       <div className='flex justify-between'>
