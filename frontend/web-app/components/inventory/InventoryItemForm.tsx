@@ -34,6 +34,14 @@ export default function InventoryItemForm({item} : Props) {
     setFocus('name')
   }, [setFocus])
 
+  const removePhoto = () => {
+    setFiles([])
+    if(item) {
+      item.photo.url = ''
+      item.photo.id = ''
+    }
+  }
+
   const onSubmit = async (data: FieldValues) => {
     try {
       let id 
@@ -74,17 +82,26 @@ export default function InventoryItemForm({item} : Props) {
         <Input label='Year' name='year' control={control} type='number' rules={{required: 'Year is required.'}} />
       </div>
       
-      {files && files.length === 0 && (
+      {files && files.length === 0 && item?.photo.url == '' && (
         <PhotoUploadWidget setFiles={setFiles}/>
       )}
 
       {files && files.length > 0 && (
         <div className='grid grid-rows-80/20 place-items-center'>
           <Image src={URL.createObjectURL(files[0])} alt='Book Image' width='200' height='200' />
-          <Button outline color='red' onClick={() => setFiles([])} className='border'>
+          <Button outline color='red' onClick={() => removePhoto()} className='border mt-3'>
             Remove
           </Button>
         </div>
+      )}
+
+      {item?.photo.url && (
+        <div className='grid grid-rows-80/20 place-items-center'>
+        <Image src={item.photo.url} alt='Book Image' width='200' height='200' />
+        <Button outline color='red' onClick={() => removePhoto()} className='border mt-3'>
+          Remove
+        </Button>
+      </div>
       )}
       
       <div className='flex justify-between'>

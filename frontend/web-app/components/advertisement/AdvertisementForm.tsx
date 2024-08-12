@@ -35,6 +35,14 @@ export default function AdvertisementForm({advertisement} : Props) {
     setFocus('name')
   }, [setFocus])
 
+  const removePhoto = () => {
+    setFiles([])
+    if(advertisement?.item) {
+      advertisement.item.photo.url = ''
+      advertisement.item.photo.id = ''
+    }
+  }
+
   const onSubmit = async (data: FieldValues) => {
     try {
       let id 
@@ -83,17 +91,26 @@ export default function AdvertisementForm({advertisement} : Props) {
         </div>
       </>}
       
-      {files && files.length === 0 && (
+      {files && files.length === 0 && advertisement?.item?.photo.url == '' && (
         <PhotoUploadWidget setFiles={setFiles}/>
       )}
 
       {files && files.length > 0 && (
         <div className='grid grid-rows-80/20 place-items-center'>
           <Image src={URL.createObjectURL(files[0])} alt='Book Image' width='200' height='200' />
-          <Button outline color='red' onClick={() => setFiles([])} className='border'>
+          <Button outline color='red' onClick={() => removePhoto()} className='border mt-3'>
             Remove
           </Button>
         </div>
+      )}
+
+      {advertisement?.item?.photo.url && (
+        <div className='grid grid-rows-80/20 place-items-center'>
+        <Image src={advertisement.item.photo.url} alt='Book Image' width='200' height='200' />
+        <Button outline color='red' onClick={() => removePhoto()} className='border mt-3'>
+          Remove
+        </Button>
+      </div>
       )}
       
       <div className='flex justify-between'>
