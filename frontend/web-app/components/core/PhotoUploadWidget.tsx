@@ -52,7 +52,7 @@ export default function PhotoUploadWidget({setFiles} : Props) {
         </div>
         {photos && photos.length > 0 && (
           <>
-            <div className='row-span-4 img-preview' />
+            <div className='row-span-4 img-preview' style={{minHeight: 200, minWidth: 200, overflow: 'hidden'}}/>
             <ButtonGroup>
               <Button onClick={onCrop} color="success">
                 <FaCheck className="mr-2 h-5 w-5" />

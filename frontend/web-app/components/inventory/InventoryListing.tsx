@@ -13,8 +13,13 @@ import { Button, Spinner } from 'flowbite-react'
 import { IoAddCircleOutline } from 'react-icons/io5'
 import Link from 'next/link'
 import { copyFileSync } from 'fs'
+import InventoryCardSelectable from './InventoryCardSelectable'
 
-export default function InventoryListing() {
+type Props = {
+  from?: string
+}
+
+export default function InventoryListing({from} : Props) {
   const [loading, setLoading] = useState(true)
 
   // This is not advisable because if any of the state changes (we might have a lot more in the store than what we actually need here)
@@ -73,9 +78,13 @@ export default function InventoryListing() {
       ) : (
         <>
           <div className='grid grid-cols-4 gap-6'>
-            {data.inventoryItems.map((item) => (
-              <InventoryCard key={item.id} item={item}/>
-            ))}
+            {data.inventoryItems.map((item) => 
+            {
+              if(from==='offer')
+                return (<InventoryCardSelectable key={item.id} item={item}/>)
+              else 
+                return (<InventoryCard key={item.id} item={item}/>)
+            })}
           </div>
           <div className='flex justify-center mt-4'>
             <AppPagination currentPage={stateParams.pageNumber} pageCount={data.pageCount} pageChanged={setPageNumber}/>

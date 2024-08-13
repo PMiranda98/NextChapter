@@ -1,5 +1,7 @@
+'use client'
+
 import { InventoryItem } from '@/types'
-import React from 'react'
+import React, { useState } from 'react'
 import ItemImage from '../core/ItemImage'
 import Link from 'next/link'
 
@@ -8,11 +10,17 @@ type Props = {
 }
 
 export default function InventoryCard({item} : Props) {
+    const [selected, setSelected] = useState(false)
+  
+    const handleClick = () => {
+        if(selected) setSelected(false) 
+        else setSelected(true)
+    }
 
-  console.log("Card not selectable")
+    console.log("Card Selectable")
 
-  return (
-      <Link href={`/inventory/details/${item.id}`} className='group'>
+    return (
+      <div className='group' onClick={() => handleClick()}>
         <div className='w-full bg-gray-200 aspect-h-6 aspect-w-10 rounded-lg overflow-hidden'>
           <div>
             <ItemImage image={item.photo} />
@@ -27,6 +35,6 @@ export default function InventoryCard({item} : Props) {
           </h3>
           <p className='font-semibold text-sm'>{item.year}</p>
         </div>
-      </Link>
+      </div>
   )
 }

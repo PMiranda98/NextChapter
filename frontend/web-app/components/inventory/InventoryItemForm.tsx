@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 import Input from '../core/Input'
-import { Button } from 'flowbite-react'
+import { Button, Spinner } from 'flowbite-react'
 import { usePathname, useRouter } from 'next/navigation'
 import { InventoryItem  } from '@/types'
 import toast from 'react-hot-toast'
@@ -25,15 +25,20 @@ export default function InventoryItemForm({item} : Props) {
   })
 
   const [files, setFiles] = useState<Blob[]>([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if(item) {
       const {name, author, literaryGenre, year, photo} = item
-      if(photo.url !== '') fetch(photo.url).then((response) => {
-        response.blob().then((blob) => {
-          setFiles([blob])
+      if(photo.url !== '') {
+        setLoading(true)
+        fetch(photo.url).then((response) => {
+          response.blob().then((blob) => {
+            setFiles([blob])
+            setLoading(false)
+          })
         })
-      })
+      } 
       reset({name, author, literaryGenre, year})
     }
     setFocus('name')
@@ -77,6 +82,12 @@ export default function InventoryItemForm({item} : Props) {
       toast.error(error.status + ' ' + error.message)
     }
   }
+
+  if(loading) return (
+    <div className='flex h-screen justify-center items-center'>
+      <Spinner />
+    </div>
+  )
 
   return (
     <form className='flex flex-col mt-3' onSubmit={handleSubmit(onSubmit)}>
