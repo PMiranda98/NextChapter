@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import InventoryCard from './InventoryCard'
 import AppPagination from '../core/AppPagination'
 import qs from 'query-string'
@@ -14,12 +14,14 @@ import { IoAddCircleOutline } from 'react-icons/io5'
 import Link from 'next/link'
 import { copyFileSync } from 'fs'
 import InventoryCardSelectable from './InventoryCardSelectable'
+import { InventoryItem } from '@/types'
 
 type Props = {
   from?: string
+  setBooksSelected?: Dispatch<SetStateAction<InventoryItem[]>>
 }
 
-export default function InventoryListing({from} : Props) {
+export default function InventoryListing({from, setBooksSelected} : Props) {
   const [loading, setLoading] = useState(true)
 
   // This is not advisable because if any of the state changes (we might have a lot more in the store than what we actually need here)
@@ -80,8 +82,8 @@ export default function InventoryListing({from} : Props) {
           <div className='grid grid-cols-4 gap-6'>
             {data.inventoryItems.map((item) => 
             {
-              if(from==='offer')
-                return (<InventoryCardSelectable key={item.id} item={item}/>)
+              if(from==='offer' && setBooksSelected !== undefined)
+                return (<InventoryCardSelectable key={item.id} item={item} setBooksSelected={setBooksSelected}/>)
               else 
                 return (<InventoryCard key={item.id} item={item}/>)
             })}

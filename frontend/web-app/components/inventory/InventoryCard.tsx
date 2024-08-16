@@ -8,9 +8,6 @@ type Props = {
 }
 
 export default function InventoryCard({item} : Props) {
-
-  console.log("Card not selectable")
-
   return (
       <Link href={`/inventory/details/${item.id}`} className='group'>
         <div className='w-full bg-gray-200 aspect-h-6 aspect-w-10 rounded-lg overflow-hidden'>

@@ -4,11 +4,12 @@ import { Label, RangeSlider } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 
 type Props = {
+  setAmount: (value: string) => void
   sellingPrice: number
   isExchange: boolean
 }
 
-export default function OfferAmoutRangeSlider({sellingPrice, isExchange} : Props) {
+export default function OfferAmoutRangeSlider({setAmount, sellingPrice, isExchange} : Props) {
   const [isExchangeSelected, setIsExchangeSelected] = useState(isExchange);
   const [amountValue, setAmountValue] = useState(isExchangeSelected ? '0' : sellingPrice.toString())
 
@@ -17,6 +18,7 @@ export default function OfferAmoutRangeSlider({sellingPrice, isExchange} : Props
   }, [isExchange])
 
   const handleAmountValue = (value: string) => {
+    setAmount(value)
     setAmountValue(value)
   }
   

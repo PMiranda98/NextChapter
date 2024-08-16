@@ -13,11 +13,13 @@ async function get(url: string) {
   return await handleResponse(response)
 }
 
-async function post(url: string, formData: FormData){
+async function post(url: string, data: FormData | {}){
+  const isFormData = data instanceof FormData
+  
   const requestOptions = {
     method: 'POST',
     headers: await getHeaders(),
-    body: formData
+    body: isFormData ? data : JSON.stringify(data)
   }
   const response = await fetch(baseUrl + url, requestOptions)
   return await handleResponse(response)
