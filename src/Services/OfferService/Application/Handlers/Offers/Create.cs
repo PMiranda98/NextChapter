@@ -19,7 +19,6 @@ namespace Application.Handlers.Offers
         public class Command : IRequest<Result<CreatedOfferDto>>
         {
             public required CreateOfferDto CreateOfferDto { get; set; }
-            public required string Buyer { get; set; }
             public required string AdvertisementId { get; set; }
         }
 
@@ -41,7 +40,6 @@ namespace Application.Handlers.Offers
             public async Task<Result<CreatedOfferDto>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var offer = _mapper.Map<Offer>(request.CreateOfferDto);
-                offer.Buyer = request.Buyer;
                 offer.AdvertisementId = request.AdvertisementId;
 
                 // Make a gRPC call to the advertisement service to check if the advertisement exists.

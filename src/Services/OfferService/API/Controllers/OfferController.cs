@@ -1,4 +1,7 @@
-﻿using Application.Handlers.Offers;
+﻿using API.RequestHelpers;
+using Application.Handlers.Offers;
+using AutoMapper;
+using Domain.DTOs.Input;
 using Domain.DTOs.Input.Offer;
 using Domain.DTOs.Output;
 using MediatR;
@@ -12,10 +15,12 @@ namespace API.Controllers
     [ApiController]
     public class OfferController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public OfferController(IMediator mediator)
+        public OfferController(IMapper mapper, IMediator mediator)
         {
+            _mapper = mapper;
             _mediator = mediator;
         }
 
@@ -23,13 +28,14 @@ namespace API.Controllers
         [HttpPost("{advertisementId}")]
         public async Task<IActionResult> Create(string advertisementId, CreateOfferDto createOfferDto, CancellationToken cancellationToken)
         {
-            return HandleResult(await _mediator.Send(new Create.Command { CreateOfferDto = createOfferDto, Buyer = User.Identity.Name, AdvertisementId = advertisementId }, cancellationToken));
+            return HandleResult(await _mediator.Send(new Create.Command { CreateOfferDto = createOfferDto, AdvertisementId = advertisementId }, cancellationToken));
         }
 
-        [HttpGet("{advertisementId}")]
-        public async Task<IActionResult> GetOffersForAdvertisement(string advertisementId, CancellationToken cancellationToken)
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] SearchParams searchParams, CancellationToken cancellationToken)
         {
-            return HandleResult(await _mediator.Send(new ListByAdvertisement.Query { AdvertisementId = advertisementId }, cancellationToken));
+            return HandleResult(await _mediator.Send(new List.Query { SearchInputDTO = _mapper.Map<SearchInputDTO>(searchParams), Username = User.Identity.Name }, cancellationToken));
         }
 
         private ActionResult HandleResult<T>(Result<T>? result, string? uri = null)

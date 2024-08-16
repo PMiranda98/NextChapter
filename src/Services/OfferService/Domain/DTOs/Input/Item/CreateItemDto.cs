@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,6 +19,6 @@ namespace Domain.DTOs.Input.Item
         [Required]
         public required int Year { get; set; }
         [Required]
-        public required string Image { get; set; }
+        public required Photo Photo { get; set; }
     }
 }

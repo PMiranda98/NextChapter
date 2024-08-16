@@ -1,4 +1,6 @@
-﻿using Domain.DTOs.Output.Offer;
+﻿using Domain.DTOs.Input;
+using Domain.DTOs.Output;
+using Domain.DTOs.Output.Offer;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace Domain.Repositories
     public interface IOfferRepository
     {
         public Task CreateOffer(Offer offer, CancellationToken cancellationToken);
+        public Task<SearchOutputDTO<Offer>> ListOffers(SearchInputDTO searchOfferParams, string username, CancellationToken cancellationToken);
         public Task<List<Offer>> ListOffersByAdvertisement(string advertisementId, CancellationToken cancellationToken);
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
         public Task<List<Offer>> ListOffersNeededToBeRejected(CancellationToken cancellationToken);

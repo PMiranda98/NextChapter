@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.DTOs.Input.Item;
 using Domain.DTOs.Input.Offer;
+using Domain.DTOs.Output;
 using Domain.DTOs.Output.Item;
 using Domain.DTOs.Output.Offer;
 using Domain.Entities;
@@ -29,6 +30,8 @@ namespace Application.Mapping
                 .ForMember(dest => dest.ItemsToExchange, opt => opt.MapFrom(src => src.ItemsToExchange));
             CreateMap<Item, ItemDto>()
                 .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
+
+            CreateMap<SearchOutputDTO<Offer>, SearchOutputDTO<OfferDto>>();
         }
     }
 }

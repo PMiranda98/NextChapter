@@ -7,6 +7,10 @@ namespace Domain.DTOs.Input.Offer
     public class CreateOfferDto
     {
         [Required]
+        public required string Recipient { get; set; }
+        [Required]
+        public required string Sender { get; set; }
+        [Required]
         public required OfferType Type { get; set; }
         [Required]
         public required int Amount { get; set; }

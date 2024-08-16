@@ -2,6 +2,7 @@
 
 import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore'
 import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
+import useOfferParamsStore from '@/hooks/useOfferParamsStore'
 import { Drawer, Sidebar } from 'flowbite-react'
 import { User } from 'next-auth'
 import { signOut } from 'next-auth/react'
@@ -11,6 +12,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { BiBook, BiBookOpen } from 'react-icons/bi'
+import { BsCurrencyEuro } from 'react-icons/bs'
+import { FaExchangeAlt } from 'react-icons/fa'
 import { GiBookshelf } from 'react-icons/gi'
 import { HiCog, HiUser } from 'react-icons/hi2'
 
@@ -28,6 +31,7 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
   
   const setAdvertisementParams = useAdvertisementParamsStore(state => state.setParams)
   const setInventoryParams = useInventoryParamsStore(state => state.setStateParams)
+  const setOfferParams = useOfferParamsStore(state => state.setStateParams)
   const router = useRouter()
   const pathname = usePathname()
 
@@ -59,6 +63,11 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
     if(pathname !== '/inventory/list') router.push('/inventory/list')
   }
 
+  const goToOffers = () => {
+    handleClose()
+    if(pathname !== '/offer/list') router.push('/offer/list')
+  }
+
   return (
     <>
       <Drawer open={isOpen} onClose={handleClose} position='right' >
@@ -75,6 +84,11 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
                     <div onClick={setSeller}>
                       <Sidebar.Item icon={HiUser}>
                         My Advertisements
+                      </Sidebar.Item>
+                    </div>
+                    <div onClick={goToOffers}>
+                      <Sidebar.Item icon={BsCurrencyEuro}>
+                        Offers
                       </Sidebar.Item>
                     </div>
                     <div onClick={goToInventory}>

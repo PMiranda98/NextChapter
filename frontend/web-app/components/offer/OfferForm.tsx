@@ -16,10 +16,12 @@ import { createOffer } from '@/actions/offer'
 
 type Props = {
   advertisementId: string
+  username: string
+  advertisementSeller: string
   sellingPrice: number
 }
 
-export default function OfferForm({advertisementId, sellingPrice} : Props) {
+export default function OfferForm({advertisementId, advertisementSeller, sellingPrice, username} : Props) {
   const router = useRouter()
   const {control, handleSubmit, formState: {isSubmitting, isValid}} = useForm()
 
@@ -41,15 +43,15 @@ export default function OfferForm({advertisementId, sellingPrice} : Props) {
     try {
       let id 
       let response
-      console.log(data)
-      const createOfferDto = mapToCreateOfferDto(data, booksSelected, amount)
+      //console.log(data)
+      const createOfferDto = mapToCreateOfferDto(data, booksSelected, amount, advertisementSeller, username)
       console.log(createOfferDto)
-      //response = await createOffer(advertisementId, createOfferDto)
-      //id = response.id
-      //if(response.error){
-      //  throw response.error
-      //}
-      //router.push(`/offer/details/${id}`)
+      response = await createOffer(advertisementId, createOfferDto)
+      id = response.id
+      if(response.error){
+        throw response.error
+      }
+      router.push(`/offer/details/${id}`)
     } catch (error: any) {
       toast.error(error.status + ' ' + error.message)
     }
@@ -87,8 +89,10 @@ export default function OfferForm({advertisementId, sellingPrice} : Props) {
   )
 }
 
-const mapToCreateOfferDto = (data: FieldValues, booksSelected: InventoryItem[], amount: string) => {
+const mapToCreateOfferDto = (data: FieldValues, booksSelected: InventoryItem[], amount: string, advertisementSeller: string, username: string) => {
   const createOfferDto : CreateOfferDto = {
+    recipient: advertisementSeller,
+    sender: username,
     type: data.offerType,
     amount: Number(amount),
     comment: data.comment,

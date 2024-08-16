@@ -15,10 +15,10 @@ async function get(url: string) {
 
 async function post(url: string, data: FormData | {}){
   const isFormData = data instanceof FormData
-  
+
   const requestOptions = {
     method: 'POST',
-    headers: await getHeaders(),
+    headers: isFormData ? await getHeaders() : await getHeaders('application/json'),
     body: isFormData ? data : JSON.stringify(data)
   }
   const response = await fetch(baseUrl + url, requestOptions)

@@ -34,7 +34,10 @@ export default async function Details({params} : {params: {id : string}}) {
           <AdvertisementDetailedSpecs advertisement={data}/>
         </div>
       </div>
-      {data.seller !== user?.username && <OfferForm advertisementId={data.id} sellingPrice={data.sellingPrice}/>}
+      {data.seller !== user?.username 
+      && data.seller !== undefined
+      && user?.username !== undefined 
+      && <OfferForm advertisementId={data.id} advertisementSeller={data.seller} username={user.username} sellingPrice={data.sellingPrice}/>}
     </div>
   )
 }

@@ -13,13 +13,16 @@ namespace Infrastructure.Mapping
         public MappingProfiles()
         {
             // Event bus maps
+            CreateMap<EventBus.Contracts.Models.Photo, Domain.Entities.Photo>();
             CreateMap<AdvertisementCreated, Advertisement>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-            CreateMap<ItemCreated, Item>();
+            CreateMap<ItemCreated, Item>()
+                .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
             CreateMap<AdvertisementUpdated, UpdateAdvertisementDto>()
                 .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src.Item));
-            CreateMap<ItemUpdated, UpdateItemDto>();
+            CreateMap<ItemUpdated, UpdateItemDto>()
+                .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
             CreateMap<OfferPlaced, PlacedOfferDto>();
 
