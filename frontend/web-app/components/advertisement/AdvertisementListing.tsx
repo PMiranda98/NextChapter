@@ -26,7 +26,7 @@ export default function AdvertisementListing() {
     orderBy: state.orderBy,
     filterBy: state.filterBy,
     seller: state.seller,
-    winner: state.winner
+    buyer: state.buyer
   }))
 
   const data = useAdvertisementStore(state => ({

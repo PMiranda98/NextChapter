@@ -38,7 +38,7 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
   const setSeller = () => {
     setAdvertisementParams({
       seller: user.username,
-      winner: undefined
+      buyer: undefined
     })
 
     handleClose()
@@ -48,7 +48,7 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
   const setWinner = () => {
     setAdvertisementParams({
       seller: undefined,
-      winner: user.username
+      buyer: user.username
     })
 
     handleClose()

@@ -10,7 +10,7 @@ type Props = {
 export default function InventoryCard({item} : Props) {
   return (
       <Link href={`/inventory/details/${item.id}`} className='group'>
-        <div className='w-full bg-gray-200 aspect-h-6 aspect-w-10 rounded-lg overflow-hidden'>
+        <div className='w-80 h-auto bg-gray-200 aspect-h-10 aspect-w-8 rounded-lg overflow-hidden'>
           <div>
             <ItemImage image={item.photo} />
           </div>

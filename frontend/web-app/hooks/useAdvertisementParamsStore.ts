@@ -11,7 +11,7 @@ type State = {
   orderBy: string
   filterBy: string
   seller?: string
-  winner?: string
+  buyer?: string
 }
 
 type Actions = {
@@ -29,7 +29,7 @@ const initialState: State = {
   orderBy: '',
   filterBy: '',
   seller: undefined,
-  winner: undefined
+  buyer: undefined
 }
 
 const useAdvertisementParamsStore = createWithEqualityFn<State & Actions>((set) => ({

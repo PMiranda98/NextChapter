@@ -12,15 +12,15 @@ type Props = {
 export default function InventoryCard({offer} : Props) {
   return (
       <Link href={`/inventory/details/${offer.id}`} className='group'>
-        <div className='w-full bg-gray-200 aspect-h-6 aspect-w-10 rounded-lg overflow-hidden'>
+        <div className='w-80 h-auto bg-gray-200 aspect-h-10 aspect-w-8 rounded-lg overflow-hidden'>
           {offer.type === "Purchase" && (
             <div>
-                <MdCurrencyExchange />
+                <MdCurrencyExchange className='w-full h-full'/>
             </div>
           )}
           {offer.type === "Exchange" && (
             <div>
-                <FaExchangeAlt />
+                <FaExchangeAlt className='w-full h-full'/>
             </div>
           )}
         </div>

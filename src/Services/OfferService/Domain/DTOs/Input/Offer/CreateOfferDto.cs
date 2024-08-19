@@ -14,8 +14,7 @@ namespace Domain.DTOs.Input.Offer
         public required OfferType Type { get; set; }
         [Required]
         public required int Amount { get; set; }
-        [Required]
-        public required string Comment { get; set; }
+        public string? Comment { get; set; }
         public List<CreateItemDto>? ItemsToExchange { get; set; }
     }
 }
