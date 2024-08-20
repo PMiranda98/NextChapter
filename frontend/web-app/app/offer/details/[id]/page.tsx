@@ -8,7 +8,7 @@ import { detailsOffer } from "@/actions/offer";
 
 export default async function Details({params} : {params: {id : string}}) {
   const data = await detailsOffer(params.id)
-  console.log(data)
+  console.log(data.itemsToExchange)
   
   return (
     <div>

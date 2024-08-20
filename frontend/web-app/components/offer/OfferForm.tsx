@@ -13,6 +13,7 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { CreateOfferDto } from '@/types/DTOs/offer/CreateOfferDto'
 import { createOffer } from '@/actions/offer'
+import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
 
 type Props = {
   advertisementId: string
@@ -24,14 +25,18 @@ type Props = {
 export default function OfferForm({advertisementId, advertisementSeller, sellingPrice, username} : Props) {
   const router = useRouter()
   const {control, handleSubmit, formState: {isSubmitting, isValid}} = useForm()
+  const setInventoryParams = useInventoryParamsStore(state => state.setStateParams)
 
   const [exchangeSection, setExchangeSection] = useState(false)
   const [booksSelected, setBooksSelected] = useState<InventoryItem[]>([])
   const [amount, setAmount] = useState(`${sellingPrice}`)
 
   const handleSetExchangeSection = (value: SetStateAction<boolean>) => {
-    if(value === false)
+    if(value === false){
       setBooksSelected([])
+      setInventoryParams({owner: undefined})
+    }
+    setInventoryParams({owner: username})
     setExchangeSection(value)
   }
 

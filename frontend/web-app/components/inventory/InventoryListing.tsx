@@ -53,6 +53,7 @@ export default function InventoryListing({from, setBooksSelected} : Props) {
 
   useEffect(() => {
       getInventoryData(queryString).then(data => {
+        console.log(data)
         setData(data)
         setLoading(false)
       })

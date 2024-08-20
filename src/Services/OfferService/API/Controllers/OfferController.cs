@@ -32,6 +32,13 @@ namespace API.Controllers
         }
 
         [Authorize]
+        [HttpGet("{id}")] //api/offer/id
+        public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
+        {
+            return HandleResult(await _mediator.Send(new Details.Query { Id = id }, cancellationToken));
+        }
+
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] SearchParams searchParams, CancellationToken cancellationToken)
         {

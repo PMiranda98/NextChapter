@@ -7,7 +7,7 @@ export type Offer = {
   date: string
   status: string
   type: string
-  amount: string
+  amount: number
   comment: string
-  item: Item[]
+  itemsToExchange: Item[]
 }

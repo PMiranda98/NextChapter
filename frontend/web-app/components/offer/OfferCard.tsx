@@ -9,9 +9,9 @@ type Props = {
   offer: Offer
 }
 
-export default function InventoryCard({offer} : Props) {
+export default function OfferCard({offer} : Props) {
   return (
-      <Link href={`/inventory/details/${offer.id}`} className='group'>
+      <Link href={`/offer/details/${offer.id}`} className='group'>
         <div className='w-80 h-auto bg-gray-200 aspect-h-10 aspect-w-8 rounded-lg overflow-hidden'>
           {offer.type === "Purchase" && (
             <div>

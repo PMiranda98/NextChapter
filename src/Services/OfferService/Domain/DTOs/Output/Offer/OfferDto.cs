@@ -12,7 +12,8 @@ namespace Domain.DTOs.Output.Offer
     {
         public Guid Id { get; set; }
         public required Guid AdvertisementId { get; set; }
-        public required string Buyer { get; set; }
+        public required string Recipient { get; set; }
+        public required string Sender { get; set; }
         public required DateTime Date { get; set; }
         public required OfferStatus Status { get; set; }
         public required OfferType Type { get; set; }

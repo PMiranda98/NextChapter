@@ -71,6 +71,11 @@ namespace Persistence.Repositories
             return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.Date).Minutes > 2).ToListAsync(cancellationToken);
         }
 
+        public async Task<Offer?> DetailsOffer(Guid Id, CancellationToken cancellationToken)
+        {
+            return await _dataContext.Offers.Include(x => x.ItemsToExchange).ThenInclude(y => y.Photo).Where(x => x.Id == Id).FirstAsync(cancellationToken) ?? null;
+        }
+
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await _dataContext.SaveChangesAsync(cancellationToken);

@@ -1,5 +1,4 @@
 import Heading from '@/components/core/Heading'
-import InventoryListing from '@/components/inventory/InventoryListing'
 import OfferListing from '@/components/offer/OfferListing'
 import React from 'react'
 
