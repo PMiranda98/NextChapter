@@ -1,4 +1,5 @@
-﻿using Domain.DTOs.Output.Item;
+﻿using AdvertisementService.Domain.Entities;
+using Domain.DTOs.Output.Item;
 using Domain.Entities;
 
 namespace Domain.DTOs.Output.Advertisement;
@@ -14,7 +15,7 @@ public class AdvertisementDto
     public required DateTime CreatedAt { get; set; }
     public required DateTime UpdateAt { get; set; }
     public required DateTime EndedAt { get; set; }
-    public required string? Status { get; set; }
+    public required AdvertisementStatus? Status { get; set; }
     public required OfferTypePretended OfferTypePretended { get; set; }
     public required ItemDto? Item { get; set; }
 }

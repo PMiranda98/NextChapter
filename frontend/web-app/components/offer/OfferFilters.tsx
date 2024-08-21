@@ -13,6 +13,29 @@ const orderButtons = [
   }
 ]
 
+const offerStatusButtons = [
+  {
+    label: 'Live',
+    icon: MdUpload,
+    value: 'live'
+  },
+  {
+      label: 'Accepted',
+      icon: MdDownload,
+      value: 'accepted'
+  },
+  {
+    label: 'Rejected',
+    icon: MdDownload,
+    value: 'rejected'
+  },
+  {
+    label: 'Archived',
+    icon: MdDownload,
+    value: 'archived'
+  }
+]
+
 const offerDirectionButtons = [
     {
       label: 'Sent',
@@ -33,6 +56,7 @@ export default function OfferFilters() {
     return {
       orderBy: state.orderBy,
       pageSize: state.pageSize,
+      status: state.status,
       direction: state.direction
     }
   })
@@ -59,6 +83,20 @@ export default function OfferFilters() {
         <Button.Group>
           {offerDirectionButtons.map(({label, icon: Icon, value}, index) => (
             <Button key={index} onClick={() => setParams({direction: value})} color={`${stateParams.direction === value ? 'red':'gray'}`}>
+              <div className='flex items-center'>
+                <Icon className='mr-3 h-4 w-4'/>
+                {label}
+              </div>
+            </Button>
+          ))}
+        </Button.Group>
+      </div>
+
+      <div>
+        <span className='text-sm text-gray-500 mr-2'>Direction</span>
+        <Button.Group>
+          {offerStatusButtons.map(({label, icon: Icon, value}, index) => (
+            <Button key={index} onClick={() => setParams({status: value})} color={`${stateParams.status === value ? 'red':'gray'}`}>
               <div className='flex items-center'>
                 <Icon className='mr-3 h-4 w-4'/>
                 {label}

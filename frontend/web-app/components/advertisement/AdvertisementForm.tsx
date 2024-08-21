@@ -35,14 +35,14 @@ export default function AdvertisementForm({advertisement} : Props) {
     
     if(advertisement) {
       console.log(advertisement)
-      const {sellingPrice, offerTypePretended} = advertisement
+      const {sellingPrice, offerTypePretended, status} = advertisement
       const {name, author, literaryGenre, year, photo} = advertisement.item
       if(photo.url !== '') fetch(photo.url).then((response) => {
         response.blob().then((blob) => {
           setFiles([blob])
         })
       })
-      reset({name, author, literaryGenre, year, sellingPrice, offerTypePretended})
+      reset({name, author, literaryGenre, year, sellingPrice, offerTypePretended, status})
     }
     if(inventoryItemSelected) {
       console.log(inventoryItemSelected)
@@ -118,6 +118,10 @@ export default function AdvertisementForm({advertisement} : Props) {
           <Input label='Offer type pretended' name='offerTypePretended' control={control} rules={{required: 'Offer type pretended is required.'}} />
         </div>
       </>}
+
+      {pathname.startsWith('/advertisement/update') && 
+        <Input label='Status' name='status' control={control} rules={{required: 'Status is required.'}} />
+      }
       
       {files && files.length === 0 && (
         <PhotoUploadWidget setFiles={setFiles}/>
@@ -170,6 +174,7 @@ const mapToCreateAdvertisementDto = (data: FieldValues) => {
 const mapToUpdateAdvertisementDto = (data: FieldValues) => {
   const updateAdvertisementDto : UpdateAdvertisementDto = {
     sellingPrice: data.sellingPrice,
+    status: data.status,
     offerTypePretended: data.offerTypePretended,
     item: {
       name: data.name,

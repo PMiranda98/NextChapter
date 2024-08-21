@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
     public class Offer
     {
@@ -13,7 +6,8 @@ namespace Domain.Entities
         public required string AdvertisementId { get; set; }
         public required string Recipient { get; set; }
         public required string Sender { get; set; }
-        public required DateTime Date { get; set; } = DateTime.UtcNow;
+        public required DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? EndedAt { get; set; }
         public required OfferStatus Status { get; set; } = OfferStatus.Live;
         public required OfferType Type { get; set; }
         public required int Amount { get; set; } = 0;

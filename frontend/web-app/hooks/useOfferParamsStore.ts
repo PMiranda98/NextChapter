@@ -6,6 +6,7 @@ type State = {
     pageSize: number // page size selected
     pageCount: number // number of pages that exists that depends on the total number of results and the pageSize selected. 
     orderBy: string
+    status: string
     direction: string
 }
 
@@ -20,6 +21,7 @@ const initialState: State = {
     pageSize: 3,
     pageCount: 1,
     orderBy: '',
+    status: 'live',
     direction: 'received'
 }
 
@@ -40,6 +42,7 @@ const useOfferParamsStore = createWithEqualityFn<State & Actions>((set) => ({
     pageSize: getFromSessionStorage<number>('pageSize', initialState.pageSize),
     pageCount: getFromSessionStorage<number>('pageCount', initialState.pageCount),
     orderBy: getFromSessionStorage<string>('orderBy', initialState.orderBy),
+    status: getFromSessionStorage<string>('status', initialState.status),
     direction: getFromSessionStorage<string>('direction', initialState.direction),
     setStateParams: (newState: Partial<State>) => {
         set((currentState) => {

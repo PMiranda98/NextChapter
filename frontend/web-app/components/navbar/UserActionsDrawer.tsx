@@ -31,7 +31,6 @@ export default function UserActionsDrawer({user, onCloseDrawerClick} : Props) {
   
   const setAdvertisementParams = useAdvertisementParamsStore(state => state.setParams)
   const setInventoryParams = useInventoryParamsStore(state => state.setStateParams)
-  const setOfferParams = useOfferParamsStore(state => state.setStateParams)
   const router = useRouter()
   const pathname = usePathname()
 

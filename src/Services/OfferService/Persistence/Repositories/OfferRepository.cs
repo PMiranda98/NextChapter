@@ -34,10 +34,20 @@ namespace Persistence.Repositories
         {
 
             IQueryable<Offer>? query = null;
-            if (searchOfferParams.Direction == "sent")
-                query = _dataContext.Offers.Where(x => x.Sender == username);
-            else if (searchOfferParams.Direction == "received")
-                query = _dataContext.Offers.Where(x => x.Recipient == username);
+            
+            switch (searchOfferParams.Direction)
+            {
+                case "sent": query = _dataContext.Offers.Where(x => x.Sender == username); break;
+                case "received": query = _dataContext.Offers.Where(x => x.Recipient == username); break;
+            }
+
+            switch (searchOfferParams.Status)
+            {
+                case OfferStatus.Live: query = query.Where(x => x.Status == OfferStatus.Live); break;
+                case OfferStatus.Archived: query = query.Where(x => x.Status == OfferStatus.Archived); break;
+                case OfferStatus.Rejected: query = query.Where(x => x.Status == OfferStatus.Rejected); break;
+                case OfferStatus.Accepted: query = query.Where(x => x.Status == OfferStatus.Accepted); break;
+            }
 
             query = query
                 .Skip((searchOfferParams.PageNumber - 1) * searchOfferParams.PageSize)
@@ -47,7 +57,7 @@ namespace Persistence.Repositories
             var results = await query.ToListAsync(cancellationToken);
 
             if (searchOfferParams.OrderBy == "new")
-                results = results.OrderBy(x => x.Date).ToList();
+                results = results.OrderBy(x => x.CreatedAt).ToList();
 
             var totalCount = 0;
             if (searchOfferParams.Direction == "sent")
@@ -68,7 +78,7 @@ namespace Persistence.Repositories
         public async Task<List<Offer>> ListOffersNeededToBeRejected(CancellationToken cancellationToken)
         {
             //return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.Date).Days > 7).ToListAsync(cancellationToken);
-            return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.Date).Minutes > 2).ToListAsync(cancellationToken);
+            return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.CreatedAt).Minutes > 2).ToListAsync(cancellationToken);
         }
 
         public async Task<Offer?> DetailsOffer(Guid Id, CancellationToken cancellationToken)

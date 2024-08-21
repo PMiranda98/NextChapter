@@ -2,8 +2,6 @@
 
 import { fetchWrapper } from "@/lib/fetchWrapper";
 import { Advertisement, PagedResults } from "@/types";
-import { CreateAdvertisementDto } from "@/types/DTOs/advertisement/CreateAdvertisementDto";
-import { UpdateAdvertisementDto } from "@/types/DTOs/advertisement/UpdateAdvertisementDto";
 import { revalidatePath } from "next/cache";
 
 export async function getAdvertisementData(queryString: string): Promise<PagedResults<Advertisement>> {

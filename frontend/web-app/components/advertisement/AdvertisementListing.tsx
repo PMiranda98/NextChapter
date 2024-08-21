@@ -12,7 +12,7 @@ import useAdvertisementStore from '@/hooks/useAdvertisementStore';
 import { Spinner } from 'flowbite-react';
 
 type Props = {
-  username?: string
+  username: string | undefined
 }
 
 export default function AdvertisementListing({username} : Props) {

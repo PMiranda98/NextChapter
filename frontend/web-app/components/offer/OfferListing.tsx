@@ -31,6 +31,7 @@ export default function OfferListing() {
       pageSize: state.pageSize,
       pageCount: state.pageCount,
       orderBy: state.orderBy,
+      status: state.status,
       direction: state.direction
     }
   })
