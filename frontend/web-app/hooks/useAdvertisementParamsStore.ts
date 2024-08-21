@@ -9,7 +9,7 @@ type State = {
   searchTerm: string
   searchValue: string
   orderBy: string
-  filterBy: string
+  status: string
   seller?: string
   buyer?: string
 }
@@ -27,7 +27,7 @@ const initialState: State = {
   searchTerm: '',
   searchValue:'',
   orderBy: '',
-  filterBy: '',
+  status: 'live',
   seller: undefined,
   buyer: undefined
 }

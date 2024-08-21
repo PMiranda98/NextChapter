@@ -7,22 +7,22 @@ using MediatR;
 
 namespace Infrastructure.Consumers.OfferService
 {
-    public class AdvertisementFinishedConsumer : IConsumer<AdvertisementFinished>
+    public class AdvertisementSoldConsumer : IConsumer<AdvertisementSold>
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public AdvertisementFinishedConsumer(IMapper mapper, IMediator mediator)
+        public AdvertisementSoldConsumer(IMapper mapper, IMediator mediator)
         {
             _mapper = mapper;
             _mediator = mediator;
         }
-        public async Task Consume(ConsumeContext<AdvertisementFinished> context)
+        public async Task Consume(ConsumeContext<AdvertisementSold> context)
         {
             Console.WriteLine("=====> Consuming advertisement finished: " + context.Message.AdvertisementId);
 
-            var finishedAdvertisementDto = _mapper.Map<FinishedAdvertisementDto>(context.Message);
-            await _mediator.Send(new Finished.Command { FinishedAdvertisementDto = finishedAdvertisementDto });
+            var finishedAdvertisementDto = _mapper.Map<SoldAdvertisementDto>(context.Message);
+            await _mediator.Send(new Sold.Command { SoldAdvertisementDto = finishedAdvertisementDto });
         }
     }
 }

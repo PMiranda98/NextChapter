@@ -1,18 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Domain.DTOs.Input.Advertisement
+namespace EventBus.Contracts
 {
-    public class FinishedAdvertisementDto
+    public class AdvertisementSold
     {
-        [Required]
         public required bool ItemSold { get; set; }
-        [Required]
         public required string AdvertisementId { get; set; }
-        [Required]
         public required string? Buyer { get; set; }
-        [Required]
         public required string Seller { get; set; }
-        [Required]
+        public required DateTime? EndedAt { get; set; }
         public required int? Amount { get; set; }
     }
 }

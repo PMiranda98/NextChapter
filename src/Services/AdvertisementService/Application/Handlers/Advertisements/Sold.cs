@@ -5,11 +5,11 @@ using MediatR;
 
 namespace Application.Handlers.Advertisements
 {
-    public class Finished
+    public class Sold
     {
         public class Command : IRequest
         {
-            public required FinishedAdvertisementDto FinishedAdvertisementDto { get; set; }
+            public required SoldAdvertisementDto SoldAdvertisementDto { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -23,16 +23,16 @@ namespace Application.Handlers.Advertisements
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.FinishedAdvertisementDto.AdvertisementId, cancellationToken);
+                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.SoldAdvertisementDto.AdvertisementId, cancellationToken);
                 if (advertisement != null)
                 {
-                    if (request.FinishedAdvertisementDto.ItemSold)
+                    if (request.SoldAdvertisementDto.ItemSold)
                     {
-                        advertisement.Buyer = request.FinishedAdvertisementDto.Buyer;
-                        advertisement.SoldAmount = request.FinishedAdvertisementDto.Amount;
+                        advertisement.Buyer = request.SoldAdvertisementDto.Buyer;
+                        advertisement.SoldAmount = request.SoldAdvertisementDto.Amount;
                     }
 
-                    advertisement.Status = AdvertisementStatus.Finished;
+                    advertisement.Status = AdvertisementStatus.Sold;
 
                     await _advertisementRepository.SaveChangesAsync(cancellationToken);
                 }

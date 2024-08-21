@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Infrastructure.Consumers.OfferService
 {
-    public class AdvertisementFinishedConsumer : IConsumer<AdvertisementFinished>
+    public class AdvertisementFinishedConsumer : IConsumer<AdvertisementSold>
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
@@ -17,7 +17,7 @@ namespace Infrastructure.Consumers.OfferService
             _mapper = mapper;
             _mediator = mediator;
         }
-        public async Task Consume(ConsumeContext<AdvertisementFinished> context)
+        public async Task Consume(ConsumeContext<AdvertisementSold> context)
         {
             Console.WriteLine("=====> Consuming advertisement finished");
 

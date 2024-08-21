@@ -26,7 +26,7 @@ namespace Infrastructure.Mapping
 
             CreateMap<Domain.Entities.Photo, EventBus.Contracts.Models.Photo>();
             
-            CreateMap<AdvertisementFinished, FinishedAdvertisementDto>();
+            CreateMap<AdvertisementSold, SoldAdvertisementDto>();
 
             CreateMap<OfferPlaced, OfferPlacedDto>();
         }

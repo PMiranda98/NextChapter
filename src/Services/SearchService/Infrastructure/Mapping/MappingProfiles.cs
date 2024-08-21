@@ -26,7 +26,7 @@ namespace Infrastructure.Mapping
 
             CreateMap<OfferPlaced, PlacedOfferDto>();
 
-            CreateMap<AdvertisementFinished, FinishedAdvertisementDto>();
+            CreateMap<AdvertisementSold, FinishedAdvertisementDto>();
    
         }
     }

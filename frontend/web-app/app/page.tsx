@@ -1,9 +1,13 @@
+import { getCurrentUser } from "@/actions/auth";
 import AdvertisementListing from "../components/advertisement/AdvertisementListing";
 
-export default function Home() {
+export default async function Home() {
+  const username = await getCurrentUser().then((user) => user?.username)
+  console.log(username)
+
   return (
     <div>
-      <AdvertisementListing />
+      <AdvertisementListing username={username}/>
     </div>
   );
 }

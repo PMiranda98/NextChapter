@@ -15,8 +15,9 @@ namespace Persistence.Repositories
                 query.Match(Search.Full, searchAdvertisementParams.SearchTerm);
 
             //Filtering
-            switch (searchAdvertisementParams.FilterBy)
+            switch (searchAdvertisementParams.Status)
             {
+                case "archived": query.Match(x => x.Status == "Archived"); break;
                 case "sold": query.Match(x => x.Status == "Sold"); break;
                 default: query.Match(x => x.Status == "Live"); break;
             }

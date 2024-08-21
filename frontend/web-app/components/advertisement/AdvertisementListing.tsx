@@ -11,7 +11,11 @@ import EmptyFilter from '../core/EmptyFilter';
 import useAdvertisementStore from '@/hooks/useAdvertisementStore';
 import { Spinner } from 'flowbite-react';
 
-export default function AdvertisementListing() {
+type Props = {
+  username?: string
+}
+
+export default function AdvertisementListing({username} : Props) {
   const [loading, setLoading] = useState(true)
 
   // This is not advisable because if any of the state changes (we might have a lot more in the store than what we actually need here)
@@ -24,7 +28,7 @@ export default function AdvertisementListing() {
     pageSize: state.pageSize,
     searchTerm: state.searchTerm,
     orderBy: state.orderBy,
-    filterBy: state.filterBy,
+    status: state.status,
     seller: state.seller,
     buyer: state.buyer
   }))
@@ -57,7 +61,7 @@ export default function AdvertisementListing() {
 
   return (
     <>
-      <AdvertisementFilters/>
+      <AdvertisementFilters username={username}/>
       {data.totalCount === 0 ? (
         <EmptyFilter showReset/>
       ) : (

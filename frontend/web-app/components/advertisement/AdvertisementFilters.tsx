@@ -1,3 +1,4 @@
+import { getCurrentUser } from '@/actions/auth';
 import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore';
 import { Button } from 'flowbite-react';
 import React from 'react'
@@ -18,9 +19,17 @@ const orderButtons = [
     value: 'new'
   }
 ]
-const filterButtons = [
+const anonymounsUserFilterButtons = [
   {
-    label: 'Live Advertisement',
+    label: 'Live',
+    icon: GiFlame,
+    value: 'live'
+  }
+]
+
+const userFilterButtons = [
+  {
+    label: 'Live',
     icon: GiFlame,
     value: 'live'
   },
@@ -28,14 +37,24 @@ const filterButtons = [
     label: 'Sold',
     icon: BsStopwatchFill,
     value: 'sold'
+  },
+  {
+    label: 'Archived',
+    icon: BsStopwatchFill,
+    value: 'archived'
   }
 ]
 
-export default function AdvertisementFilters() {
+type Props = {
+  username: string | undefined
+}
+
+export default function AdvertisementFilters({username} : Props) {
   const params = useAdvertisementParamsStore(state => ({
     pageSize: state.pageSize,
     orderBy: state.orderBy,
-    filterBy: state.filterBy
+    status: state.status,
+    seller: state.seller
   }))
   const setParams = useAdvertisementParamsStore(state => state.setParams)
 
@@ -44,8 +63,16 @@ export default function AdvertisementFilters() {
       <div>
         <span className='text-sm text-gray-500 mr-2'>Filter by</span>
         <Button.Group>
-          {filterButtons.map(({label, icon: Icon, value}, index) => (
-            <Button key={index} onClick={() => setParams({filterBy: value})} color={`${params.filterBy === value ? 'red':'gray'}`}>
+          {(username === undefined || username !== params.seller) && anonymounsUserFilterButtons.map(({label, icon: Icon, value}, index) => (
+            <Button key={index} onClick={() => setParams({status: value})} color={`${params.status === value ? 'red':'gray'}`}>
+              <div className='flex items-center'>
+                <Icon className='mr-3 h-4 w-4'/>
+                {label}
+              </div>
+            </Button>
+          ))}
+          {username && username === params.seller && userFilterButtons.map(({label, icon: Icon, value}, index) => (
+            <Button key={index} onClick={() => setParams({status: value})} color={`${params.status === value ? 'red':'gray'}`}>
               <div className='flex items-center'>
                 <Icon className='mr-3 h-4 w-4'/>
                 {label}
