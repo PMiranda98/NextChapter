@@ -1,7 +1,6 @@
 import useOfferParamsStore from '@/hooks/useOfferParamsStore';
 import { Button } from 'flowbite-react';
 import React from 'react'
-import { AiOutlineSortAscending } from 'react-icons/ai';
 import { BsFillStopCircleFill} from 'react-icons/bs';
 import { MdDownload, MdUpload } from 'react-icons/md';
 

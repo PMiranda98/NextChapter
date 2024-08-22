@@ -25,27 +25,15 @@ async function post(url: string, data: FormData | {}){
   return await handleResponse(response)
 }
 
-/*
-async function post(url: string, body: {}){
-  const requestOptions = {
-    method: 'POST',
-    headers: await getHeaders(),
-    body: JSON.stringify(body)
-  }
+async function put(url: string, data: FormData | {}){
+  const isFormData = data instanceof FormData
 
-  const response = await fetch(baseUrl + url, requestOptions)
-  return await handleResponse(response)
-}
-*/
-
-async function put(url: string, formData: FormData){
   const requestOptions = {
     method: 'PUT',
-    headers: await getHeaders(),
-    body: formData
+    headers: isFormData ? await getHeaders() : await getHeaders('application/json'),
+    body: isFormData ? data: JSON.stringify(data)
   }
   const response = await fetch(baseUrl + url, requestOptions)
-  console.log(response)
   return await handleResponse(response)
 }
 

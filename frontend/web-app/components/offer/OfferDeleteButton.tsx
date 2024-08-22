@@ -1,6 +1,6 @@
 'use client'
 
-import { deleteAdvertisement } from "@/actions/advertisement";
+import { deleteOffer } from "@/actions/offer";
 import { Button } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -10,15 +10,15 @@ type Props = {
     id: string
 }
 
-export default function AdvertisementEditButton({id} : Props){
+export default function OfferDeleteButton({id} : Props){
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
     const doDelete = () => {
         setLoading(true)
-        deleteAdvertisement(id).then((response) => {
+        deleteOffer(id).then((response) => {
             if(response.error) throw response.error
-            router.push('/')
+            router.push('/offer/list')
         }).catch(error => {
             toast.error(error.status + ' ' + error.message)
         }).finally(() => {
@@ -28,8 +28,8 @@ export default function AdvertisementEditButton({id} : Props){
 
     return (
         <div>
-            <Button outline color='failure' className="border" isProcessing={loading} onClick={doDelete}>
-                Delete Advertisement
+            <Button outline className="border" color='failure' isProcessing={loading} onClick={doDelete}>
+                Delete Offer
             </Button>
         </div>
     )

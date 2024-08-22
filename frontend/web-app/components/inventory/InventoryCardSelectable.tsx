@@ -3,8 +3,6 @@
 import { InventoryItem } from '@/types'
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import ItemImage from '../core/ItemImage'
-import Link from 'next/link'
-import { FaCircleCheck } from 'react-icons/fa6'
 import { FaRegCheckCircle } from 'react-icons/fa'
 
 type Props = {

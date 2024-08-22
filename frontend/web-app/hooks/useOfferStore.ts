@@ -1,5 +1,5 @@
 import { PagedResults } from "@/types"
-import { Offer } from "@/types/Offer"
+import { Offer } from "@/types"
 import { shallow } from "zustand/shallow"
 import { createWithEqualityFn } from "zustand/traditional"
 

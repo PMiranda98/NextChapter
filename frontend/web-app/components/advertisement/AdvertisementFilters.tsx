@@ -1,10 +1,9 @@
-import { getCurrentUser } from '@/actions/auth';
 import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore';
 import { Button } from 'flowbite-react';
 import React from 'react'
-import { AiOutlineClockCircle, AiOutlineSortAscending } from 'react-icons/ai';
+import { AiOutlineSortAscending } from 'react-icons/ai';
 import { BsFillStopCircleFill, BsStopwatchFill } from 'react-icons/bs';
-import { GiFinishLine, GiFlame } from 'react-icons/gi';
+import { GiFlame } from 'react-icons/gi';
 
 const pageSizeButtons = [3, 6, 9, 12]
 const orderButtons = [

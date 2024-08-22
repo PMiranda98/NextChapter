@@ -1,6 +1,7 @@
-import { Advertisement } from "./Advertisement";
+import { Advertisement } from "./Models/Advertisement";
 import { PagedResults } from "./PagedResults";
-import { Item } from "./Item";
-import { InventoryItem } from "./InventoryItem";
+import { Item } from "./Models/Item";
+import { InventoryItem } from "./Models/InventoryItem";
+import { Offer } from "./Models/Offer";
 
-export type { PagedResults, Advertisement, Item, InventoryItem };
+export type { PagedResults, Advertisement, Item, InventoryItem, Offer };

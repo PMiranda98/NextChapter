@@ -1,6 +1,6 @@
 import { InventoryItem } from "@/types"
 
-export type CreateOfferDto = {
+export type UpdateOfferDto = {
     sender: string,
     recipient: string,
     type: string,

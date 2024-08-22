@@ -9,35 +9,35 @@ import OfferForm from '@/components/offer/OfferForm'
 import React from 'react'
 
 export default async function Details({params} : {params: {id : string}}) {
-  const data = await getDetailedViewData(params.id)
+  const advertisement = await getDetailedViewData(params.id)
   const user = await getCurrentUser()
 
   return (
     <div>
       <div className='flex justify-between'>
         <div className='flex gap-3 items-center'>
-          <Heading title={`${data.item.name}`}/>
-          {data.seller === user?.username && (
+          <Heading title={`${advertisement.item.name}`}/>
+          {advertisement.seller === user?.username && (
             <>
-              <AdvertisementEditButton id={data.id}/>
-              <AdvertisementDeleteButton id={data.id} />
+              <AdvertisementEditButton id={advertisement.id}/>
+              <AdvertisementDeleteButton id={advertisement.id} />
             </>
           )}
         </div>
       </div>
       <div className={`grid grid-cols-[30%_70%] gap-6 mt-3`}>
         <div className='w-full bg-gray-200 aspect-h-10 aspect-w-16 rounded-lg overflow-hidden'>
-          <ItemImage image={data.item.photo}/>
+          <ItemImage image={advertisement.item.photo}/>
         </div>
         
         <div className='rounded-lg'>
-          <AdvertisementDetailedSpecs advertisement={data}/>
+          <AdvertisementDetailedSpecs advertisement={advertisement}/>
         </div>
       </div>
-      {data.seller !== user?.username 
-      && data.seller !== undefined
+      {advertisement.seller !== user?.username 
+      && advertisement.seller !== undefined
       && user?.username !== undefined 
-      && <OfferForm advertisementId={data.id} advertisementSeller={data.seller} username={user.username} sellingPrice={data.sellingPrice}/>}
+      && <OfferForm advertisement={advertisement}  username={user.username}/>}
     </div>
   )
 }

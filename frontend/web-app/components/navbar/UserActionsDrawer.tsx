@@ -2,11 +2,9 @@
 
 import useAdvertisementParamsStore from '@/hooks/useAdvertisementParamsStore'
 import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
-import useOfferParamsStore from '@/hooks/useOfferParamsStore'
 import { Drawer, Sidebar } from 'flowbite-react'
 import { User } from 'next-auth'
 import { signOut } from 'next-auth/react'
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { useState } from 'react'

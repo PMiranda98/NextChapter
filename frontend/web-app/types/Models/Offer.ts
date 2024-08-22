@@ -3,11 +3,13 @@ import { Item } from "./Item"
 export type Offer = {
   id: string
   advertisementId: string
-  buyer: string
-  date: string
+  recipient: string
+  sender: string
+  createdAt: string
+  endedAt?: string 
   status: string
   type: string
   amount: number
-  comment: string
+  comment?: string
   itemsToExchange: Item[]
 }

@@ -1,6 +1,5 @@
 'use client'
 
-import { setConfig } from 'next/config'
 import React from 'react'
 import { Cropper } from 'react-cropper'
 import "cropperjs/dist/cropper.css";

@@ -1,6 +1,6 @@
 'use client';
 
-import {Advertisement, InventoryItem} from "@/types";
+import { InventoryItem } from "@/types";
 import {Table} from "flowbite-react";
 
 type Props = {

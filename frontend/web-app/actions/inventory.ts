@@ -2,7 +2,6 @@
 
 import { fetchWrapper } from "@/lib/fetchWrapper"
 import { InventoryItem, PagedResults } from "@/types"
-import { UpdateInventoryItemDto } from "@/types/DTOs/inventory/UpdateInventoryItemDto"
 import { revalidatePath } from "next/cache"
 
 export async function getInventoryData(queryString: string): Promise<PagedResults<InventoryItem>> {

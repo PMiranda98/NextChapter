@@ -1,7 +1,6 @@
 import React from 'react'
-import ItemImage from '../core/ItemImage'
 import Link from 'next/link'
-import { Offer } from '@/types/Offer'
+import { Offer } from '@/types'
 import { FaExchangeAlt } from 'react-icons/fa'
 import { MdCurrencyExchange } from 'react-icons/md'
 
@@ -28,9 +27,13 @@ export default function OfferCard({offer} : Props) {
           <h3 className='text-gray-700'>
             <p>{offer.advertisementId}</p>
             <p>{offer.amount}</p>
-            <p>{offer.buyer}</p>
+            <p>{offer.recipient}</p>
+            <p>{offer.sender}</p>
             <p>{offer.comment}</p>
-            <p>{offer.date}</p>
+            <p>{offer.createdAt}</p>
+            {offer.endedAt && (
+              <p>{offer.endedAt}</p>
+            )}
             <p>{offer.status}</p>
           </h3>
         </div>

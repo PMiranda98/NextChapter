@@ -12,7 +12,6 @@ import InventoryFilters from './InventoryFilters'
 import { Button, Spinner } from 'flowbite-react'
 import { IoAddCircleOutline } from 'react-icons/io5'
 import Link from 'next/link'
-import { copyFileSync } from 'fs'
 import InventoryCardSelectable from './InventoryCardSelectable'
 import { InventoryItem } from '@/types'
 

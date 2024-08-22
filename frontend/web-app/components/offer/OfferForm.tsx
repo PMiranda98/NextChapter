@@ -1,35 +1,36 @@
 'use client'
 
-import React, { SetStateAction, useEffect, useState } from 'react'
+import React, { SetStateAction, useState } from 'react'
 import Input from '../core/Input'
 import { FieldValues, useForm } from 'react-hook-form'
-import { Button, Label } from 'flowbite-react'
+import { Button } from 'flowbite-react'
 import OfferTypeRadioButton from './OfferTypeRadioButton'
 import OfferAmoutRangeSlider from './OfferAmoutRangeSlider'
 import Heading from '../core/Heading'
 import InventoryListing from '../inventory/InventoryListing'
-import { InventoryItem } from '@/types'
+import { Advertisement, InventoryItem, Offer } from '@/types'
 import toast from 'react-hot-toast'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { CreateOfferDto } from '@/types/DTOs/offer/CreateOfferDto'
-import { createOffer } from '@/actions/offer'
+import { createOffer, updateOffer } from '@/actions/offer'
 import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
+import { UpdateOfferDto } from '@/types/DTOs/offer/UpdateOfferDto'
 
 type Props = {
-  advertisementId: string
-  username: string
-  advertisementSeller: string
-  sellingPrice: number
+  username?: string
+  offer?: Offer
+  advertisement: Advertisement
 }
 
-export default function OfferForm({advertisementId, advertisementSeller, sellingPrice, username} : Props) {
+export default function OfferForm({username, offer, advertisement} : Props) {
   const router = useRouter()
+  const pathname = usePathname()
   const {control, handleSubmit, formState: {isSubmitting, isValid}} = useForm()
   const setInventoryParams = useInventoryParamsStore(state => state.setStateParams)
 
   const [exchangeSection, setExchangeSection] = useState(false)
   const [booksSelected, setBooksSelected] = useState<InventoryItem[]>([])
-  const [amount, setAmount] = useState(`${sellingPrice}`)
+  const [amount, setAmount] = useState(`${advertisement.sellingPrice}`)
 
   const handleSetExchangeSection = (value: SetStateAction<boolean>) => {
     if(value === false){
@@ -48,16 +49,27 @@ export default function OfferForm({advertisementId, advertisementSeller, selling
     try {
       let id 
       let response
-      //console.log(data)
-      const createOfferDto = mapToCreateOfferDto(data, booksSelected, amount, advertisementSeller, username)
-      console.log(createOfferDto)
-      response = await createOffer(advertisementId, createOfferDto)
-      id = response.id
+      if(pathname.startsWith('/advertisement/create') && username !== undefined && advertisement.seller !== undefined){
+        const createOfferDto = mapToCreateOfferDto(data, booksSelected, amount, advertisement.seller, username)
+        console.log(createOfferDto)
+        response = await createOffer(advertisement.id, createOfferDto)
+        id = response.id
+      } else {
+        if(offer){
+          const updateAdvertisementDto = mapToCreateOfferDto(data, booksSelected, amount, offer.recipient, offer.sender)
+          response = await updateOffer(updateAdvertisementDto, offer.id)
+          id = offer.id
+        }
+        if(response.error){
+          throw response.error
+        }
+      }
       if(response.error){
         throw response.error
       }
       router.push(`/offer/details/${id}`)
-    } catch (error: any) {
+    }
+    catch (error: any) {
       toast.error(error.status + ' ' + error.message)
     }
   }
@@ -69,7 +81,7 @@ export default function OfferForm({advertisementId, advertisementSeller, selling
         <div className='ml-3'>
           <form className='flex flex-col mt-3' onSubmit={handleSubmit(onSubmit)}>
             <OfferTypeRadioButton control={control} name='offerType' handleSetExchangeSection={handleSetExchangeSection}/>
-            <OfferAmoutRangeSlider setAmount={setAmountHandler} sellingPrice={sellingPrice} isExchange={exchangeSection}/>
+            <OfferAmoutRangeSlider setAmount={setAmountHandler} sellingPrice={advertisement.sellingPrice} isExchange={exchangeSection}/>
             <Input label='Comment' name='comment' control={control}  />
             <Button
               isProcessing={isSubmitting}
@@ -96,6 +108,18 @@ export default function OfferForm({advertisementId, advertisementSeller, selling
 
 const mapToCreateOfferDto = (data: FieldValues, booksSelected: InventoryItem[], amount: string, advertisementSeller: string, username: string) => {
   const createOfferDto : CreateOfferDto = {
+    recipient: advertisementSeller,
+    sender: username,
+    type: data.offerType,
+    amount: Number(amount),
+    comment: data.comment,
+    itemsToExchange: booksSelected
+  }
+  return createOfferDto 
+}
+
+const mapToUpdateOfferDto = (data: FieldValues, booksSelected: InventoryItem[], amount: string, advertisementSeller: string, username: string) => {
+  const createOfferDto : UpdateOfferDto = {
     recipient: advertisementSeller,
     sender: username,
     type: data.offerType,

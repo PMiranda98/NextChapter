@@ -1,4 +1,4 @@
-import { Photo } from "@/types/Photo"
+import { Photo } from "@/types/Models/Photo"
 
 export type CreateItemDto = {
   name: string
