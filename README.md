@@ -43,7 +43,13 @@ The website will be reachable at your localhost:3000.
 
 ## About this repository
 
-
+This is a repository where I try to put into practice all the new knowledge I gain. Much of the motivation for developing this training project came from online courses where I acquired knowledge, which, in one way or another—some more than others—helped me in different parts of this project. The courses were the following:
+ - Build a Microservices app with .Net and Nexjs from scratch - Udemy, Neil Cummings (Completed on August 2024)
+ - Complete guide to building an app with .Net Core and React - Udemy, Neil Cummings
+ - React - The Complete Guide 2023 (incl. Next.js, Redux) - Udemy, Maximilian Schwarzmüller
+ - Docker and Kubernetes: The Complete Guide - Udemy, Stephen Grider
+ - C# COMPLETO Programação Orientada a Objectos + Projetos (Completed on September 2021) - Udemy, Nelio Alves
+ - The Complete JavaScript Course 2021: From Zero to Expert! (Completed on September 2021) - Udemy, Jonas Schmedtmann
 
 ## Author
 Pedro Nuno Miranda
