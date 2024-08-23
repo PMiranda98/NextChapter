@@ -39,5 +39,9 @@ docker compose up -d
 ```
 The website will be reachable at your localhost:3000. 
 
+## About this repository
+
+
+
 ## Author
 Pedro Nuno Miranda
