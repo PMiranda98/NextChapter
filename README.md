@@ -14,13 +14,17 @@ At the solution level, four different API protocol types were used:
  - REST: For the endpoints access of each services;
  - AMQP: An event bus with RabbitMQ as message broker for a more frequently, non coupled and asynchronous communication between services;
  - gRPC: For direct communication between two services;
- - Websockets with SignalR: For a full duplex connection to achieve real-time communication.
+ - Websockets: For a full duplex connection to achieve real-time communication.
 
 ### Services description
 
 
 
 ### Tools used
+
+
+
+#### .NET tools
 
 
 
