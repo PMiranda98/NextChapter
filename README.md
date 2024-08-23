@@ -39,6 +39,8 @@ docker compose up -d
 ```
 The website will be reachable at your localhost:3000. 
 
+* This solution is designed by default to integrate with my Cloudinary account so that it can store the uploaded photos by the users, but for obvious reasons I have set the solution to store the photos in the project's file system path. 
+
 ## About this repository
 
 
