@@ -48,8 +48,8 @@ This is a repository where I try to put into practice all the new knowledge I ga
  - Complete guide to building an app with .Net Core and React - Udemy, Neil Cummings
  - React - The Complete Guide 2023 (incl. Next.js, Redux) - Udemy, Maximilian Schwarzmüller
  - Docker and Kubernetes: The Complete Guide - Udemy, Stephen Grider
- - C# COMPLETO Programação Orientada a Objectos + Projetos (Completed on September 2021) - Udemy, Nelio Alves
- - The Complete JavaScript Course 2021: From Zero to Expert! (Completed on September 2021) - Udemy, Jonas Schmedtmann
+ - C# COMPLETO Programação Orientada a Objectos + Projetos - Udemy, Nelio Alves (Completed on September 2021)
+ - The Complete JavaScript Course 2021: From Zero to Expert! - Udemy, Jonas Schmedtmann (Completed on September 2021)
 
 ## Author
 Pedro Nuno Miranda
