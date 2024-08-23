@@ -10,11 +10,15 @@ Despite its size, this app demonstrates my ability to integrate different tools 
 ## About the solution
 
 Each service was designed based on the clean architecture philosophy with CQRS design pattern for the communication between the different projects.<br />
-At the solution level, four different protocol communication types were used:
+At the solution level, four different API protocol types were used:
  - REST: For the endpoints access of each services;
  - AMQP: An event bus with RabbitMQ as message broker for a more frequently, non coupled and asynchronous communication between services;
- - RPC: It is present a small case for direct communication between two services;
- - Websockets: A full duplex connection for real-time communication.
+ - gRPC: For direct communication between two services;
+ - Websockets with SignalR: For a full duplex connection to achieve real-time communication.
+
+### Services description
+
+
 
 ## Running the solution
 
