@@ -1,4 +1,4 @@
-﻿namespace AdvertisementService.Application.Core;
+﻿namespace GatewayService.Core;
 
 // Used for both development and production mode. Details prop will only be present on development mode.
 public class AppException
