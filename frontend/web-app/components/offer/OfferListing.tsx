@@ -41,6 +41,7 @@ export default function OfferListing() {
     totalCount: state.totalCount,
     pageCount: state.pageCount
   }))
+
   const setData = useOfferStore(state => state.setData)
 
   const setParams = useOfferParamsStore(state => state.setStateParams)
@@ -49,6 +50,7 @@ export default function OfferListing() {
 
   useEffect(() => {
       getOffers(queryString).then(data => {
+        console.log(data)
         setData(data)
         setLoading(false)
       })
