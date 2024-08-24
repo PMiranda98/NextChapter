@@ -32,6 +32,13 @@ namespace Infrastructure.Publishers
             await _publishEndpoint.Publish(offerAccepted);
         }
 
+        public async Task PublishOfferDeleted(Offer offer)
+        {
+            _logger.LogInformation($"=====> Publish Offer deleted: {offer.Id}");
+            var offerDeleted = _mapper.Map<OfferDeleted>(offer);
+            await _publishEndpoint.Publish(offerDeleted);
+        }
+
         public async Task PublishOfferPlaced(Offer offer)
         {
             _logger.LogInformation($"=====> Publish Offer placed: {offer.Id}");

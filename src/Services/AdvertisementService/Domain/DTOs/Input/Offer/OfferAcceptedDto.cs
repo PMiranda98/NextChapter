@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.DTOs.Input.Advertisement
+namespace Domain.DTOs.Input.Offer
 {
-    public class AcceptedOfferDto
+    public class OfferAcceptedDto
     {
         [Required]
         public required string AdvertisementId { get; set; }

@@ -1,4 +1,5 @@
-﻿using Domain.DTOs.Output;
+﻿using Application.Interfaces;
+using Domain.DTOs.Output;
 using Domain.Repositories;
 using MediatR;
 using System;
@@ -20,10 +21,12 @@ namespace Application.Handlers.Offers
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly IOfferRepository _offerRepository;
+            private readonly IOfferPublisher _offerPublisher;
 
-            public Handler(IOfferRepository offerRepository)
+            public Handler(IOfferRepository offerRepository, IOfferPublisher offerPublisher)
             {
                 _offerRepository = offerRepository;
+                _offerPublisher = offerPublisher;
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
@@ -34,6 +37,8 @@ namespace Application.Handlers.Offers
                     return Result<Unit>.Failure("You are not the sender!");
 
                 await _offerRepository.DeleteOffer(request.Id, cancellationToken);
+
+                await _offerPublisher.PublishOfferAccepted(offer);
 
                 var saveChangesResult = await _offerRepository.SaveChangesAsync(cancellationToken) > 0;
                 if (!saveChangesResult) return Result<Unit>.Failure("Failed to delete the offer!");

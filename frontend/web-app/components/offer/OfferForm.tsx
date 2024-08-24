@@ -49,7 +49,7 @@ export default function OfferForm({username, offer, advertisement} : Props) {
     try {
       let id 
       let response
-      if(pathname.startsWith('/advertisement/create') && username !== undefined && advertisement.seller !== undefined){
+      if(pathname.startsWith('/advertisement/details') && username !== undefined && advertisement.seller !== undefined){
         const createOfferDto = mapToCreateOfferDto(data, booksSelected, amount, advertisement.seller, username)
         console.log(createOfferDto)
         response = await createOffer(advertisement.id, createOfferDto)

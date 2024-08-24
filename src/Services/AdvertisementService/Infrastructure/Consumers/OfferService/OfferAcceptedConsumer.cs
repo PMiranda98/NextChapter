@@ -1,7 +1,7 @@
 ﻿using Application.Handlers.Advertisements;
 using Application.Handlers.Offer;
 using AutoMapper;
-using Domain.DTOs.Input.Advertisement;
+using Domain.DTOs.Input.Offer;
 using EventBus.Contracts;
 using MassTransit;
 using MediatR;
@@ -22,8 +22,8 @@ namespace Infrastructure.Consumers.OfferService
         {
             Console.WriteLine("=====> Consuming offer accepted: " + context.Message.AdvertisementId);
 
-            var acceptedOfferDto = _mapper.Map<AcceptedOfferDto>(context.Message);
-            await _mediator.Send(new Accepted.Command { AcceptedOfferDto = acceptedOfferDto });
+            var offerAcceptedDto = _mapper.Map<OfferAcceptedDto>(context.Message);
+            await _mediator.Send(new Accepted.Command { OfferAcceptedDto = offerAcceptedDto });
         }
     }
 }

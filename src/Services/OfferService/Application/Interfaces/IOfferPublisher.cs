@@ -11,5 +11,6 @@ namespace Application.Interfaces
     {
         public Task PublishOfferPlaced(Offer offer);
         public Task PublishOfferAccepted(Offer offer);
+        public Task PublishOfferDeleted(Offer offer);
     }
 }

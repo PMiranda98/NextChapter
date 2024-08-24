@@ -1,6 +1,5 @@
 ﻿using AdvertisementService.Domain.Entities;
 using AutoMapper;
-using Domain.DTOs.Input.Advertisement;
 using Domain.DTOs.Input.Offer;
 using Domain.Entities;
 using EventBus.Contracts;
@@ -26,7 +25,7 @@ namespace Infrastructure.Mapping
 
             CreateMap<Domain.Entities.Photo, EventBus.Contracts.Models.Photo>();
             
-            CreateMap<OfferAccepted, AcceptedOfferDto>();
+            CreateMap<OfferAccepted, OfferAcceptedDto>();
 
             CreateMap<OfferPlaced, OfferPlacedDto>();
         }

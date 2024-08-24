@@ -17,6 +17,7 @@ namespace Infrastructure.Mapping
             CreateMap<Offer, OfferAccepted>()
                 .ForMember(dest => dest.Buyer, opt => opt.MapFrom(src => src.Sender))
                 .ForMember(dest => dest.Seller, opt => opt.MapFrom(src => src.Recipient));
+            CreateMap<Offer, OfferDeleted>();
         }
     }
 }
