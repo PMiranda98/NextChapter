@@ -38,7 +38,7 @@ namespace Application.Handlers.Offers
 
                 await _offerRepository.DeleteOffer(request.Id, cancellationToken);
 
-                await _offerPublisher.PublishOfferAccepted(offer);
+                await _offerPublisher.PublishOfferDeleted(offer);
 
                 var saveChangesResult = await _offerRepository.SaveChangesAsync(cancellationToken) > 0;
                 if (!saveChangesResult) return Result<Unit>.Failure("Failed to delete the offer!");

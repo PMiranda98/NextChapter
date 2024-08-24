@@ -25,8 +25,6 @@ namespace Infrastructure.Mapping
                 .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
             CreateMap<OfferPlaced, PlacedOfferDto>();
-
-            CreateMap<OfferAccepted, FinishedAdvertisementDto>();
    
         }
     }
