@@ -86,6 +86,13 @@ namespace Persistence.Repositories
             return await _dataContext.Offers.Include(x => x.ItemsToExchange).ThenInclude(y => y.Photo).Where(x => x.Id == Id).FirstAsync(cancellationToken) ?? null;
         }
 
+        public async Task DeleteOffer(Guid Id, CancellationToken cancellationToken)
+        {
+            var offer = await _dataContext.Offers.FindAsync(Id, cancellationToken);
+            if (offer != null)
+                _dataContext.Offers.Remove(offer);
+        }
+
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await _dataContext.SaveChangesAsync(cancellationToken);

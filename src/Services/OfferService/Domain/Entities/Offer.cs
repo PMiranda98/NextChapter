@@ -7,6 +7,7 @@
         public required string Recipient { get; set; }
         public required string Sender { get; set; }
         public required DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public required DateTime UpdateAt { get; set; } = DateTime.UtcNow;
         public DateTime? EndedAt { get; set; }
         public required OfferStatus Status { get; set; } = OfferStatus.Live;
         public required OfferType Type { get; set; }

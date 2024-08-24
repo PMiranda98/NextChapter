@@ -19,5 +19,6 @@ namespace Domain.Repositories
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
         public Task<List<Offer>> ListOffersNeededToBeRejected(CancellationToken cancellationToken);
         public Task<Offer?> DetailsOffer(Guid Id, CancellationToken cancellationToken);
+        public Task DeleteOffer(Guid Id, CancellationToken cancellationToken);
     }
 }

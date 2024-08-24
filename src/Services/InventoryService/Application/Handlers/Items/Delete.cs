@@ -27,15 +27,13 @@ public class Delete
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
         {
             var item = await _itemRepository.DetailsItem(request.Id, cancellationToken);
-            if (item == null) return Result<Unit>.Failure("That item doesn't exist!");
+            if (item == null) return null;
             if (item.Owner != request.User)
-            {
-                var result = Result<Unit>.Failure("Forbid!");
-                result.ErrorCode = "403";
-                return result;
-            }
-            //var deletePhotoResult = await _photoAccessor.DeletePhotoAsync(item.Photo.Id);
-            //if(deletePhotoResult == null) return Result<Unit>.Failure("Failed to delete photo!");
+                return Result<Unit>.Failure("You are not the owner!");
+
+            var deletePhotoResult = await _photoAccessor.DeletePhotoAsync(item.Photo.Id);
+            if(deletePhotoResult == null) return Result<Unit>.Failure("Failed to delete photo!");
+            
             await _itemRepository.DeleteItem(request.Id, cancellationToken);
 
             var saveChangesResult = await _itemRepository.SaveChangesAsync(cancellationToken) > 0;

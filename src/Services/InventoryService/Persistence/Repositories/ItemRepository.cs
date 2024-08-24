@@ -24,9 +24,9 @@ namespace Persistence.Repositories
 
         public async Task DeleteItem(Guid Id, CancellationToken cancellationToken)
         {
-            var advertisement = await _dataContext.Items.FindAsync(Id, cancellationToken);
-            if (advertisement != null)
-                _dataContext.Items.Remove(advertisement);
+            var item = await _dataContext.Items.FindAsync(Id, cancellationToken);
+            if (item != null)
+                _dataContext.Items.Remove(item);
         }
 
         public async Task<Item?> DetailsItem(Guid Id, CancellationToken cancellationToken)

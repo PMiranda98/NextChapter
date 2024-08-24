@@ -41,11 +41,7 @@ public class Edit
             var advertisement = await _advertisementRepository.DetailsAdvertisement(request.Id, cancellationToken);
             if (advertisement == null) return null;
             if (advertisement.Seller != request.User)
-            {
-                var result = Result<Unit>.Failure("Forbid!");
-                result.ErrorCode = "403";
-                return result;
-            }
+                return Result<Unit>.Failure("You are not the seller!");
 
             var photoUpdateResult = await _photoAccessor.UpdatePhotoAsync(request.File, advertisement.Item.Photo.Id);
             if (photoUpdateResult == null) return Result<Unit>.Failure("Failed to save photo!");

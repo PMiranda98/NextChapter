@@ -24,6 +24,14 @@ namespace Infrastructure.Publishers
             _mapper = mapper;
             _logger = logger;
         }
+
+        public async Task PublishOfferAccepted(Offer offer)
+        {
+            _logger.LogInformation($"=====> Publish Offer accepted: {offer.Id}");
+            var offerAccepted = _mapper.Map<OfferAccepted>(offer);
+            await _publishEndpoint.Publish(offerAccepted);
+        }
+
         public async Task PublishOfferPlaced(Offer offer)
         {
             _logger.LogInformation($"=====> Publish Offer placed: {offer.Id}");

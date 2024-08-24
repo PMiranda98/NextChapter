@@ -37,13 +37,9 @@ public class Edit
 
             
             var item = await _itemRepository.DetailsItem(request.Id, cancellationToken);
-            if (item == null) return Result<Unit>.Failure("That item doesn't exist!");
+            if (item == null) return null;
             if (item.Owner != request.User)
-            {
-                var result = Result<Unit>.Failure("Forbid!");
-                result.ErrorCode = "403";
-                return result;
-            }
+                return Result<Unit>.Failure("You are not the owner!");
 
             var photoUpdateResult = await _photoAccessor.UpdatePhotoAsync(request.File, item.Photo.Id);
             if (photoUpdateResult == null) return Result<Unit>.Failure("Failed to save photo!");

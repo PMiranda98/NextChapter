@@ -19,7 +19,13 @@ namespace Application.Mapping
         {
             CreateMap<CreateOfferDto, Offer>()
                 .ForMember(dest => dest.ItemsToExchange, opt => opt.MapFrom(src => src.ItemsToExchange));
-            CreateMap<CreateItemDto, Item>();
+            CreateMap<CreateItemDto, Item>()
+                .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
+
+            CreateMap<UpdateOfferDto, Offer>()
+                .ForMember(dest => dest.ItemsToExchange, opt => opt.MapFrom(src => src.ItemsToExchange));
+            CreateMap<UpdateItemDto, Item>()
+                .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
 
             CreateMap<Offer,CreatedOfferDto>()
                 .ForMember(dest => dest.ItemsToExchange, opt => opt.MapFrom(src => src.ItemsToExchange));

@@ -87,17 +87,6 @@ public class AdvertisementController : ControllerBase
         if (result.IsSuccess && result.Value == null)
             return NotFound();
 
-        if (!result.IsSuccess)
-        {
-            switch (result.ErrorCode)
-            {
-                case "403":
-                    return Forbid();
-                case "401":
-                    return Unauthorized(result.Error);
-            }
-        }
-
         return BadRequest(result.Error);
     }
 }

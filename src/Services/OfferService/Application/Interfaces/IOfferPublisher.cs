@@ -10,5 +10,6 @@ namespace Application.Interfaces
     public interface IOfferPublisher
     {
         public Task PublishOfferPlaced(Offer offer);
+        public Task PublishOfferAccepted(Offer offer);
     }
 }

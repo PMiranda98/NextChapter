@@ -2,10 +2,8 @@
 
 namespace Domain.DTOs.Input.Advertisement
 {
-    public class SoldAdvertisementDto
+    public class AcceptedOfferDto
     {
-        [Required]
-        public required bool ItemSold { get; set; }
         [Required]
         public required string AdvertisementId { get; set; }
         [Required]
@@ -13,6 +11,8 @@ namespace Domain.DTOs.Input.Advertisement
         [Required]
         public required string Seller { get; set; }
         [Required]
-        public required int? Amount { get; set; }
+        public required DateTime EndedAt { get; set; }
+        [Required]
+        public required int Amount { get; set; }
     }
 }

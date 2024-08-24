@@ -14,6 +14,9 @@ namespace Infrastructure.Mapping
         public MappingProfiles() 
         {
             CreateMap<Offer, OfferPlaced>();
+            CreateMap<Offer, OfferAccepted>()
+                .ForMember(dest => dest.Buyer, opt => opt.MapFrom(src => src.Sender))
+                .ForMember(dest => dest.Seller, opt => opt.MapFrom(src => src.Recipient));
         }
     }
 }

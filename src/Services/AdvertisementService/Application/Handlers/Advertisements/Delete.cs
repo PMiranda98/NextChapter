@@ -29,13 +29,10 @@ public class Delete
         public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
         {
             var advertisement = await _advertisementRepository.DetailsAdvertisement(request.Id, cancellationToken);
-            if (advertisement == null) return Result<Unit>.Failure("That advertisement doesn't exist!");
+            if (advertisement == null) return null;
             if (advertisement.Seller != request.User)
-            {
-                var result = Result<Unit>.Failure("Forbid!");
-                result.ErrorCode = "403";
-                return result;
-            }
+                return Result<Unit>.Failure("Your are not the seller!");
+
             var deletePhotoResult = await _photoAccessor.DeletePhotoAsync(advertisement.Item.Photo.Id);
             if (deletePhotoResult == null) return Result<Unit>.Failure("Failed to delete photo!");
             await _advertisementRepository.DeleteAdvertisement(request.Id, cancellationToken);
