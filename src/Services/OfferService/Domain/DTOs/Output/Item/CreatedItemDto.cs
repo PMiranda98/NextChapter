@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.DTOs.Output.Photo;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace Domain.DTOs.Output.Item
         public required string Author { get; set; }
         public required string LiteraryGenre { get; set; }
         public required int Year { get; set; }
-        public required Photo Photo { get; set; }
+        public required CreatedPhotoDto Photo { get; set; }
     }
 }

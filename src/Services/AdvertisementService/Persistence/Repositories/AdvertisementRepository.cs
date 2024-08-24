@@ -41,7 +41,13 @@ namespace Persistence.Repositories
                 // _dataContext.Entry(advertisement).Collections(x => x.Items).LoadAsync(cancelationToken);
              */
             // Eager Loading
-            return await _dataContext.Advertisements.Include(x => x.Item).ThenInclude(y => y.Photo).Where(x => x.Id == Id).FirstAsync(cancellationToken) ?? null;
+            var advertisement = await _dataContext.Advertisements
+                .Where(x => x.Id == Id)
+                .Include(x => x.Item)
+                    .ThenInclude(y => y.Photo)
+                .FirstAsync(cancellationToken) ?? null;
+
+            return advertisement;
         }
 
 
@@ -68,11 +74,6 @@ namespace Persistence.Repositories
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await _dataContext.SaveChangesAsync(cancellationToken);
-        }
-
-        public async Task<Advertisement?> DetailsAdvertisement(string Id, CancellationToken cancellationToken)
-        {
-            return await _dataContext.Advertisements.Include(x => x.Item).Where(x => x.Id.ToString() == Id).FirstAsync(cancellationToken) ?? null;
         }
 
         public async Task<Advertisement?> FindAdvertisement(string Id, CancellationToken cancellationToken)

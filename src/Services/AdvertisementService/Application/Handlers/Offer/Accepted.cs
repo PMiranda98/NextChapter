@@ -26,17 +26,20 @@ namespace Application.Handlers.Offer
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.OfferAcceptedDto.AdvertisementId, cancellationToken);
-                if (advertisement != null)
+                if (Guid.TryParse(request.OfferAcceptedDto.AdvertisementId, out Guid advertisementId))
                 {
-                    advertisement.Buyer = request.OfferAcceptedDto.Buyer;
-                    advertisement.SoldAmount = request.OfferAcceptedDto.Amount;
-                    advertisement.Status = AdvertisementStatus.Sold;
-                    advertisement.UpdateAt = DateTime.UtcNow;
-                    advertisement.EndedAt = DateTime.UtcNow;
+                    var advertisement = await _advertisementRepository.DetailsAdvertisement(advertisementId, cancellationToken);
+                    if (advertisement != null)
+                    {
+                        advertisement.Buyer = request.OfferAcceptedDto.Buyer;
+                        advertisement.SoldAmount = request.OfferAcceptedDto.Amount;
+                        advertisement.Status = AdvertisementStatus.Sold;
+                        advertisement.UpdateAt = DateTime.UtcNow;
+                        advertisement.EndedAt = DateTime.UtcNow;
 
-                    await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
-                    await _advertisementRepository.SaveChangesAsync(cancellationToken);
+                        await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
+                        await _advertisementRepository.SaveChangesAsync(cancellationToken);
+                    }
                 }
             }
         }

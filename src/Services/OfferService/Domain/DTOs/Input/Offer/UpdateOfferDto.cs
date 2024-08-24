@@ -16,6 +16,8 @@ namespace Domain.DTOs.Input.Offer
         [Required]
         public required string Sender { get; set; }
         [Required]
+        public required OfferStatus Status { get; set; }
+        [Required]
         public required OfferType Type { get; set; }
         [Required]
         public required int Amount { get; set; }

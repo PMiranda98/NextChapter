@@ -44,7 +44,7 @@ namespace Identity
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "advertisementApp" },
                     AccessTokenLifetime = 3600*24*30,
-                    AlwaysIncludeUserClaimsInIdToken = true
+                    AlwaysIncludeUserClaimsInIdToken = true,
                 }
 
 

@@ -78,12 +78,12 @@ namespace Persistence.Repositories
         public async Task<List<Offer>> ListOffersNeededToBeRejected(CancellationToken cancellationToken)
         {
             //return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.Date).Days > 7).ToListAsync(cancellationToken);
-            return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.CreatedAt).Minutes > 2).ToListAsync(cancellationToken);
+            return await _dataContext.Offers.Where(p => p.Status == OfferStatus.Live && (DateTime.UtcNow - p.CreatedAt).Minutes > 60).ToListAsync(cancellationToken);
         }
 
         public async Task<Offer?> DetailsOffer(Guid Id, CancellationToken cancellationToken)
         {
-            return await _dataContext.Offers.Include(x => x.ItemsToExchange).ThenInclude(y => y.Photo).Where(x => x.Id == Id).FirstAsync(cancellationToken) ?? null;
+            return await _dataContext.Offers.Include(x => x.ItemsToExchange).ThenInclude(y => y.Photo).Where(x => x.Id == Id).AsNoTracking().FirstAsync(cancellationToken) ?? null;
         }
 
         public async Task DeleteOffer(Guid Id, CancellationToken cancellationToken)
@@ -93,8 +93,14 @@ namespace Persistence.Repositories
                 _dataContext.Offers.Remove(offer);
         }
 
+        public async Task UpdateOffer(Offer offer, CancellationToken cancellationToken)
+        {
+            _dataContext.Entry(offer).State = EntityState.Modified;
+        }
+
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
+
             return await _dataContext.SaveChangesAsync(cancellationToken);
         }
     }

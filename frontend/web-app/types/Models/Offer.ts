@@ -1,4 +1,4 @@
-import { Item } from "./Item"
+import { InventoryItem } from "./InventoryItem"
 
 export type Offer = {
   id: string
@@ -11,5 +11,5 @@ export type Offer = {
   type: string
   amount: number
   comment?: string
-  itemsToExchange: Item[]
+  itemsToExchange: InventoryItem[]
 }

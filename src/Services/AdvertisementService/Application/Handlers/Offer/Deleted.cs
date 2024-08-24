@@ -29,14 +29,17 @@ namespace Application.Handlers.Offer
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.AdvertisementId, cancellationToken);
-                if (advertisement != null)
+                if (Guid.TryParse(request.AdvertisementId, out Guid advertisementId))
                 {
-                    advertisement.NumberOfOffers = advertisement.NumberOfOffers - 1;
-                    advertisement.UpdateAt = DateTime.UtcNow;
+                    var advertisement = await _advertisementRepository.DetailsAdvertisement(advertisementId, cancellationToken);
+                    if (advertisement != null)
+                    {
+                        advertisement.NumberOfOffers = advertisement.NumberOfOffers - 1;
+                        advertisement.UpdateAt = DateTime.UtcNow;
 
-                    await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
-                    await _advertisementRepository.SaveChangesAsync(cancellationToken);
+                        await _advertisementPublisher.PublishAdvertisementUpdated(advertisement);
+                        await _advertisementRepository.SaveChangesAsync(cancellationToken);
+                    }
                 }
             }
         }

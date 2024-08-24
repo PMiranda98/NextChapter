@@ -56,7 +56,7 @@ export default function OfferForm({username, offer, advertisement} : Props) {
         id = response.id
       } else {
         if(offer){
-          const updateAdvertisementDto = mapToCreateOfferDto(data, booksSelected, amount, offer.recipient, offer.sender)
+          const updateAdvertisementDto = mapToUpdateOfferDto(data, booksSelected, amount, offer.recipient, offer.sender, offer.status)
           response = await updateOffer(updateAdvertisementDto, offer.id)
           id = offer.id
         }
@@ -118,10 +118,11 @@ const mapToCreateOfferDto = (data: FieldValues, booksSelected: InventoryItem[], 
   return createOfferDto 
 }
 
-const mapToUpdateOfferDto = (data: FieldValues, booksSelected: InventoryItem[], amount: string, advertisementSeller: string, username: string) => {
+const mapToUpdateOfferDto = (data: FieldValues, booksSelected: InventoryItem[], amount: string, advertisementSeller: string, username: string, status: string) => {
   const createOfferDto : UpdateOfferDto = {
     recipient: advertisementSeller,
     sender: username,
+    status: status,
     type: data.offerType,
     amount: Number(amount),
     comment: data.comment,

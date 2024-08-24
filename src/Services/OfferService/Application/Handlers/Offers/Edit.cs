@@ -39,8 +39,6 @@ namespace Application.Handlers.Offers
             {
                 var offer = await _offerRepository.DetailsOffer(request.Id, cancellationToken);
                 if (offer == null) return null;
-                if (offer.Sender != request.User) 
-                    return Result<Unit>.Failure("You are not the sender!");
 
                 offer = _mapper.Map(request.UpdateOfferDto, offer);
                 offer.UpdateAt = DateTime.UtcNow;
@@ -48,6 +46,7 @@ namespace Application.Handlers.Offers
                 if(offer.Status == OfferStatus.Accepted)
                     await _offerPublisher.PublishOfferAccepted(offer);
 
+                await _offerRepository.UpdateOffer(offer, cancellationToken);
                 var saveChangesResult = await _offerRepository.SaveChangesAsync(cancellationToken) > 0;
                 if (!saveChangesResult) return Result<Unit>.Failure("Failed to update the offer!");
                 return Result<Unit>.Success(Unit.Value);

@@ -24,11 +24,14 @@ namespace Application.Handlers.Offer;
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var advertisement = await _advertisementRepository.DetailsAdvertisement(request.OfferPlacedDto.AdvertisementId, cancellationToken);
-                if (advertisement != null)
+                if (Guid.TryParse(request.OfferPlacedDto.AdvertisementId, out Guid advertisementId))
                 {
-                    advertisement.NumberOfOffers++;
-                    await _advertisementRepository.SaveChangesAsync(cancellationToken);
+                    var advertisement = await _advertisementRepository.DetailsAdvertisement(advertisementId, cancellationToken);
+                    if (advertisement != null)
+                    {
+                        advertisement.NumberOfOffers++;
+                        await _advertisementRepository.SaveChangesAsync(cancellationToken);
+                    }
                 }
             }
         }

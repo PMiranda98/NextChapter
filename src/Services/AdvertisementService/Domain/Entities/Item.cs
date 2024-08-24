@@ -10,7 +10,4 @@ public class Item
     public required string LiteraryGenre { get; set; }
     public required int Year { get; set; }
     public required Photo Photo { get; set; }
-    // navigation properties
-    public Advertisement? Advertisement { get; set; }
-    public Guid AdvertisementId { get; set; }
 }

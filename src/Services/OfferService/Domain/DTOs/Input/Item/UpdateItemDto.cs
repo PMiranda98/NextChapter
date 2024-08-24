@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Domain.DTOs.Input.Photo;
 using Domain.Entities;
 
 namespace Domain.DTOs.Input.Item
@@ -14,6 +15,6 @@ namespace Domain.DTOs.Input.Item
         [Required]
         public required int Year { get; set; }
         [Required]
-        public required Photo Photo { get; set; }
+        public required UpdatePhotoDto Photo { get; set; }
     }
 }
