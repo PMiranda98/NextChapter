@@ -1,4 +1,5 @@
-import { UpdateItemDto } from "../item/UpdateItemDto"
+import { UpdateItemDto } from "../../item/output/UpdateItemDto"
+
 
 export type UpdateAdvertisementDto = {
     sellingPrice: number

@@ -9,12 +9,11 @@ import OfferAmoutRangeSlider from './OfferAmoutRangeSlider'
 import Heading from '../core/Heading'
 import InventoryListing from '../inventory/InventoryListing'
 import { Advertisement, InventoryItem, Offer } from '@/types'
-import toast from 'react-hot-toast'
 import { usePathname, useRouter } from 'next/navigation'
-import { CreateOfferDto } from '@/types/DTOs/offer/CreateOfferDto'
+import { CreateOfferDto } from '@/types/DTOs/offer/output/CreateOfferDto'
 import { createOffer, updateOffer } from '@/actions/offer'
 import useInventoryParamsStore from '@/hooks/useInventoryParamsStore'
-import { UpdateOfferDto } from '@/types/DTOs/offer/UpdateOfferDto'
+import { UpdateOfferDto } from '@/types/DTOs/offer/output/UpdateOfferDto'
 
 type Props = {
   username?: string
@@ -45,33 +44,20 @@ export default function OfferForm({username, offer, advertisement} : Props) {
     setAmount(value)
   }
 
-  const onSubmit = async (data: FieldValues) => {
-    try {
+  const onSubmit = (data: FieldValues) => {
       let id 
-      let response
       if(pathname.startsWith('/advertisement/details') && username !== undefined && advertisement.seller !== undefined){
         const createOfferDto = mapToCreateOfferDto(data, booksSelected, amount, advertisement.seller, username)
         console.log(createOfferDto)
-        response = await createOffer(advertisement.id, createOfferDto)
-        id = response.id
+        createOffer(advertisement.id, createOfferDto).then(response => id = response.id)
       } else {
         if(offer){
           const updateAdvertisementDto = mapToUpdateOfferDto(data, booksSelected, amount, offer.recipient, offer.sender, offer.status)
-          response = await updateOffer(updateAdvertisementDto, offer.id)
+          updateOffer(updateAdvertisementDto, offer.id)
           id = offer.id
         }
-        if(response.error){
-          throw response.error
-        }
-      }
-      if(response.error){
-        throw response.error
       }
       router.push(`/offer/details/${id}`)
-    }
-    catch (error: any) {
-      toast.error(error.status + ' ' + error.message)
-    }
   }
 
   return (

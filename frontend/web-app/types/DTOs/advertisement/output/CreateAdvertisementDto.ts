@@ -1,4 +1,4 @@
-import { CreateItemDto } from "../item/CreateItemDto"
+import { CreateItemDto } from "../../item/output/CreateItemDto"
 
 export type CreateAdvertisementDto = {
   sellingPrice: number

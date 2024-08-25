@@ -16,7 +16,8 @@ type Props = {
 }
 
 export default function AdvertisementListing({username} : Props) {
-  const [loading, setLoading] = useState(true)
+  //const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   // This is not advisable because if any of the state changes (we might have a lot more in the store than what we actually need here)
   // that would cause this component to rerender. 
@@ -40,14 +41,14 @@ export default function AdvertisementListing({username} : Props) {
   }))
 
   const setData = useAdvertisementStore(state => state.setData)
-
   const setParams = useAdvertisementParamsStore(state => state.setParams)
+  
   const queryString = qs.stringifyUrl({url: '', query: params})
   const setPageNumber = (pageNumber: number) => setParams({pageNumber})
 
   useEffect(() => {
-      getAdvertisementData(queryString).then(data => {
-        console.log(data) 
+    setLoading(true)  
+    getAdvertisementData(queryString).then(data => { 
         setData(data)
         setLoading(false)
       })
@@ -66,7 +67,7 @@ export default function AdvertisementListing({username} : Props) {
         <EmptyFilter showReset/>
       ) : (
         <>
-          <div className='grid grid-cols-4 gap-6'>
+          <div className='grid grid-cols-4 gap-6'>    
             {data.advertisements.map((advertisement) => (
               <AdvertisementCard key={advertisement.id} advertisement={advertisement}/>
             ))}

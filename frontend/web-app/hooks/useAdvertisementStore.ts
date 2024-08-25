@@ -35,4 +35,5 @@ const useAdvertisementStore = createWithEqualityFn<State & Actions>((set) => ({
   }
 }), shallow)
 
+
 export default useAdvertisementStore

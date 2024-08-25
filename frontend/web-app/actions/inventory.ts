@@ -1,29 +1,66 @@
 'use server'
 
-import { fetchWrapper } from "@/lib/fetchWrapper"
+import { ErrorType, isErrorType } from "@/lib/helpers/ErrorHandlingHelper"
 import { InventoryItem, PagedResults } from "@/types"
+import { CreatedInventoryItemDto } from "@/types/DTOs/inventory/input/CreatedInventoryItemDto"
 import { revalidatePath } from "next/cache"
+import { del, get, post, put } from "./fetchWrapper"
 
 export async function getInventoryData(queryString: string): Promise<PagedResults<InventoryItem>> {
-  return await fetchWrapper.get(`inventory${queryString}`)
+  const response = await fetchWrapperCaller<PagedResults<InventoryItem>>(() => get<PagedResults<InventoryItem>>(`inventory${queryString}`))
+  return response
 }
 
 export async function getDetailedViewData(id: string) : Promise<InventoryItem>{
-  return await fetchWrapper.get(`inventory/${id}`)
+  const response = await fetchWrapperCaller<InventoryItem>(() => get<InventoryItem>(`inventory/${id}`))
+  return response 
 }
 
-export async function createInventoryItem(formData: FormData){
-  return await fetchWrapper.post(`inventory`, formData)
+export async function createInventoryItem(formData: FormData) : Promise<CreatedInventoryItemDto> {
+  const response = await fetchWrapperCaller<CreatedInventoryItemDto>(() => post<CreatedInventoryItemDto>(`inventory`, formData)) 
+  return response
 }
 
 export async function updateInventoryItem(formData: FormData, id: string) {
-  const response = await fetchWrapper.put(`inventory/${id}`, formData)
+  await fetchWrapperExec(() => put(`inventory/${id}`, formData)) 
   revalidatePath(`/inventory/details/${id}`)
-  return response
 }
 
 export async function deleteInventoryItem(id: string) {
-  const response = await fetchWrapper.del(`inventory/${id}`)
+  await fetchWrapperExec(() => del(`inventory/${id}`)) 
   revalidatePath('/inventory/list')
-  return response
+}
+
+async function fetchWrapperCaller<T>(call: ()  => Promise<T | ErrorType>) : Promise<T> {
+  try {
+    const response = await call()
+
+    if(isErrorType(response)) throw Error(response.error.message)
+    
+    return response
+
+  } catch (error: unknown) {
+    if(error instanceof Error)
+      throw error
+      //toast.error(error.message)
+    else 
+      //toast.error("Something went wrong.")
+      throw error
+  }
+}
+
+async function fetchWrapperExec(call: ()  => Promise<void | ErrorType>){
+  try {
+    const response = await call()
+
+    if(isErrorType(response)) throw Error(response.error.message)
+
+  } catch (error: unknown) {
+    if(error instanceof Error)
+      throw error
+      //toast.error(error.message)
+    else 
+      //toast.error("Something went wrong.")
+      throw error
+  }
 }

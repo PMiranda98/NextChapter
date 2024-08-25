@@ -1,3 +1,5 @@
+'use server'
+
 import React from 'react'
 import Search from './Search'
 import Logo from './Logo'

@@ -7,10 +7,10 @@ public class AppException
     {
         StatusCode = statusCode;
         Message = message;
-        Detais = detais;
+        Details = detais;
     }
 
     public int StatusCode { get; set; }
     public string Message { get; set; }
-    public string? Detais { get; set; }
+    public string? Details { get; set; }
 }

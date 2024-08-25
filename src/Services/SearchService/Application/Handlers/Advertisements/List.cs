@@ -26,8 +26,10 @@ namespace Application.Handlers.Advertisements
             }
             public async Task<Result<SearchOutputDTO<Domain.Entities.Advertisement>>> Handle(Query request, CancellationToken cancellationToken)
             {
+                throw new Exception("Exception test!");
                 var result = await _advertisementRepository.SearchAdvertisement(request.SearchInputDTO);
                 return Result<SearchOutputDTO<Domain.Entities.Advertisement>>.Success(_mapper.Map<SearchOutputDTO<Domain.Entities.Advertisement>>(result));
+                //return Result<SearchOutputDTO<Domain.Entities.Advertisement>>.Failure("Failure test!");
             }
         }
     }

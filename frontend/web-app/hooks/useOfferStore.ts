@@ -22,6 +22,7 @@ const initialState: State = {
 const useOfferStore = createWithEqualityFn<State & Actions>((set) => ({
     ...initialState,
     setData: (data: PagedResults<Offer>) => {
+      console.log("setData:" + data)
       set(()=> ({
         offers: data.results,
         totalCount: data.totalCount,

@@ -7,12 +7,11 @@ import { Button } from 'flowbite-react'
 import { createAdvertisement, updateAdvertisement } from '@/actions/advertisement'
 import { usePathname, useRouter } from 'next/navigation'
 import { Advertisement } from '@/types'
-import { CreateAdvertisementDto } from '@/types/DTOs/advertisement/CreateAdvertisementDto'
-import toast from 'react-hot-toast'
-import { UpdateAdvertisementDto } from '@/types/DTOs/advertisement/UpdateAdvertisementDto'
 import PhotoUploadWidget from '../core/PhotoUploadWidget'
 import Image from 'next/image'
 import useInventoryStore from '@/hooks/useInventoryStore'
+import { CreateAdvertisementDto } from '@/types/DTOs/advertisement/output/CreateAdvertisementDto'
+import { UpdateAdvertisementDto } from '@/types/DTOs/advertisement/output/UpdateAdvertisementDto'
 
 type Props = {
   advertisement?: Advertisement
@@ -71,35 +70,29 @@ export default function AdvertisementForm({advertisement} : Props) {
     }
   }
 
-  const onSubmit = async (data: FieldValues) => {
-    try {
-      let id 
-      let response
+  const onSubmit = (data: FieldValues) => {
+      let id
       if(files && files.length === 0) throw new Error('A Photo is required!');
-      if(pathname === '/advertisement/create'){
+      if(pathname === '/advertisement/create')
+      {
         const createAdvertisementDto = mapToCreateAdvertisementDto(data)
         const formData = new FormData()
         formData.append('file', files[0])
         formData.append('createAdvertisementDtoJson', JSON.stringify(createAdvertisementDto))
-        response = await createAdvertisement(formData)
-        id = response.id
-      } else {
+        createAdvertisement(formData).then(response => id = response.id)
+      } 
+      else 
+      {
         if(advertisement){
           const updateAdvertisementDto = mapToUpdateAdvertisementDto(data)
           const formData = new FormData()
           formData.append('file', files[0])
           formData.append('updateAdvertisementDtoJson', JSON.stringify(updateAdvertisementDto))
-          response = await updateAdvertisement(formData, advertisement.id)
+          updateAdvertisement(formData, advertisement.id)
           id = advertisement.id
         }
       }
-      if(response.error){
-        throw response.error
-      }
       router.push(`/advertisement/details/${id}`)
-    } catch (error: any) {
-      toast.error(error.status + ' ' + error.message)
-    }
   }
 
   return (

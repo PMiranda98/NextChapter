@@ -2,7 +2,7 @@
 
 import { deleteOffer, updateOffer } from "@/actions/offer";
 import { Offer } from "@/types";
-import { UpdateOfferDto } from "@/types/DTOs/offer/UpdateOfferDto";
+import { UpdateOfferDto } from "@/types/DTOs/offer/output/UpdateOfferDto";
 import { Button } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

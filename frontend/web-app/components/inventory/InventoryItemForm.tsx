@@ -9,7 +9,7 @@ import { InventoryItem  } from '@/types'
 import toast from 'react-hot-toast'
 import PhotoUploadWidget from '../core/PhotoUploadWidget'
 import Image from 'next/image'
-import { CreateInventoryItemDto } from '@/types/DTOs/inventory/CreateInventoryItemDto'
+import { CreateInventoryItemDto } from '@/types/DTOs/inventory/output/CreateInventoryItemDto'
 import { createInventoryItem, updateInventoryItem } from '@/actions/inventory'
 
 type Props = {
@@ -52,35 +52,29 @@ export default function InventoryItemForm({item} : Props) {
     }
   }
 
-  const onSubmit = async (data: FieldValues) => {
-    try {
+  const onSubmit = (data: FieldValues) => {
       let id 
-      let response
       if(files && files.length === 0) throw new Error('A Photo is required!');
-      if(pathname === '/inventory/create'){
+      if(pathname === '/inventory/create')
+      {
         const createInventoryItemDto = mapToCreateInventoryItemDto(data)
         const formData = new FormData()
         formData.append('file', files[0])
         formData.append('createItemDtoJson', JSON.stringify(createInventoryItemDto))
-        response = await createInventoryItem(formData)
-        id = response.id
-      } else {
+        createInventoryItem(formData).then(response => id = response.id)
+      } 
+      else 
+      {
         if(item){
           const updateInventoryItemDto = mapToUpdateInventoryItemDto(data)
           const formData = new FormData()
           formData.append('file', files[0])
           formData.append('updateItemDtoJson', JSON.stringify(updateInventoryItemDto))
-          response = await updateInventoryItem(formData, item.id)
+          updateInventoryItem(formData, item.id)
           id = item.id
         }
       }
-      if(response.error){
-        throw response.error
-      }
       router.push(`/inventory/details/${id}`)
-    } catch (error: any) {
-      toast.error(error.status + ' ' + error.message)
-    }
   }
 
   if(loading) return (
