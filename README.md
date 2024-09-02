@@ -4,13 +4,13 @@ A .NET and React/Next.js based solution implementing a website for selling used 
 Despite its size, this app demonstrates my ability to integrate different tools and present an easily scalable solution.
 
 Goal:
-![NextChapter architecture diagram](resources/nextchapter_architecture-goal.png)
+![NextChapter architecture diagram](resources/nextchapter-architecture-goal.png)
 
 Currently:
-![NextChapter architecture diagram](resources/nextchapter_architecture-currently.png)
+![NextChapter architecture diagram](resources/nextchapter-architecture-currently.png)
 
 Home page:
-![NextChapter homepage screenshot](resources/nextchapter_homepage.png)
+![NextChapter homepage screenshot](resources/nextchapter-homepage.png)
 
 ## About the solution
 
