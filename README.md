@@ -2,8 +2,13 @@
 
 A solution implementing a website for selling used books using a services-based architecture.
 
-![NextChapter architecture diagram](resources/nextchapter_architecture.png)
+Goal:
+![NextChapter architecture diagram](resources/nextchapter_architecture-goal.png)
 
+Currently:
+![NextChapter architecture diagram](resources/nextchapter_architecture-currently.png)
+
+Home page:
 ![NextChapter homepage screenshot](resources/nextchapter_homepage.png)
 
 ## About the solution
