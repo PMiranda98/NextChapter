@@ -14,7 +14,7 @@ Home page:
 
 ## About the solution
 
-Each service was designed based on the clean architecture philosophy with CQRS design pattern for the communication between the different projects.<br />
+Each service was designed based on the clean architecture philosophy with CQRS design pattern.<br />
 At the solution level, four different API protocol types were used:
  - REST: For the endpoints access of each services;
  - AMQP: An event bus with RabbitMQ as message broker for a more frequently, non coupled and asynchronous communication between services;
@@ -44,7 +44,7 @@ docker compose up -d
 ```
 The website will be reachable at your localhost:3000. 
 
-\* This solution is designed by default to integrate with my Cloudinary account so that it can store the uploaded photos by the users, but for obvious reasons I have set the solution to store the photos in the project's file system path. 
+\* This solution is designed to integrate with my Cloudinary account so that it can store the uploaded photos by the users, but for obvious reasons I didn't publish the "appsetting.Cloudinary.json" file configured in the solution to get the necessary keys. To use this feature you should create your own account in the Cloudinary platform and then create a "appsettings.Cloudinary.json" file with the necessary data (CloudName, ApiKey and ApiSecret). 
 
 ## About this repository
 
