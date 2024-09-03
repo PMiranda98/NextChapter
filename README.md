@@ -32,20 +32,6 @@ At the solution level, four different API protocol types were used:
 #### .NET tools
 
 
-
-## Running the solution
-
-- Clone the NextChapter repository: 
-- [Install & start Docker Desktop](https://docs.docker.com/engine/install/)
-- Open the command line and change the directory to the docker-compose.yml file directory.
-- Run the following command:
-```powershell
-docker compose up -d
-```
-The website will be reachable at your localhost:3000. 
-
-\* This solution is designed to integrate with my Cloudinary account so that it can store the uploaded photos by the users, but for obvious reasons I didn't publish the "appsetting.Cloudinary.json" file configured in the solution to get the necessary keys. To use this feature you should create your own account in the Cloudinary platform and then create a "appsettings.Cloudinary.json" file with the necessary data (CloudName, ApiKey and ApiSecret). 
-
 ## About this repository
 
 This is a repository where I try to put into practice all the new knowledge I gain. Much of the motivation for developing this training project came from online courses where I acquired knowledge, which, in one way or another—some more than others—helped me in different parts of this project. The courses were the following:
