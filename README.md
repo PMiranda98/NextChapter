@@ -18,10 +18,10 @@ The backend, where I have the most experience, is practically finished. The fron
 Below are figures to help you understand the whole solution:
 
 Goal:
-![NextChapter architecture diagram](resources/nextchapter-architecture-goal.png)
+![NextChapter architecture diagram](resources/nextchapter-architecture-goal-updated.png)
 
 Currently:
-![NextChapter architecture diagram](resources/nextchapter-architecture-currently.png)
+![NextChapter architecture diagram](resources/nextchapter-architecture-currently-updated.png)
 
 Home page:
 ![NextChapter homepage screenshot](resources/nextchapter-homepage.png)
