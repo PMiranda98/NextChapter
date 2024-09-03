@@ -13,9 +13,11 @@ This is a repository where I try to put into practice all the new knowledge I ga
  - C# COMPLETO Programação Orientada a Objectos + Projetos - Udemy, Nelio Alves (Completed on September 2021)
  - The Complete JavaScript Course 2021: From Zero to Expert! - Udemy, Jonas Schmedtmann (Completed on September 2021)
 
-The backend, where I have the most experience, is practically finished. The frontend, which I am improving step by step, already has a good amount of work done, but there is still more to do. So, this is not a finished product, but it already demonstrates a lot of knowledge.     
+## About the solution
 
-Below are figures to help you understand the whole solution:
+In the backend, where I have more experience, the desired goals have already been achieved. The frontend, which I'm improving step by step, has a good amount of work done, but there is still more to do. So, this is not a finished product, but it already demonstrates significant knowledge.     
+
+Below are figures that illustrate the developed service-based architecture:
 
 Goal:
 ![NextChapter architecture diagram](resources/nextchapter-architecture-goal-updated.png)
@@ -26,8 +28,6 @@ Currently:
 Home page:
 ![NextChapter homepage screenshot](resources/nextchapter-homepage.png)
 
-## About the solution
-
 Each service was designed following the Clean Architecture philosophy, using the CQRS and Mediator design patterns. This approach allowed me to develop services in an organized manner, with clean code and high scalability.<br />
 
 At the solution level, four different API protocol types were used:
@@ -37,7 +37,7 @@ At the solution level, four different API protocol types were used:
  - Websockets: For a full duplex connection to achieve real-time communication. (client side part not implemented yet)
 
 ### Services description
-#### 
+#### Advertisement service
 
 
 ### Tools used
