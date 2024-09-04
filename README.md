@@ -72,12 +72,19 @@ This service is based on the .NET YARP gateway library, and I used it to provide
 
 ### Tools used
 
-
-
-#### .NET tools
-
-
-
+ - ASP.NET Core
+ - Entity Framework Core
+ - React/Next.js
+ - PostgreSQL
+ - MongoDB
+ - gRPC
+ - SignalR
+ - RabbitMQ
+ - MassTransit
+ - Cloudinary
+ - YARP
+ - Duende IdentityServer
+ - Docker
 
 ## Author
 Pedro Nuno Miranda
