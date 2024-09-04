@@ -43,17 +43,19 @@ It acts has both publisher and subscriber to the event bus. Wherever an advertis
 #### Search service
 
 All users can view all live advertisements on the homepage, where this service is used.<br/>
-It acts as a subscriber to message queues used by the advertisement when an advertisement is created, updated or deleted so that it can maintain data consistency.
+It acts as a subscriber to message queues used by the advertisement service when an advertisement is created, updated or deleted so that it can maintain data consistency.
 
 #### Inventory service
 
-Authenticated users can view, add, update or delete items to their inventory. This service integrates with a third-party service called ‘Cloudinary’, where each item photo uploaded by users is stored.
+Authenticated users can view, add, update or delete items to their inventory.<br/> 
+This service integrates with a third-party service called ‘Cloudinary’, where each item photo uploaded by users is stored.
 
 #### Offer service
 
-Authenticated users can view, create, update or delete offers. When creating an offer, a user can specify whether they want to purchase with a certain amount or if it wants to make an exchange with books from their inventory.<br/>
+Authenticated users can view, create, update or delete offers. When creating an offer, users can specify whether they want to purchase with a certain amount or make an exchange with books from their inventory.<br/>
 It acts has both publisher and subscriber to the event bus. Wherever an offer is created, updated or deleted, a message is published to the event bus. This service subscribes to a message queue used by the advertisement service when an advertisement is deleted.<br/>
-It hosts a background service that checks for offers in pending state that have passed a certain date, if found, the service it will mark the offers as rejected.<br/> Additionally, it uses gRPC during offer creation, so that it can ask the advertisement service if the advertisement mentioned in the offer still available and live.
+It hosts a background service that checks for offers in pending state that have passed a certain date, if found, the service it will mark the offers as rejected.<br/> 
+Additionally, it uses gRPC during offer creation, so that it can ask the advertisement service if the advertisement mentioned in the offer still available and live.
 
 #### Identity service
 
@@ -61,7 +63,7 @@ This service is based on the [Duende IdentityServer](https://duendesoftware.com/
 
 #### Notification service
 
-This services exposes an endpoint that allows clients to establish a full-duplex connection, enabling real time functionality with the help of the SignalR tool.<br/>
+This service exposes an endpoint that allows clients to establish a full-duplex connection, enabling real time functionality with the help of the SignalR tool.<br/>
 It subscribes to message queues used by the advertisement and offer services when an advertisement is deleted and an offer is placed. The goal is to send a message to a SignalR Hub whenever these actions occur so that it can alert the clients. 
 
 #### Gateway service
