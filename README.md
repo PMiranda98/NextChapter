@@ -6,12 +6,12 @@ This app demonstrates my ability to integrate different tools and present an eas
 ## About this repository
 
 This is a repository where I try to put into practice all the new knowledge I gain. Much of the motivation for developing this training project came from online courses where I acquired knowledge, which, in one way or another — some more than others — helped me in different parts of this project. The courses were the following:
- - [Build a Microservices app with .Net and Nexjs from scratch - Udemy, Neil Cummings](https://www.udemy.com/course/build-a-microservices-app-with-dotnet-and-nextjs-from-scratch) (Completed on August 2024)
- - [Complete guide to building an app with .Net Core and React - Udemy, Neil Cummings](https://www.udemy.com/course/complete-guide-to-building-an-app-with-net-core-and-react)
- - [React - The Complete Guide 2023 (incl. Next.js, Redux) - Udemy, Maximilian Schwarzmüller](https://www.udemy.com/course/react-the-complete-guide-incl-redux)
- - [Docker and Kubernetes: The Complete Guide - Udemy, Stephen Grider](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide)
- - [C# COMPLETO Programação Orientada a Objectos + Projetos - Udemy, Nelio Alves](https://www.udemy.com/course/programacao-orientada-a-objetos-csharp) (Completed on September 2021)
- - [The Complete JavaScript Course 2021: From Zero to Expert! - Udemy, Jonas Schmedtmann](https://www.udemy.com/course/the-complete-javascript-course) (Completed on September 2021)
+ - [Build a Microservices app with .Net and Nexjs from scratch](https://www.udemy.com/course/build-a-microservices-app-with-dotnet-and-nextjs-from-scratch) - Udemy, Neil Cummings (Completed on August 2024)
+ - [Complete guide to building an app with .Net Core and React](https://www.udemy.com/course/complete-guide-to-building-an-app-with-net-core-and-react) - Udemy, Neil Cummings
+ - [React - The Complete Guide 2023 (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux) - Udemy, Maximilian Schwarzmüller
+ - [Docker and Kubernetes: The Complete Guide](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide) - Udemy, Stephen Grider
+ - [C# COMPLETO Programação Orientada a Objectos + Projetos](https://www.udemy.com/course/programacao-orientada-a-objetos-csharp) - Udemy, Nelio Alves (Completed on September 2021)
+ - [The Complete JavaScript Course 2021: From Zero to Expert!](https://www.udemy.com/course/the-complete-javascript-course) - Udemy, Jonas Schmedtmann (Completed on September 2021)
 
 ## About the solution
 
