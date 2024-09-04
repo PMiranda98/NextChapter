@@ -1,7 +1,7 @@
 # Microservices solution - "NextChapter"
 
 A .NET and React/Next.js based solution implementing a website for selling used books using a services-based architecture. 
-Despite its size, this app demonstrates my ability to integrate different tools and present an easily scalable solution.
+This app demonstrates my ability to integrate different tools and present an easily scalable solution.
 
 ## About this repository
 
