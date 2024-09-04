@@ -66,7 +66,7 @@ It subscribes to message queues used by the advertisement and offer services whe
 
 #### Gateway service
 
-This service is based on the .NET YARP gateway library, and I used it to provide clients with a single endpoint for interacting with the backend. It verifies user authentication when required by the request before it transform and redirect the request to the appropriate microservice.
+This service is based on the .NET YARP gateway library, and I used it to provide clients with a single endpoint for interacting with the backend. It verifies user authentication when required by the request before it transforms and redirects the request to the appropriate microservice.
 
 ### Tools used
 
